@@ -1,0 +1,1251 @@
+{
+  "version": 1,
+  "passed": true,
+  "stages": {
+    "baseline": {
+      "passed": true,
+      "metrics": {
+        "rows": 222,
+        "targetRows": 222,
+        "captures": 75,
+        "physicalPages": 24,
+        "profiles": 3,
+        "truePositives": 46,
+        "falseNegatives": 0,
+        "falsePositives": 0,
+        "trueNegatives": 176,
+        "unverified": 0,
+        "missing": 0,
+        "extra": 0,
+        "wrongDelta": 0,
+        "wrongStatus": 0,
+        "regressions": 0,
+        "failedRepairs": 0,
+        "expectedChanges": 3,
+        "verifiedExpectedChanges": 3,
+        "activeSeeds": 16,
+        "detectedSeeds": 16,
+        "repairedSeeds": 0,
+        "verifiedRepairedSeeds": 0,
+        "remainsFixed": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "seeds": [
+        {
+          "id": "archive-content",
+          "label": "Archive content padding",
+          "witness": "inbox/archive/title-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "settings-sidebar",
+          "label": "Settings sidebar width",
+          "witness": "inbox/settings/pane-left",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "arrival-padding",
+          "label": "Archive return padding",
+          "witness": "inbox/returned-inbox/title-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "record-toolbar",
+          "label": "Record toolbar spacing",
+          "witness": "inbox/record/toolbar-gap",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "compact-header",
+          "label": "Compact Settings header padding",
+          "witness": "inbox/settings/action-right",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "archive-row",
+          "label": "Compact Archive row label",
+          "witness": "inbox/archive/row-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 0.5,
+              "actualDelta": 0.5,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "collection-tree",
+          "label": "Folder label inset",
+          "witness": "collections/collection-detail/tree-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "search-query",
+          "label": "Empty search text inset",
+          "witness": "search/search-empty/query-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "tag-chip",
+          "label": "Tag chip spacing",
+          "witness": "tags/tag-detail/chip-gap",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "site-legend",
+          "label": "Map legend spacing",
+          "witness": "sites/site-detail/legend-gap",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "observation-header",
+          "label": "Observation table heading inset",
+          "witness": "observations/observation-detail/header-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "calendar-date",
+          "label": "Itinerary date number inset",
+          "witness": "calendar/itinerary/day-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "member-avatar",
+          "label": "Member avatar spacing",
+          "witness": "team/member/avatar-gap",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "activity-marker",
+          "label": "Notification marker inset",
+          "witness": "activity/notifications/marker-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": -1.5,
+              "actualDelta": -1.5,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "form-hint",
+          "label": "New note field hint inset",
+          "witness": "preferences/new-note/hint-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "import-footer",
+          "label": "Import action trailing inset",
+          "witness": "review/imports/footer-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": -3,
+              "actualDelta": -3,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": -3,
+              "actualDelta": -3,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    "rails": {
+      "passed": true,
+      "metrics": {
+        "rows": 222,
+        "targetRows": 222,
+        "captures": 75,
+        "physicalPages": 24,
+        "profiles": 3,
+        "truePositives": 23,
+        "falseNegatives": 0,
+        "falsePositives": 0,
+        "trueNegatives": 199,
+        "unverified": 0,
+        "missing": 0,
+        "extra": 0,
+        "wrongDelta": 0,
+        "wrongStatus": 0,
+        "regressions": 0,
+        "failedRepairs": 0,
+        "expectedChanges": 3,
+        "verifiedExpectedChanges": 3,
+        "activeSeeds": 10,
+        "detectedSeeds": 10,
+        "repairedSeeds": 6,
+        "verifiedRepairedSeeds": 6,
+        "remainsFixed": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "seeds": [
+        {
+          "id": "archive-content",
+          "label": "Archive content padding",
+          "witness": "inbox/archive/title-inset",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "settings-sidebar",
+          "label": "Settings sidebar width",
+          "witness": "inbox/settings/pane-left",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "arrival-padding",
+          "label": "Archive return padding",
+          "witness": "inbox/returned-inbox/title-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "record-toolbar",
+          "label": "Record toolbar spacing",
+          "witness": "inbox/record/toolbar-gap",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "compact-header",
+          "label": "Compact Settings header padding",
+          "witness": "inbox/settings/action-right",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "archive-row",
+          "label": "Compact Archive row label",
+          "witness": "inbox/archive/row-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 0.5,
+              "actualDelta": 0.5,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "collection-tree",
+          "label": "Folder label inset",
+          "witness": "collections/collection-detail/tree-inset",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "search-query",
+          "label": "Empty search text inset",
+          "witness": "search/search-empty/query-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "tag-chip",
+          "label": "Tag chip spacing",
+          "witness": "tags/tag-detail/chip-gap",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "site-legend",
+          "label": "Map legend spacing",
+          "witness": "sites/site-detail/legend-gap",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": -2,
+              "actualDelta": -2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "observation-header",
+          "label": "Observation table heading inset",
+          "witness": "observations/observation-detail/header-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 2,
+              "actualDelta": 2,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "calendar-date",
+          "label": "Itinerary date number inset",
+          "witness": "calendar/itinerary/day-inset",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "member-avatar",
+          "label": "Member avatar spacing",
+          "witness": "team/member/avatar-gap",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 3,
+              "actualDelta": 3,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "activity-marker",
+          "label": "Notification marker inset",
+          "witness": "activity/notifications/marker-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": -1.5,
+              "actualDelta": -1.5,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "form-hint",
+          "label": "New note field hint inset",
+          "witness": "preferences/new-note/hint-inset",
+          "active": true,
+          "outcome": "detected",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 4,
+              "actualDelta": 4,
+              "status": "drift",
+              "outcome": "detected"
+            }
+          ]
+        },
+        {
+          "id": "import-footer",
+          "label": "Import action trailing inset",
+          "witness": "review/imports/footer-inset",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    "fixed": {
+      "passed": true,
+      "metrics": {
+        "rows": 222,
+        "targetRows": 222,
+        "captures": 75,
+        "physicalPages": 24,
+        "profiles": 3,
+        "truePositives": 0,
+        "falseNegatives": 0,
+        "falsePositives": 0,
+        "trueNegatives": 222,
+        "unverified": 0,
+        "missing": 0,
+        "extra": 0,
+        "wrongDelta": 0,
+        "wrongStatus": 0,
+        "regressions": 0,
+        "failedRepairs": 0,
+        "expectedChanges": 3,
+        "verifiedExpectedChanges": 3,
+        "activeSeeds": 0,
+        "detectedSeeds": 0,
+        "repairedSeeds": 16,
+        "verifiedRepairedSeeds": 16,
+        "remainsFixed": 6,
+        "precision": null,
+        "recall": null
+      },
+      "seeds": [
+        {
+          "id": "archive-content",
+          "label": "Archive content padding",
+          "witness": "inbox/archive/title-inset",
+          "active": false,
+          "outcome": "remains-fixed",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            }
+          ]
+        },
+        {
+          "id": "settings-sidebar",
+          "label": "Settings sidebar width",
+          "witness": "inbox/settings/pane-left",
+          "active": false,
+          "outcome": "remains-fixed",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            }
+          ]
+        },
+        {
+          "id": "arrival-padding",
+          "label": "Archive return padding",
+          "witness": "inbox/returned-inbox/title-inset",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "record-toolbar",
+          "label": "Record toolbar spacing",
+          "witness": "inbox/record/toolbar-gap",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "compact-header",
+          "label": "Compact Settings header padding",
+          "witness": "inbox/settings/action-right",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "archive-row",
+          "label": "Compact Archive row label",
+          "witness": "inbox/archive/row-inset",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "collection-tree",
+          "label": "Folder label inset",
+          "witness": "collections/collection-detail/tree-inset",
+          "active": false,
+          "outcome": "remains-fixed",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            }
+          ]
+        },
+        {
+          "id": "search-query",
+          "label": "Empty search text inset",
+          "witness": "search/search-empty/query-inset",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "tag-chip",
+          "label": "Tag chip spacing",
+          "witness": "tags/tag-detail/chip-gap",
+          "active": false,
+          "outcome": "remains-fixed",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            }
+          ]
+        },
+        {
+          "id": "site-legend",
+          "label": "Map legend spacing",
+          "witness": "sites/site-detail/legend-gap",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "observation-header",
+          "label": "Observation table heading inset",
+          "witness": "observations/observation-detail/header-inset",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "calendar-date",
+          "label": "Itinerary date number inset",
+          "witness": "calendar/itinerary/day-inset",
+          "active": false,
+          "outcome": "remains-fixed",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            }
+          ]
+        },
+        {
+          "id": "member-avatar",
+          "label": "Member avatar spacing",
+          "witness": "team/member/avatar-gap",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "activity-marker",
+          "label": "Notification marker inset",
+          "witness": "activity/notifications/marker-inset",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "form-hint",
+          "label": "New note field hint inset",
+          "witness": "preferences/new-note/hint-inset",
+          "active": false,
+          "outcome": "verified-repair",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            },
+            {
+              "profile": "compact",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "verified-repair"
+            }
+          ]
+        },
+        {
+          "id": "import-footer",
+          "label": "Import action trailing inset",
+          "witness": "review/imports/footer-inset",
+          "active": false,
+          "outcome": "remains-fixed",
+          "observations": [
+            {
+              "profile": "wide",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            },
+            {
+              "profile": "tablet",
+              "targetDelta": 0,
+              "actualDelta": 0,
+              "status": "aligned",
+              "outcome": "remains-fixed"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  }
+}

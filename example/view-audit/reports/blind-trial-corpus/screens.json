@@ -1,0 +1,772 @@
+[
+  {
+    "view": "inbox",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "4b68d892990a96b059da700070483770a0103da9eed3e414d0e7b18039b14e22",
+    "arrival": "Direct entry",
+    "png": "wide/inbox.png"
+  },
+  {
+    "view": "archive",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "c8463341ede1429a9dc4f3c11c0893c240e0a4f70e6f2723ecdfdef702f8516a",
+    "arrival": "Direct entry",
+    "png": "wide/archive.png"
+  },
+  {
+    "view": "record",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "4252214519fd335798636abed06303050c31813a8e020356c9e8c3bbccdf554e",
+    "arrival": "Direct entry",
+    "png": "wide/record.png"
+  },
+  {
+    "view": "settings",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "53bd7afa54b962372943b66fe75236e174007683077d680386d0590ca09f381d",
+    "arrival": "Direct entry",
+    "png": "wide/settings.png"
+  },
+  {
+    "view": "returned-inbox",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "6bc4814445d85813fdb79017659b3c3666b21d42ef2b1a87a3e18211ef63ac65",
+    "arrival": "Link from archive",
+    "png": "wide/returned-inbox.png"
+  },
+  {
+    "view": "collections",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "23057d1f3b66bc2db55237068b9e96cf3fb71469b14a923383ff22dcb976dbfb",
+    "arrival": "Direct entry",
+    "png": "wide/collections.png"
+  },
+  {
+    "view": "collection-detail",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "7ee6103e16f3745f7e030aa5d7e56480734d1dd4d89effef049a97025ad5a142",
+    "arrival": "Link from collections",
+    "png": "wide/collection-detail.png"
+  },
+  {
+    "view": "search",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "02c7331d79be3a156277a5179ec34a2a49a42b08062306477d0f0cbe0aed6453",
+    "arrival": "Direct entry",
+    "png": "wide/search.png"
+  },
+  {
+    "view": "search-empty",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "c1ee9070891a03a3a68f6e5c4c6aa3a0af337ea3687ab101b32a7499d062bdcb",
+    "arrival": "Link from search",
+    "png": "wide/search-empty.png"
+  },
+  {
+    "view": "tags",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "2ebb0a4606f524d694a2ee2a7668a678c7d02c1f71b8bf94ed69ede4108d4b37",
+    "arrival": "Direct entry",
+    "png": "wide/tags.png"
+  },
+  {
+    "view": "tag-detail",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "f7e22796143ab896e4682fd719ef90b84127aae0f9255c8f164fab29a8f6cfad",
+    "arrival": "Link from tags",
+    "png": "wide/tag-detail.png"
+  },
+  {
+    "view": "sites",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "92fb1f824377bf2330d8f05d1a0d37978fa9e03ece71783afce687ff0b39acef",
+    "arrival": "Direct entry",
+    "png": "wide/sites.png"
+  },
+  {
+    "view": "site-detail",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "464b2e108fd9d0b042683eb9a9481f4b82b8fcdb57de10ecca65fb86bd727631",
+    "arrival": "Link from sites",
+    "png": "wide/site-detail.png"
+  },
+  {
+    "view": "observations",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "a4ee500177dd1283c7df35330fdd57803876de9aa5b8fbc16671d2ef02d273ce",
+    "arrival": "Direct entry",
+    "png": "wide/observations.png"
+  },
+  {
+    "view": "observation-detail",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "9183c330f94bcb85dc50e9ba56d2d8d382ab0b1aecec0deef19a62bf2bd46772",
+    "arrival": "Link from observations",
+    "png": "wide/observation-detail.png"
+  },
+  {
+    "view": "calendar",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "01721e3138dc8a69e463c3096ac654cacea5074c033ad53de43e372a729c3e6c",
+    "arrival": "Direct entry",
+    "png": "wide/calendar.png"
+  },
+  {
+    "view": "itinerary",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "03b4c30098502628765120903365a681229b4926febcaa5f4094dc7e6eabd5fa",
+    "arrival": "Link from calendar",
+    "png": "wide/itinerary.png"
+  },
+  {
+    "view": "team",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "342214a8832ef4d7752a15d4c40253d8696f9fb0d4f333a78b999bc61ea929c8",
+    "arrival": "Direct entry",
+    "png": "wide/team.png"
+  },
+  {
+    "view": "member",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "4ae27fb8bc8edb95d82c0978ce14cd97933b578c885fe9db8b709366af67327f",
+    "arrival": "Link from team",
+    "png": "wide/member.png"
+  },
+  {
+    "view": "activity",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "4fe687d1e79e4abd2160946e746fdd2a468bbc859c32dda3d5da1fa2adcc4053",
+    "arrival": "Direct entry",
+    "png": "wide/activity.png"
+  },
+  {
+    "view": "notifications",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "17fedb09e20c7effc681831f6610111f9e1e3e940ee3549131789a0b9477605f",
+    "arrival": "Link from activity",
+    "png": "wide/notifications.png"
+  },
+  {
+    "view": "preferences",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "98156e20e38bc272e21b0d11108ab8e89880f38ab7a7201435652f0faae9ed60",
+    "arrival": "Direct entry",
+    "png": "wide/preferences.png"
+  },
+  {
+    "view": "new-note",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "8d301c5ef6dd5b01e3ed9c76d4398959fea838c8d5918bad8f4928f29045140d",
+    "arrival": "Link from preferences",
+    "png": "wide/new-note.png"
+  },
+  {
+    "view": "review",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "759c47dd20115855448c81d973824d59436b54895a5ad36e78b1108f442ad7f1",
+    "arrival": "Direct entry",
+    "png": "wide/review.png"
+  },
+  {
+    "view": "imports",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "sha256": "02e3711d8d308077bd3f6b238030e52dd5e6b63bd9be43572ded4d7ebd328847",
+    "arrival": "Link from review",
+    "png": "wide/imports.png"
+  },
+  {
+    "view": "inbox",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "223b83eb6c6a9435ca3c05d8ad241a38121724bebbe137d32ea6b9eeb4a972db",
+    "arrival": "Direct entry",
+    "png": "tablet/inbox.png"
+  },
+  {
+    "view": "archive",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "00a35c74b2363c88a5fc18f1e748bf8d0cb909b9edf9dd7c8a6d9e8267d03c8a",
+    "arrival": "Direct entry",
+    "png": "tablet/archive.png"
+  },
+  {
+    "view": "record",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "f05dc2ce6f6bd050e1959265afb76572b2602f714a474f8c57d6708cdc685b03",
+    "arrival": "Direct entry",
+    "png": "tablet/record.png"
+  },
+  {
+    "view": "settings",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "922cc2596425def8840a08ae225921fdd18e30f24403ae239886592f21b4a090",
+    "arrival": "Direct entry",
+    "png": "tablet/settings.png"
+  },
+  {
+    "view": "returned-inbox",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "08b670ddef9743b5988215aeea3202c405bbe33b6b012823f1ce0ceb978e6a27",
+    "arrival": "Link from archive",
+    "png": "tablet/returned-inbox.png"
+  },
+  {
+    "view": "collections",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "3bd7fa3a7232fe22cd56abb4e242b0aaf92420b4dde20ba332379549da9e78e8",
+    "arrival": "Direct entry",
+    "png": "tablet/collections.png"
+  },
+  {
+    "view": "collection-detail",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "8b5104eb361131998a94864d972b219c1ee5f34816395d0c49cdc1fa9923f437",
+    "arrival": "Link from collections",
+    "png": "tablet/collection-detail.png"
+  },
+  {
+    "view": "search",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "a759af600e7400aeca84da1306abe3863256ccd039cfb012eb79ae327a5853b7",
+    "arrival": "Direct entry",
+    "png": "tablet/search.png"
+  },
+  {
+    "view": "search-empty",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "bf91480423fa3e2d5bf0f5dbc830473e9fd993ff3254399e6b3805d3ed81839a",
+    "arrival": "Link from search",
+    "png": "tablet/search-empty.png"
+  },
+  {
+    "view": "tags",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "c768dfea169131d771d42cda9a53abec5cd282ff82a75c3f6dc0e3bd8492ecc0",
+    "arrival": "Direct entry",
+    "png": "tablet/tags.png"
+  },
+  {
+    "view": "tag-detail",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "03ff086c29ec4660f9df6999509c5cb46667a6929da9b0f97c082aaa2096142f",
+    "arrival": "Link from tags",
+    "png": "tablet/tag-detail.png"
+  },
+  {
+    "view": "sites",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "f5a70395cc1f3ab56d3842a2fc11e6c5086ac360af672e723663619e226f2f3f",
+    "arrival": "Direct entry",
+    "png": "tablet/sites.png"
+  },
+  {
+    "view": "site-detail",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "83a5f885b0642eaec3ebd11e98d8c8102476da77e98e831819baa4b530258c10",
+    "arrival": "Link from sites",
+    "png": "tablet/site-detail.png"
+  },
+  {
+    "view": "observations",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "dee9ca9a96a719e034c58aa797ee761f053b445d0fb3b55359171962a733adf3",
+    "arrival": "Direct entry",
+    "png": "tablet/observations.png"
+  },
+  {
+    "view": "observation-detail",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "a71d24c3087e8a06a151227f33c86fc4231edbe096b9cf813a3458d7d54cfaac",
+    "arrival": "Link from observations",
+    "png": "tablet/observation-detail.png"
+  },
+  {
+    "view": "calendar",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "6c9848c716de5fb112db7994ea159871f31d8949a62391ffd2a9d890fd79456c",
+    "arrival": "Direct entry",
+    "png": "tablet/calendar.png"
+  },
+  {
+    "view": "itinerary",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "cb208acd55775efa6a72d639de41ead2ba23b9c2c861417910f55e5aaff4000c",
+    "arrival": "Link from calendar",
+    "png": "tablet/itinerary.png"
+  },
+  {
+    "view": "team",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "095858cb9cf8c0ecfe576077af0ec2a606c41858db9802ce9c0c0fea1168c27c",
+    "arrival": "Direct entry",
+    "png": "tablet/team.png"
+  },
+  {
+    "view": "member",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "0a95f3e832bd3064b3962206dcfbe58cbaf500f9d51e4bae131f45bb3f365284",
+    "arrival": "Link from team",
+    "png": "tablet/member.png"
+  },
+  {
+    "view": "activity",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "2b873359d2997a769e37aa706a240edac09d7219ba6fe14eb5bcaa8de6456a8a",
+    "arrival": "Direct entry",
+    "png": "tablet/activity.png"
+  },
+  {
+    "view": "notifications",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "3c09399802d24b237ae2d2c200e4c5cee5605433d066b73093b812dbe03f4371",
+    "arrival": "Link from activity",
+    "png": "tablet/notifications.png"
+  },
+  {
+    "view": "preferences",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "f4e77925dacee38e33ee6437bd37661dbf243e0db2ee2ac04f1307353bf91066",
+    "arrival": "Direct entry",
+    "png": "tablet/preferences.png"
+  },
+  {
+    "view": "new-note",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "5dbf9666f8c0cf86142c58b2a42eebdf0c60735e1b963a23b73a27f9ce368b0d",
+    "arrival": "Link from preferences",
+    "png": "tablet/new-note.png"
+  },
+  {
+    "view": "review",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "6dcc5b8b13654a81131a4447e977a11408b32f50605cef3b5532b5a4a8ac7975",
+    "arrival": "Direct entry",
+    "png": "tablet/review.png"
+  },
+  {
+    "view": "imports",
+    "profile": "tablet",
+    "width": 820,
+    "height": 980,
+    "dpr": 1,
+    "sha256": "e8305a5b86f120d613e885a0f3416e016520949063f89561c04a40f92912834c",
+    "arrival": "Link from review",
+    "png": "tablet/imports.png"
+  },
+  {
+    "view": "inbox",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "3da85e24d44e6000298860be65e9a2681b3d6717dc04d1f795b88b7c76e89204",
+    "arrival": "Direct entry",
+    "png": "compact/inbox.png"
+  },
+  {
+    "view": "archive",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "651585ee3dfbab611d5d65025ceee777cadb4a546d247f37c34ed1301e04ea99",
+    "arrival": "Direct entry",
+    "png": "compact/archive.png"
+  },
+  {
+    "view": "record",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "ade9d0fae2d08a7c1f7a414d1e6e3f8af954661e4ac852d8466276aa19dbaa2a",
+    "arrival": "Direct entry",
+    "png": "compact/record.png"
+  },
+  {
+    "view": "settings",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "1b384d03518448760d6c5d0ec2408e4d445e7ea6613633d0ddea09051d141eca",
+    "arrival": "Direct entry",
+    "png": "compact/settings.png"
+  },
+  {
+    "view": "returned-inbox",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "a9889ed89362c2684f57fa7a57bfb1dd38fb56ab1b663d37d1e19ecc7cf8a733",
+    "arrival": "Link from archive",
+    "png": "compact/returned-inbox.png"
+  },
+  {
+    "view": "collections",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "52872c05abe13cef891f74affd3aab9697310c279d5a347ecf4ca200edd931cb",
+    "arrival": "Direct entry",
+    "png": "compact/collections.png"
+  },
+  {
+    "view": "collection-detail",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "3a9789b6ee45f488c8f5130ae53ddacf3910df622e48bc86ff579b0de2c398ee",
+    "arrival": "Link from collections",
+    "png": "compact/collection-detail.png"
+  },
+  {
+    "view": "search",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "231b8d4e37193a1542145622e1319812c5bf1afd91e801d3a3a27536e1f872bf",
+    "arrival": "Direct entry",
+    "png": "compact/search.png"
+  },
+  {
+    "view": "search-empty",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "3e7a4faeac591b5ea465f1bc6f2cd1de818265e56a3182f4f2ec4b57331a7de5",
+    "arrival": "Link from search",
+    "png": "compact/search-empty.png"
+  },
+  {
+    "view": "tags",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "9b3e1b4117db49e2f892d6e11c7c9decd513275ed3e16d3233e7b1e642f7f1f7",
+    "arrival": "Direct entry",
+    "png": "compact/tags.png"
+  },
+  {
+    "view": "tag-detail",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "0c24886b2fe3a431f217b068846c4e040245fc1e0c1eebe9f9524d5cdeaac2d3",
+    "arrival": "Link from tags",
+    "png": "compact/tag-detail.png"
+  },
+  {
+    "view": "sites",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "90dd65577b5b64b979838e54bf9eab36dc6e21eae5a683559baf8e0990340676",
+    "arrival": "Direct entry",
+    "png": "compact/sites.png"
+  },
+  {
+    "view": "site-detail",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "f823e51acfbefddd37eb901ec096388da91410a6a3d3806dd12d66b0065b714f",
+    "arrival": "Link from sites",
+    "png": "compact/site-detail.png"
+  },
+  {
+    "view": "observations",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "ad09fc8b81d5161993431f31a99cdde01037c70e7162427b5076bfc6fb4e4445",
+    "arrival": "Direct entry",
+    "png": "compact/observations.png"
+  },
+  {
+    "view": "observation-detail",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "b4841f6542abb21a0acf13929bd0bdae3c33781782fbb67a4a9c95d4620e12b7",
+    "arrival": "Link from observations",
+    "png": "compact/observation-detail.png"
+  },
+  {
+    "view": "calendar",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "b8ac5d55fc7683a683008d3b1d92a6b1af469f05e045de5198462c3f9ec6bc50",
+    "arrival": "Direct entry",
+    "png": "compact/calendar.png"
+  },
+  {
+    "view": "itinerary",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "05d46a40c3295bec597aa9872027c73c3b2f4cabcd12b8c89a1c61f347f884ba",
+    "arrival": "Link from calendar",
+    "png": "compact/itinerary.png"
+  },
+  {
+    "view": "team",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "03a5822035d7cbf61c92161f1c2fad01eb348ba881d064a1cf5ace0d2e38e093",
+    "arrival": "Direct entry",
+    "png": "compact/team.png"
+  },
+  {
+    "view": "member",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "617cbc952b62431078ebf8e011b92f1824f9cc46b011b29d80bdc825a27d66b0",
+    "arrival": "Link from team",
+    "png": "compact/member.png"
+  },
+  {
+    "view": "activity",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "314226ee504579a1a674c40e6431f95d20b404d0f6868c16074b9f49f7a613c9",
+    "arrival": "Direct entry",
+    "png": "compact/activity.png"
+  },
+  {
+    "view": "notifications",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "10e25b1824307eafe0cca258ac535ae62cd1c810ec33f8fd56c6b536b4dbb85d",
+    "arrival": "Link from activity",
+    "png": "compact/notifications.png"
+  },
+  {
+    "view": "preferences",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "2c2dc24d742e6e7e432afb374ba4efd3d79f54365c6deadf118c1992d686bfa3",
+    "arrival": "Direct entry",
+    "png": "compact/preferences.png"
+  },
+  {
+    "view": "new-note",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "3cf715c708be4383974db91a95f29b8e89fdfe3db65e101c91068cc5f21f8101",
+    "arrival": "Link from preferences",
+    "png": "compact/new-note.png"
+  },
+  {
+    "view": "review",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "b3d19479a40255fac108d3dd61cfcd52c3d195ffb7a69db3686820e255dc1b03",
+    "arrival": "Direct entry",
+    "png": "compact/review.png"
+  },
+  {
+    "view": "imports",
+    "profile": "compact",
+    "width": 390,
+    "height": 720,
+    "dpr": 2,
+    "sha256": "6df9387ec20054079bc06a3103fdd8d270f6129f1323e3b61cfaa95ce76af032",
+    "arrival": "Link from review",
+    "png": "compact/imports.png"
+  },
+  {
+    "view": "member-before",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "arrival": "Before keyboard focus",
+    "png": "wide/member-before.png",
+    "sha256": "4ae27fb8bc8edb95d82c0978ce14cd97933b578c885fe9db8b709366af67327f"
+  },
+  {
+    "view": "member-keyboard",
+    "profile": "wide",
+    "width": 1040,
+    "height": 640,
+    "dpr": 1,
+    "arrival": "Keyboard Tab reached the member action link",
+    "png": "wide/member-keyboard.png",
+    "sha256": "4ae27fb8bc8edb95d82c0978ce14cd97933b578c885fe9db8b709366af67327f"
+  }
+]

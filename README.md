@@ -2,6 +2,10 @@
 
 A local Codex skill for finding visual defects across a component, screen, flow, or whole site. It inventories the target, captures the rendered interface, marks up suspected defects, and carries findings through repeated critique or implementation cycles. Each project keeps a living Markdown audit with coverage, evidence, decisions and outstanding issues.
 
+## See an evaluated audit
+
+[Open the Fieldwork handoff](example/view-audit/handoff.html) for an evidence-backed walkthrough of the audit, repairs and coverage. Choose **Present** to step through it. The [eval corpus and runner](example/view-audit/README.md) cover 24 static HTML screens, from a single icon and a text field to sticky grids, bilingual text, validation, split panes and overlays. [Open the static subject](example/view-audit/index.html).
+
 ## Use it
 
 From the root of this checkout, link the skill into your local Codex skills directory once. The link keeps the installed skill and the working tree in sync as you edit. The destination should be unused.
@@ -22,7 +26,7 @@ Invoke it in a new chat with a target and the kind of work you want.
 
 Ask: `Use $eagle-eye to compare the shared shell, page titles, toolbar gaps and list insets across Inbox, Archive and Settings. Check direct and return navigation on desktop and mobile. Group related shifts by cause and re-run the same pairs after each fix.`
 
-Open the [interactive baseline](example/view-audit/reports/baseline/index.html) to inspect a 3 px archive inset with the source and destination guides. Change the viewport, pick a measurement, or blend the two captures. The [worked multi-view audit](example/view-audit/README.md) includes the outcomes across three revisions and commands for the retained browser suite. The [agent workflow](skills/eagle-eye/references/view-to-view.md) explains how to choose trustworthy anchors and compare another app.
+For individual measurements, open the [interactive baseline](example/view-audit/reports/baseline/index.html) to inspect a 3 px archive inset with the source and destination guides. Change the viewport, pick a measurement, or blend the two captures. The [worked multi-view audit](example/view-audit/README.md) includes the outcomes across three revisions and commands for the retained browser suite. The [agent workflow](skills/eagle-eye/references/view-to-view.md) explains how to choose trustworthy anchors and compare another app.
 
 ## How the repo stays current
 

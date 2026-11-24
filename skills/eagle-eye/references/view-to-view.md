@@ -31,6 +31,12 @@ Align the two screenshots to the same viewport origin. For a detail crop, use on
 4. Trace correlated deltas back to the first ancestor whose relationship changes. Four descendants moving 3 px can be evidence of one defect. Preserve the affected pair list and distinguish independent compensating offsets that might hide a second defect.
 5. For refinements, change one shared cause, re-run the *same* pairs and profiles into a new directory, and check a sibling and reverse/return journey. Inspect the full screen at normal size. Close a finding when its geometry and visual behavior meet the original contract and the intentional variants still pass. Record new or unverified pairs in the living audit.
 
+### After finding a convincing explanation
+
+Two defects can coexist in the same area. When an ancestor shifts, keep the viewport-registered pair, then measure a second pair of *local* distances: child edge minus parent edge in each view. An Archive page can gain 3 px of padding while the first row gains another 0.5 px inside its card. A fix to the page inset closes only the first finding.
+
+When a breadcrumb or second title line justifies a vertical shift, verify the next relationship independently. Compare the space between the heading’s bottom edge and the toolbar’s top edge. An intended 32 px title movement and an unintended 2 px gap reduction can look like a single acceptable 30 px movement. Record separate outcomes for the intended change and the local gap.
+
 ## Local comparison runner
 
 The input is a JSON plan. Supply absolute URLs or file paths relative to the plan as URLs. Each view can override a logical anchor's selector via `selectors`. Choose selectors that match exactly one rendered element. Set `ready` to identify the specific loaded view. For an arrival-dependent state, supply `arriveVia` with a starting URL and a unique, same-tab navigation link to the declared destination. The runner opens the start in a fresh page and clicks that link. For browser Back, complex signed-in flows, and nonzero scroll positions, use the project's interactive harness and record comparable images and measurements in the audit.

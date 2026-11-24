@@ -62,3 +62,37 @@ test('an intended shift is still checked against its declared magnitude', () => 
   caps.b.anchors.x.box.bottom = 42;
   assert.equal(compare(p, 'wide', caps)[0].status, 'expected');
 });
+
+const oracle = require('../example/view-audit/oracle.json');
+test('the frozen answer key accounts for every comparison and seed witness', () => {
+  assert.deepEqual(Object.keys(plan.profiles), oracle.profiles);
+  const pairs = Object.fromEntries(plan.pairs.map(({from, to, checks}) => [from + '/' + to, checks]));
+  assert.deepEqual(pairs, oracle.coverage);
+  const keys = new Set(Object.entries(oracle.coverage).flatMap(([pair, checks]) => checks.map((id) => pair + '/' + id)));
+  assert.equal(new Set(oracle.seeds.map((s) => s.id)).size, 16);
+  for (const [rule, delta] of Object.entries(oracle.intended)) {
+    assert(keys.has(rule) && Number.isFinite(delta) && delta !== 0, rule);
+  }
+  for (const s of oracle.seeds) {
+    assert.equal(s.signals[s.witness], 1, s.id);
+    assert(s.profiles.length && s.profiles.every((profile) => oracle.profiles.includes(profile)));
+    assert(Object.keys(s.signals).every((key) => keys.has(key)), s.id);
+    assert.deepEqual(Object.keys(s.offsets), oracle.stages);
+    assert.notEqual(s.offsets.baseline, 0);
+    assert.equal(s.offsets.fixed, 0);
+  }
+});
+test('matrix covers each physical page, arrival, section component, and orthogonal control', () => {
+  const pages = new Set(Object.values(plan.views).map((view) => view.url.split('#')[0]));
+  assert.equal(pages.size, 24);
+  assert.equal(Object.values(plan.views).filter((v) => v.arriveVia).length, 11);
+  const linked = plan.pairs.filter((pair) => pair.checks.some((key) => key.endsWith('-control')));
+  assert.equal(linked.length, 10);
+  for (const { from, to, checks } of linked) {
+    assert.equal(plan.views[to].arriveVia.url, plan.views[from].url);
+    const [metric, control] = checks.map((id) => plan.checks[id]);
+    assert.deepEqual([metric.point[0], metric.relativeTo[0]], [control.point[0], control.relativeTo[0]]);
+    const horizontal = (edge) => ['left','right','centerX'].includes(edge);
+    assert.notEqual(horizontal(metric.point[1]), horizontal(control.point[1]));
+  }
+});

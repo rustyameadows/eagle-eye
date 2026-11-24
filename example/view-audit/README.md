@@ -1,56 +1,58 @@
-# Fieldwork · view-to-view audit
+# Fieldwork design eval
 
-Fieldwork is a local research library with Inbox, Archive, Record and Settings views. Open the [demo](index.html) and switch views using its navigation. The [baseline comparison](reports/baseline/index.html) shows their shared rails with clean screenshots, coordinate guides and measured offsets. On the default comparison, the pane stays still while the Archive title starts 3 CSS px farther right.
+[Open the audit handoff](handoff.html) to see the results, repair history and visual evidence. [Open the fixture](index.html) to inspect the static field-research journal. Its journal index links all 24 screens. The subject runs entirely from local HTML and CSS. Stable records, native links and fixed UI states keep each run repeatable. [Browse all 24 captured screens by viewport](reports/atlas.html).
 
-## What to try in the viewer
+## What the benchmark exercises
 
-1. **Follow the ancestor.** On wide **Inbox → Settings**, select **Content pane edge**, then **Title inset within pane**. The pane and title both move 4 px. The title still sits 30 px inside the pane. This points to the outer grid track.
-2. **Find the half pixel.** On compact **Inbox → Archive**, select **First label inset within row**. The label moves an extra 0.5 CSS px inside its row. At the capture's 2× device scale that's one image pixel. Open **Computed spacing changes** to see the label transform. Toggle the guides off and use the overlay blend to judge the change at normal size.
-3. **Distinguish arrivals.** Compare **Archive → Inbox** (direct entries) and **Archive → returned-inbox** (destination reached via the actual link). The compact and wide inset deltas are −3 px and −1 px respectively. Comparing direct Inbox with returned Inbox isolates a +2 px arrival-specific shift. The report captions name how each state was reached.
-4. **Check an intended change.** On **Inbox → Record**, the title moves down exactly 32 px for the breadcrumb. The toolbar loses 2 px of space beneath the title. The breadcrumb stays in every revision; the toolbar gap gets repaired.
+| Screen family | Surfaces in the corpus | Discriminating check |
+| --- | --- | --- |
+| Workspace shell | Inbox, Archive, a record, Settings and link return | Separate a sidebar track change from nested padding. Two simultaneous offsets partly cancel on the return path. |
+| Navigation and collections | Collection list and detail, nested tree and siblings | Compare a tree label’s local inset and verify the unaffected reference alignment. |
+| Searching and taxonomy | Results, empty results, tags and tag detail | Distinguish a compact input inset, chip spacing, low-contrast text, and shifted icon ink within a centered frame. |
+| Geographic and quantitative views | Sites, site detail, observations and sample detail | Compare chart legend spacing, tabular text and sticky header alignment. Scroll an actual two-axis table and check the pinned corner. |
+| Time and scheduling | Monthly calendar, selected date and itinerary | Compare the date inside its badge despite different surrounding layouts. |
+| People and localization | Team directory, member, mixed Arabic/English instructions and a long German name | Check avatar spacing, visible keyboard focus, and isolation of a station code inside a right-to-left block. |
+| Status and forms | Activity, notifications, preferences and invalid note entry | Find a displaced timeline marker and validation hint; distinguish intended wrapping from extra spacing. |
+| Layered and constrained content | Review, imports, and the record’s split pane | Inspect a dialog, progress drawer, annotation popover, loading placeholders and action footer. Detect a clipped required identifier while accepting an intentionally shortened attachment. |
 
-## Findings
+## Two ways to evaluate
 
-The audit covers two viewport profiles, six directed comparisons, and 40 individual checks per revision. Several measurements can describe one cause.
+**Measured regression.** The comparator reads the [plan](plan.json). A separate [answer key](oracle.json) defines the expected sign, activation by viewport and repair stage, and appropriate steady-state controls. The deterministic score measures whether the tooling captures and classifies those relationships. The browser suite includes a counterexample that deliberately produces a miss and a false alarm to exercise the grader.
 
-| Finding | Affected views | Baseline evidence and cause | Verification |
-| --- | --- | --- | --- |
-| Archive content inset | Inbox ↔ Archive, both widths | The pane stays put while the interior title edge moves +3 px on entry. Archive adds 3 px to the shared left padding. | Both the absolute title edge and local inset return to their intended values. |
-| Settings sidebar width | Wide Inbox → Settings | The grid's sidebar track widens from 192 to 196 px. Pane and title move together, and the local title inset holds. | Both absolute edges align; the local inset stays at 30 px. A separate image-pixel test checks the painted sidebar boundary. |
-| Return-only page padding | Direct Inbox → Inbox arrived via Archive link, both widths | The return path adds 2 px to the pane's left padding. Direct load alone misses this defect. | Re-enter Inbox via the same link and compare it with direct entry. |
-| Toolbar margin | Inbox → Record, both widths | The title-to-toolbar gap drops from 14 to 12 px. | Restore 14 px while retaining the 32 px breadcrumb shift. |
-| Compact header padding | Compact Inbox → Settings | The top bar gains 2 px of right padding. The workspace link's right edge moves left by 2 px. | Restored compact right edge; wide layout still aligns. |
-| Compact first label transform | Compact Inbox ↔ Archive | A half-pixel transform adds to the larger inherited content shift. The label-to-row measurement isolates it. | Local inset holds at 15 px; both directional checks pass. |
+**Blind discovery.** The run also exports an answer-hidden screenshot packet. Give that packet and the skill to a fresh reviewer. Freeze its findings before grading. The retained pilot found 18 of 20 seeded causes and two additional supported issues. It missed the Record toolbar gap and the extra half pixel inside the compact Archive row. The original submission and grader decisions are available. [Graded blind pilot](reports/blind-review/index.html) · [Clean packet](reports/blind-trial-corpus/BRIEF.md) · [Review procedure](BLIND-REVIEW.md)
 
-## Audit cycles
+## Measured run
 
-| Local revision | Drift checks | Aligned | Intended changes | Unverified | Evidence |
-| --- | ---: | ---: | ---: | ---: | --- |
-| Baseline | 17 | 21 | 2 | 0 | [Interactive comparison](reports/baseline/index.html) · [Measurements](reports/baseline/AUDIT.md) |
-| Shared rails repaired | 9 | 29 | 2 | 0 | [Interactive comparison](reports/rails/index.html) · [Measurements](reports/rails/AUDIT.md) |
-| All six causes repaired | 0 | 38 | 2 | 0 | [Interactive comparison](reports/fixed/index.html) · [Measurements](reports/fixed/AUDIT.md) |
+The suite inspects 24 physical pages and a separate Inbox arrival, across 26 directed pairs. Each revision has 222 layout comparisons and 75 clean captures. Profiles are 1040 × 640 at 1×, 820 × 980 at 1×, and 390 × 720 at 2×. Eleven arrival states per profile are reached by clicking native links. The Archive return uses a document fragment so its state is deterministic without JavaScript.
 
-In the middle revision the shared Archive inset is repaired, revealing the full +2 px arrival defect on Archive → returned Inbox. The baseline −1 px delta came from two offsets partially canceling. The final run checks the same pairs and preserves the breadcrumb on both profiles.
+| Revision | Seeded layout causes found | Drift rows | Correctly aligned rows | Intentional shifts | Unverified |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| [Baseline](reports/baseline/index.html) | 16 of 16 active | 46 | 173 | 3 | 0 |
+| [Shared-rail repairs](reports/rails/index.html) | 10 of 10 active | 23 | 196 | 3 | 0 |
+| [Final retest](reports/fixed/index.html) | All 16 repairs verified | 0 | 219 | 3 | 0 |
 
-## Run it locally
+All three intentional shifts are the 32 px breadcrumb addition on the Record screen, observed at three widths. Several flagged rows can describe one underlying defect. [Scored layout results](reports/score.json)
 
-From the repository root, use Node 18.3+ with Playwright and its matching Chromium installed as described in the [main README](../../README.md). The demo uses local files and no server. The linked installation on this machine can resolve the existing browser package.
+A separate track tests four paint, content and keyboard defects plus three controls across the same revisions. These include intentional truncation, a scrolled sticky grid and mixed-direction text. The baseline icon is 2 CSS px low and the secondary label has a 2.25 to 1 contrast ratio. On the fixed specimen the icon centers and the ratio reaches 6.30 to 1. The focus test uses actual Tab navigation and compares painted pixels before and after focus. [Paint, content and focus evidence](reports/visual-review/index.html)
 
-```sh
-node skills/eagle-eye/scripts/compare-views.cjs example/view-audit/plan.json /tmp/eagle-eye-fieldwork-01
-```
+## Reproduce locally
 
-Open the new directory's `index.html`. For another run choose a fresh output directory. Add `--fail-on-drift` to use exit status in a regression check. The baseline demo deliberately returns 2 with that option.
+The subject opens directly from disk. To run the eval, use Node 18.3+ with Playwright and matching Chromium plus Python 3 and Pillow. The existing linked skill on this machine can resolve the browser package. [Dependency setup](../../README.md)
 
-Run the retained contract and browser suites:
+From the repo root, give the runner a **new** output directory:
 
 ```sh
-node tests/view-contract.test.cjs
-node tests/view-browser.test.cjs
+node example/view-audit/run-eval.cjs /tmp/fieldwork-eval-01
 ```
 
-The browser suite renders all three revisions and checks every expected signed delta, the 700/701 px responsive boundary, real return navigation, missing/hidden/ambiguous/offscreen anchors, incorrect destinations, a failed capture, and evidence preservation on rerun. It also exercises the offline interactive viewer and checks a painted sidebar edge independently of the DOM readings. The contract suite checks valid and invalid plans, both directions, tolerance boundaries, relative coordinates and intended deltas.
+The runner materializes all three static revisions, exercises the browser and contract suites, grades the observed outcomes, writes the blind packet and renders `handoff.html`. A completed red run retains its evidence and returns a failure exit code. Pre-existing run directories are preserved.
 
-By default the browser suite cleans up its temporary run. To keep evidence, set `EAGLE_EYE_TEST_OUT` to a **new directory**. Its `baseline/`, `rails/` and `fixed/` subdirectories reproduce the tracked reports below this file. Keep the static viewer, JSON, Markdown and PNGs together when copying a report.
+For a quick comparison against the baseline alone:
 
-The automated matrix covers settled, top-of-viewport states in Chromium. It doesn't measure transient animation, browser Back, or other browser engines. The [workflow](../../skills/eagle-eye/references/view-to-view.md) describes how to extend an audit to those journeys.
+```sh
+node skills/eagle-eye/scripts/compare-views.cjs example/view-audit/plan.json /tmp/fieldwork-baseline-01
+```
+
+To change a fixture, edit [the authoring source](fixture-source/build.py) or [the stylesheet](fixture.css), then regenerate the committed static pages with `python3 example/view-audit/fixture-source/build.py`. For a deliberately changed contract, update the plan, independent expectations and matching tests together. Regenerate the evidence and handoff when a patch changes the measured result or how it is presented.
+
+The measured scores apply to these prescribed conditions in Chromium. The corpus exercises selected localization and accessibility properties. Its screenshots do not establish overall accessibility compliance, linguistic correctness, motion quality, or cross-browser fidelity.

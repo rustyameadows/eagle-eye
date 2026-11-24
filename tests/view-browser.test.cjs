@@ -11,6 +11,9 @@ const run = promisify(execFile);
 const base = path.resolve(__dirname, '../example/view-audit');
 const cli = path.resolve(__dirname, '../skills/eagle-eye/scripts/compare-views.cjs');
 const original = require('../example/view-audit/plan.json');
+const oracle = require('../example/view-audit/oracle.json');
+const { scoreStage } = require('../example/view-audit/score.cjs');
+const scorer = path.join(base, 'score.cjs');
 let root, browser;
 
 before(async () => {
@@ -18,7 +21,22 @@ before(async () => {
     root = path.resolve(process.env.EAGLE_EYE_TEST_OUT);
     await fs.mkdir(root);
   } else root = await fs.mkdtemp(path.join(os.tmpdir(), 'eagle-eye-views-'));
-  await fs.copyFile(path.join(base, 'index.html'), path.join(root, 'index.html'));
+  const pages = Object.values(original.views).map((view) => view.url.split('#')[0]);
+  const assets = new Set([...pages, 'fixture.css']);
+  for (const stage of oracle.stages) {
+    const dir = path.join(root, 'fixtures', stage);
+    await fs.mkdir(dir, { recursive: true });
+    for (const file of assets) {
+      const source = await fs.readFile(path.join(base, file), 'utf8');
+      let content = source;
+      if (file.endsWith('.html')) {
+        const tag = source.match(/<body\b[^>]*>/i)?.[0];
+        assert.match(tag, /data-revision=(["'])baseline\1/, file + ' must expose the baseline revision');
+        content = source.replace(tag, tag.replace(/data-revision=(["'])baseline\1/, 'data-revision="' + stage + '"'));
+      }
+      await fs.writeFile(path.join(dir, file), content);
+    }
+  }
   browser = await launchChromium();
 });
 after(async () => {
@@ -39,90 +57,50 @@ async function audit(name, plan, exitCode) {
   assert.equal(code, exitCode);
   return JSON.parse(await fs.readFile(path.join(out, 'report.json'), 'utf8'));
 }
-const expectedBase = {
-  wide: {
-    'inbox/archive/title-inset': 3,
-    'inbox/archive/title-left': 3,
-    'inbox/record/toolbar-gap': -2,
-    'inbox/settings/pane-left': 4,
-    'inbox/settings/title-left': 4,
-    'archive/inbox/title-inset': -3,
-    'inbox/returned-inbox/title-inset': 2,
-    'archive/returned-inbox/title-inset': -1
-  },
-  compact: {
-    'inbox/archive/title-inset': 3,
-    'inbox/archive/title-left': 3,
-    'inbox/archive/row-inset': 0.5,
-    'inbox/record/toolbar-gap': -2,
-    'inbox/settings/action-right': -2,
-    'archive/inbox/title-inset': -3,
-    'archive/inbox/row-inset': -0.5,
-    'inbox/returned-inbox/title-inset': 2,
-    'archive/returned-inbox/title-inset': -1
+function stagePlan(stage = 'baseline') {
+  const plan = structuredClone(original);
+  plan.title += ' · ' + stage;
+  for (const view of Object.values(plan.views)) {
+    view.url = 'fixtures/' + stage + '/' + view.url;
+    if (view.arriveVia) view.arriveVia.url = 'fixtures/' + stage + '/' + view.arriveVia.url;
   }
-};
-const expectedRails = {
-  wide: {
-    'inbox/record/toolbar-gap': -2,
-    'inbox/returned-inbox/title-inset': 2,
-    'archive/returned-inbox/title-inset': 2
-  },
-  compact: {
-    'inbox/archive/row-inset': 0.5,
-    'inbox/record/toolbar-gap': -2,
-    'inbox/settings/action-right': -2,
-    'archive/inbox/row-inset': -0.5,
-    'inbox/returned-inbox/title-inset': 2,
-    'archive/returned-inbox/title-inset': 2
-  }
-};
-
-for (const [revision, expected] of [
-  ['baseline', expectedBase],
-  ['rails', expectedRails],
-  ['fixed', { wide: {}, compact: {} }]
-]) {
-  test('rendered ' + revision + ' matrix matches the exact signed results', async () => {
-    const plan = structuredClone(original);
-    plan.title += ' · ' + revision;
-    for (const view of Object.values(plan.views)) {
-      view.url += '&revision=' + revision;
-      if (view.arriveVia) view.arriveVia.url += '&revision=' + revision;
-    }
-    const report = await audit(revision, plan, revision === 'fixed' ? 0 : 2);
-    assert.equal(report.rows.length, 40);
+  return plan;
+}
+for (const stage of oracle.stages) {
+  test('rendered ' + stage + ' matrix matches the independent signed oracle', async () => {
+    const plan = stagePlan(stage);
+    const report = await audit(stage, plan, stage === 'fixed' ? 0 : 2);
+    const score = scoreStage(stage, report);
+    assert.deepEqual(score.errors, []);
+    assert.equal(score.metrics.activeSeeds + score.metrics.repairedSeeds, oracle.seeds.length);
+    assert.equal(score.metrics.detectedSeeds, score.metrics.activeSeeds);
+    assert.equal(score.metrics.verifiedRepairedSeeds, score.metrics.repairedSeeds);
+    assert.equal(score.metrics.verifiedExpectedChanges, 3);
     for (const [profile, config] of Object.entries(plan.profiles)) {
-      const rows = report.rows.filter((r) => r.profile === profile);
-      assert.deepEqual(
-        rows.filter((r) => r.status === 'unverified'),
-        []
-      );
-      assert.deepEqual(
-        Object.fromEntries(
-          rows.filter((r) => r.status === 'drift').map((r) => [[r.from, r.to, r.check].join('/'), r.delta])
-        ),
-        expected[profile]
-      );
-      assert.deepEqual(
-        rows.filter((r) => r.status === 'expected').map((r) => [r.check, r.delta]),
-        [['title-top', 32]]
-      );
-      assert(rows.filter((r) => r.status === 'aligned').every((r) => Math.abs(r.delta) <= r.tolerance));
-      assert.equal(Object.keys(report.captures[profile]).length, 5);
-      for (const c of Object.values(report.captures[profile])) {
-        const png = await fs.readFile(path.join(root, revision, c.file));
-        assert.deepEqual(
-          [png.readUInt32BE(16), png.readUInt32BE(20)],
-          [config.width * config.scale, config.height * config.scale]
-        );
+      assert.equal(Object.keys(report.captures[profile]).length, 25);
+      for (const [view, capture] of Object.entries(report.captures[profile])) {
+        const via = plan.views[view].arriveVia;
+        const start = via && Object.keys(plan.views).find((id) => plan.views[id].url === via.url);
+        assert.equal(capture.arrival, via ? 'Link from ' + start : 'Direct entry');
+        const png = await fs.readFile(path.join(root, stage, capture.file));
+        assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)],
+          [config.width * config.scale, config.height * config.scale]);
       }
     }
-    assert.match(await fs.readFile(path.join(root, revision, 'AUDIT.md'), 'utf8'), /Capture complete/);
+    assert.match(await fs.readFile(path.join(root, stage, 'AUDIT.md'), 'utf8'), /Capture complete/);
   });
 }
+test('the disk scorer verifies all three stages and retains cause-level results', async () => {
+  await run(process.execPath, [scorer, root, path.join(root, 'score.json')]);
+  const summary = JSON.parse(await fs.readFile(path.join(root, 'score.json'), 'utf8'));
+  assert(summary.passed);
+  assert.equal(summary.stages.baseline.metrics.activeSeeds, 16);
+  assert.equal(summary.stages.rails.metrics.repairedSeeds, 6);
+  assert.equal(summary.stages.fixed.metrics.remainsFixed, 6);
+  assert.equal(summary.stages.fixed.metrics.verifiedRepairedSeeds, 16);
+});
 test('the 700/701 px boundary isolates compact and wide behavior', async () => {
-  const p = structuredClone(original);
+  const p = stagePlan();
   p.profiles = {
     below: { width: 700, height: 640, scale: 1 },
     above: { width: 701, height: 640, scale: 1 }
@@ -135,7 +113,7 @@ test('the 700/701 px boundary isolates compact and wide behavior', async () => {
   );
 });
 test('missing, hidden, ambiguous and offscreen anchors stay unverified; an override can map a shared role', async () => {
-  const p = structuredClone(original);
+  const p = stagePlan();
   p.profiles = { wide: p.profiles.wide };
   p.views = { inbox: p.views.inbox, archive: p.views.archive };
   p.anchors = {
@@ -145,14 +123,13 @@ test('missing, hidden, ambiguous and offscreen anchors stay unverified; an overr
     offscreen: '.offscreen',
     renamed: 'h1'
   };
-  const custom = await fs.readFile(path.join(root, 'index.html'), 'utf8');
-  await fs.writeFile(
-    path.join(root, 'visibility.html'),
-    custom +
-      '<div hidden class="hidden">hidden</div><div class="offscreen" style="position:absolute;top:200vh">offscreen</div>'
-  );
-  for (const v of Object.values(p.views)) v.url = v.url.replace('index.html', 'visibility.html');
-  p.views.archive.selectors = { renamed: 'main > h1' };
+  for (const [id, view] of Object.entries(p.views)) {
+    const source = await fs.readFile(path.join(root, view.url), 'utf8');
+    const additions = '<div hidden class="hidden">hidden</div><div class="offscreen" style="position:absolute;top:200vh">offscreen</div>';
+    view.url = 'fixtures/baseline/visibility-' + id + '.html';
+    await fs.writeFile(path.join(root, view.url), source.replace('</body>', additions + '</body>'));
+  }
+  p.views.archive.selectors = { renamed: 'main h1' };
   p.checks = Object.fromEntries(
     Object.keys(p.anchors).map((id) => [id, { label: id, point: [id, 'top'], tolerance: 0.25 }])
   );
@@ -170,7 +147,7 @@ test('missing, hidden, ambiguous and offscreen anchors stay unverified; an overr
   assert.match(r.rows[3].a.issue, /outside viewport/);
 });
 test('unreachable views preserve the other evidence and leave the pair unverified', async () => {
-  const p = structuredClone(original);
+  const p = stagePlan();
   p.profiles = { wide: p.profiles.wide };
   p.views.archive.url = 'missing-file.html';
   p.pairs = [{ from: 'inbox', to: 'archive', checks: ['title-left'] }];
@@ -181,6 +158,7 @@ test('unreachable views preserve the other evidence and leave the pair unverifie
 });
 test('report viewer works offline, switches pairs and scale, and preserves a common overlay origin', async () => {
   const page = await browser.newPage({ viewport: { width: 1100, height: 820 } });
+  await page.context().setOffline(true);
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   try {
@@ -250,7 +228,7 @@ test('a repeated run refuses to overwrite existing evidence', async () => {
 });
 
 test('incorrect navigation links cannot silently substitute a different destination', async () => {
-  const p = structuredClone(original);
+  const p = stagePlan();
   p.profiles = { wide: p.profiles.wide };
   p.views['returned-inbox'].arriveVia.link = 'nav [data-route=settings]';
   p.pairs = [{ from: 'inbox', to: 'returned-inbox', checks: ['title-inset'] }];
@@ -289,4 +267,96 @@ test('independent screenshot pixels confirm the 4 px desktop sidebar shift and i
   } finally {
     await page.close();
   }
+});
+
+test('score rejects misses, false alarms, unverified evidence, wrong signs and regressed repairs', async () => {
+  const report = JSON.parse(await fs.readFile(path.join(root, 'baseline/report.json'), 'utf8'));
+  const at = (r, key) => r.rows.find((row) => [row.profile, row.from, row.to, row.check].join('/') === key);
+  const change = (row, delta, status) => {
+    row.delta = delta;
+    row.status = status;
+    row.b.value = row.a.value + delta;
+  };
+  change(at(report, 'wide/collections/collection-detail/tree-inset'), 0, 'aligned');
+  change(at(report, 'wide/collections/collection-detail/tree-inset-control'), 2, 'drift');
+  change(at(report, 'compact/search/search-empty/query-inset'), -3, 'drift');
+  Object.assign(at(report, 'wide/team/member/avatar-gap'), { delta: null, status: 'unverified' });
+  const removed = at(report, 'compact/review/imports/footer-inset-control');
+  report.rows.splice(report.rows.indexOf(removed), 1);
+  const duplicate = at(report, 'wide/inbox/archive/title-left');
+  report.rows.push(duplicate, { ...duplicate, check: 'spurious-check' });
+  const score = scoreStage('baseline', report);
+  assert.equal(score.passed, false);
+  assert.equal(score.metrics.missing, 1);
+  assert.equal(score.metrics.extra, 2);
+  assert.equal(score.metrics.falseNegatives, 2);
+  assert.equal(score.metrics.falsePositives, 3);
+  assert.equal(score.metrics.unverified, 1);
+  assert.equal(score.metrics.wrongDelta, 3);
+  assert.equal(score.metrics.detectedSeeds, 13);
+  assert(score.metrics.precision < 1 && score.metrics.recall < 1);
+  const seed = (result, id) => result.seeds.find((item) => item.id === id).outcome;
+  assert.equal(seed(score, 'collection-tree'), 'missed');
+  assert.equal(seed(score, 'member-avatar'), 'unverified');
+  assert.equal(seed(score, 'search-query'), 'incorrect-measurement');
+
+  const fixed = JSON.parse(await fs.readFile(path.join(root, 'fixed/report.json'), 'utf8'));
+  change(at(fixed, 'wide/inbox/settings/pane-left'), 4, 'drift');
+  const rails = JSON.parse(await fs.readFile(path.join(root, 'rails/report.json'), 'utf8'));
+  const regressed = scoreStage('fixed', fixed, scoreStage('rails', rails));
+  assert.equal(regressed.passed, false);
+  assert.equal(regressed.metrics.regressions, 1);
+  assert.equal(regressed.metrics.falsePositives, 1);
+  assert.equal(seed(regressed, 'settings-sidebar'), 'regression');
+  assert.equal(seed(regressed, 'archive-content'), 'remains-fixed');
+
+  // Exercise the CLI's failing exit status on disk without touching the original captures.
+  const dir = path.join(root, 'scorer-counterexample');
+  for (const stage of oracle.stages) {
+    const copy = path.join(dir, stage);
+    await fs.mkdir(copy, { recursive: true });
+    if (stage === 'baseline' || stage === 'fixed') {
+      await fs.writeFile(path.join(copy, 'report.json'), JSON.stringify(stage === 'baseline' ? report : fixed));
+    } else {
+      await fs.copyFile(path.join(root, stage, 'report.json'), path.join(copy, 'report.json'));
+    }
+  }
+  const output = path.join(dir, 'score.json');
+  await assert.rejects(run(process.execPath, [scorer, dir, output]), (error) => error.code === 2);
+  const disk = JSON.parse(await fs.readFile(output, 'utf8'));
+  assert(!disk.passed);
+  assert.deepEqual(disk.stages.fixed, regressed);
+});
+
+test('a second browser rendering produces a genuine miss and false alarm against the baseline oracle', async () => {
+  const directory = path.join(root, 'changed-collection');
+  await fs.mkdir(directory);
+  // Install the repaired fixture for this pair. Add one undeclared vertical defect to its destination.
+  for (const name of ['screen-collections.html', 'screen-collection-detail.html', 'fixture.css']) {
+    const source = await fs.readFile(path.join(root, 'fixtures/fixed', name), 'utf8');
+    const content = name === 'screen-collection-detail.html'
+      ? source.replace('</head>', '<style>.tree-label { position: relative; top: 2px; }</style></head>')
+      : source;
+    await fs.writeFile(path.join(directory, name), content);
+  }
+  const p = stagePlan('fixed');
+  p.profiles = { wide: p.profiles.wide };
+  p.pairs = p.pairs.filter((pair) => pair.from === 'collections' && pair.to === 'collection-detail');
+  p.views = { collections: p.views.collections, 'collection-detail': p.views['collection-detail'] };
+  for (const view of Object.values(p.views)) {
+    view.url = view.url.replace('fixtures/fixed/', 'changed-collection/');
+    if (view.arriveVia) view.arriveVia.url = view.arriveVia.url.replace('fixtures/fixed/', 'changed-collection/');
+  }
+  const counterexample = await audit('rendered-counterexample', p, 2);
+  assert.deepEqual(counterexample.rows.map((r) => [r.check, r.status, r.delta]), [
+    ['tree-inset', 'aligned', 0], ['tree-inset-control', 'drift', 2]
+  ]);
+  const baseline = JSON.parse(await fs.readFile(path.join(root, 'baseline/report.json'), 'utf8'));
+  baseline.rows = baseline.rows.filter((r) => !(r.profile === 'wide' && r.from === 'collections' && r.to === 'collection-detail'));
+  baseline.rows.push(...counterexample.rows);
+  const score = scoreStage('baseline', baseline);
+  assert.equal(score.passed, false);
+  assert.equal(score.metrics.falseNegatives, 1);
+  assert.equal(score.metrics.falsePositives, 1);
+  assert.equal(score.seeds.find((s) => s.id === 'collection-tree').outcome, 'missed');
 });

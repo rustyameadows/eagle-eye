@@ -1,0 +1,98 @@
+
+ wide
+diff search search-empty (968, 205, 1006, 239) []
+diff inbox returned-inbox (0, 56, 191, 177) []
+diff tags tag-detail (222, 248, 322, 310) [([(321.0, 322.0)], 264.0, 265.0), ([(264.0, 322.0)], 272.0, 285.0), ([(321.0, 322.0)], 291.0, 292.0), ([(222.0, 322.0)], 305.0, 310.0)]
+diff review imports (222, 0, 1010, 60) []
+diff observations observation-detail (222, 283, 339, 305) []
+calendar (233.0, 210.0, 261.0, 228.0)
+itinerary (233.0, 212.0, 261.0, 230.0)
+tags (265.0, 272.0, 322.0, 285.0)
+tag-detail (267.0, 272.0, 324.0, 285.0)
+sites (263.0, 263.0, 329.0, 273.0)
+site-detail (261.0, 263.0, 327.0, 273.0)
+team (289.0, 263.0, 375.0, 274.0)
+member (292.0, 263.0, 378.0, 274.0)
+collections (288.0, 328.0, 361.0, 341.0)
+collection-detail (278.0, 328.0, 365.0, 341.0)
+marker activity (241.0, 267.0, 246.0, 272.0)
+marker notifications (241.0, 267.0, 246.0, 272.0)
+preferences (239.0, 327.0, 443.0, 340.0)
+new-note (244.0, 327.0, 458.0, 340.0)
+contrast colors [((255, 255, 255), 4373), ((255, 255, 252), 48), ((246, 255, 255), 41), ((163, 176, 166), 36), ((255, 252, 241), 30), ((249, 232, 199), 30), ((234, 250, 255), 27), ((177, 190, 204), 27), ((214, 195, 177), 22), ((234, 213, 185), 19)]
+min-ink (0.4159037204419224, (163, 176, 166), 36, 2.253684514483049)
+aside inbox 4649
+aside returned-inbox 4649
+aside archive 4424
+aside settings 4424
+aside record 4068
+aside collections 4261
+aside collection-detail 0
+aside sites 4528
+aside site-detail 0
+aside observations 4156
+aside observation-detail 0
+aside calendar 4352
+aside itinerary 0
+
+ tablet
+diff search search-empty (748, 195, 786, 229) []
+diff inbox returned-inbox (0, 56, 191, 177) []
+diff tags tag-detail (222, 238, 322, 300) [([(321.0, 322.0)], 254.0, 255.0), ([(264.0, 322.0)], 262.0, 275.0), ([(321.0, 322.0)], 281.0, 282.0), ([(222.0, 322.0)], 295.0, 300.0)]
+diff review imports (222, 0, 790, 60) []
+diff observations observation-detail (222, 273, 339, 295) []
+calendar (233.0, 200.0, 261.0, 218.0)
+itinerary (233.0, 202.0, 261.0, 220.0)
+tags (265.0, 262.0, 322.0, 275.0)
+tag-detail (267.0, 262.0, 324.0, 275.0)
+sites (263.0, 253.0, 329.0, 263.0)
+site-detail (261.0, 253.0, 327.0, 263.0)
+team (289.0, 253.0, 375.0, 264.0)
+member (292.0, 253.0, 378.0, 264.0)
+collections (288.0, 318.0, 361.0, 331.0)
+collection-detail (278.0, 318.0, 365.0, 331.0)
+marker activity (241.0, 257.0, 246.0, 262.0)
+marker notifications (241.0, 257.0, 246.0, 262.0)
+preferences (239.0, 317.0, 443.0, 330.0)
+new-note (244.0, 317.0, 458.0, 330.0)
+contrast colors [((255, 255, 255), 4373), ((255, 255, 252), 48), ((246, 255, 255), 41), ((163, 176, 166), 36), ((255, 252, 241), 30), ((249, 232, 199), 30), ((234, 250, 255), 27), ((177, 190, 204), 27), ((214, 195, 177), 22), ((234, 213, 185), 19)]
+min-ink (0.4159037204419224, (163, 176, 166), 36, 2.253684514483049)
+aside inbox 4649
+aside returned-inbox 4649
+aside archive 4424
+aside settings 4424
+aside record 4068
+aside collections 4261
+aside collection-detail 0
+aside sites 4528
+aside site-detail 0
+aside observations 4156
+aside observation-detail 0
+aside calendar 4352
+aside itinerary 0
+
+ compact
+diff search search-empty (332, 219, 370, 253) []
+diff inbox returned-inbox (0, 56, 390, 90) []
+diff tags tag-detail (16, 257, 116, 319) [([(114.5, 116.0)], 273.0, 273.5), ([(59.0, 116.0)], 281.5, 294.0), ([(114.5, 116.0)], 300.5, 301.0), ([(34.0, 102.0), (113.0, 116.0)], 310.0, 319.0)]
+diff review imports (16, 0, 374, 60) []
+diff observations observation-detail (16, 292, 133, 314) [([(104.0, 106.0)], 292.0, 314.0)]
+calendar (27.5, 224.0, 55.0, 242.0)
+itinerary (27.5, 224.0, 55.0, 242.0)
+tags (59.0, 282.0, 116.0, 294.0)
+tag-detail (61.0, 282.0, 118.0, 294.0)
+sites (57.0, 273.0, 123.5, 282.0)
+site-detail (57.0, 273.0, 123.5, 282.0)
+team (83.5, 271.5, 168.5, 282.0)
+member (86.5, 271.5, 171.5, 282.0)
+collections (81.5, 336.0, 155.5, 349.0)
+collection-detail (72.0, 336.0, 159.5, 349.0)
+marker activity (35.0, 276.0, 40.0, 280.5)
+marker notifications (33.5, 276.0, 38.5, 280.5)
+preferences (33.0, 337.0, 237.5, 349.0)
+new-note (38.0, 337.0, 252.5, 349.0)
+contrast colors [((255, 255, 255), 18852), ((163, 176, 166), 399), ((252, 255, 255), 119), ((255, 255, 252), 96), ((163, 176, 168), 89), ((255, 252, 241), 77), ((234, 213, 182), 51), ((163, 180, 191), 46), ((183, 217, 238), 45), ((214, 195, 168), 44)]
+min-ink (0.4159037204419224, (163, 176, 166), 399, 2.253684514483049)
+header inbox (264.5, 33.0, 374.0, 34.0)
+header settings (262.5, 33.0, 372.0, 34.0)
+header observations (264.5, 33.0, 374.0, 34.0)

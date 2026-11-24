@@ -1,0 +1,14 @@
+{
+  "eligible": 20,
+  "detected": 18,
+  "recall": 0.9,
+  "additional": 2,
+  "unsupported": 0,
+  "duplicates": 0,
+  "indeterminate": 0,
+  "precision": 1,
+  "missed": [
+    "record-toolbar",
+    "archive-row"
+  ]
+}

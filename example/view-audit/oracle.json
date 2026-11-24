@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "units": "CSS pixels, destination minus source",
+  "stages": ["baseline", "rails", "fixed"],
+  "profiles": ["wide", "tablet", "compact"],
+  "physicalPages": 24,
+  "coverage": {
+    "inbox/archive": ["title-inset", "title-left", "row-inset", "pane-left", "toolbar-gap", "action-right", "workspace-center"],
+    "inbox/record": ["toolbar-gap", "title-top", "title-inset", "pane-left", "action-right", "workspace-center"],
+    "inbox/settings": ["pane-left", "title-left", "title-inset", "action-right", "workspace-center"],
+    "archive/inbox": ["title-inset", "row-inset"],
+    "inbox/returned-inbox": ["title-inset", "action-right", "workspace-center"],
+    "archive/returned-inbox": ["title-inset"],
+    "collections/collection-detail": ["tree-inset", "tree-inset-control"],
+    "search/search-empty": ["query-inset", "query-inset-control"],
+    "tags/tag-detail": ["chip-gap", "chip-gap-control"],
+    "sites/site-detail": ["legend-gap", "legend-gap-control"],
+    "observations/observation-detail": ["header-inset", "header-inset-control"],
+    "calendar/itinerary": ["day-inset", "day-inset-control"],
+    "team/member": ["avatar-gap", "avatar-gap-control"],
+    "activity/notifications": ["marker-inset", "marker-inset-control"],
+    "preferences/new-note": ["hint-inset", "hint-inset-control"],
+    "review/imports": ["footer-inset", "footer-inset-control"],
+    "inbox/collections": ["title-inset", "toolbar-gap", "workspace-center"],
+    "inbox/search": ["title-inset", "toolbar-gap", "workspace-center"],
+    "inbox/tags": ["title-inset", "toolbar-gap", "workspace-center"],
+    "inbox/sites": ["title-inset", "toolbar-gap", "workspace-center"],
+    "inbox/observations": ["title-inset", "toolbar-gap", "workspace-center"],
+    "inbox/calendar": ["title-inset", "toolbar-gap", "workspace-center"],
+    "inbox/team": ["title-inset", "toolbar-gap", "workspace-center"],
+    "inbox/activity": ["title-inset", "toolbar-gap", "workspace-center"],
+    "inbox/preferences": ["title-inset", "toolbar-gap", "workspace-center"],
+    "inbox/review": ["title-inset", "toolbar-gap", "workspace-center"]
+  },
+  "intended": {
+    "inbox/record/title-top": 32
+  },
+  "seeds": [
+    {
+      "id": "archive-content",
+      "label": "Archive content padding",
+      "profiles": ["wide", "tablet", "compact"],
+      "offsets": {
+        "baseline": 3,
+        "rails": 0,
+        "fixed": 0
+      },
+      "witness": "inbox/archive/title-inset",
+      "signals": {
+        "inbox/archive/title-inset": 1,
+        "inbox/archive/title-left": 1,
+        "archive/inbox/title-inset": -1,
+        "archive/returned-inbox/title-inset": -1
+      }
+    },
+    {
+      "id": "settings-sidebar",
+      "label": "Settings sidebar width",
+      "profiles": ["wide", "tablet"],
+      "offsets": {
+        "baseline": 4,
+        "rails": 0,
+        "fixed": 0
+      },
+      "witness": "inbox/settings/pane-left",
+      "signals": {
+        "inbox/settings/pane-left": 1,
+        "inbox/settings/title-left": 1
+      }
+    },
+    {
+      "id": "arrival-padding",
+      "label": "Archive return padding",
+      "profiles": ["wide", "tablet", "compact"],
+      "offsets": {
+        "baseline": 2,
+        "rails": 2,
+        "fixed": 0
+      },
+      "witness": "inbox/returned-inbox/title-inset",
+      "signals": {
+        "inbox/returned-inbox/title-inset": 1,
+        "archive/returned-inbox/title-inset": 1
+      }
+    },
+    {
+      "id": "record-toolbar",
+      "label": "Record toolbar spacing",
+      "profiles": ["wide", "tablet", "compact"],
+      "offsets": {
+        "baseline": -2,
+        "rails": -2,
+        "fixed": 0
+      },
+      "witness": "inbox/record/toolbar-gap",
+      "signals": {
+        "inbox/record/toolbar-gap": 1
+      }
+    },
+    {
+      "id": "compact-header",
+      "label": "Compact Settings header padding",
+      "profiles": ["compact"],
+      "offsets": {
+        "baseline": -2,
+        "rails": -2,
+        "fixed": 0
+      },
+      "witness": "inbox/settings/action-right",
+      "signals": {
+        "inbox/settings/action-right": 1
+      }
+    },
+    {
+      "id": "archive-row",
+      "label": "Compact Archive row label",
+      "profiles": ["compact"],
+      "offsets": {
+        "baseline": 0.5,
+        "rails": 0.5,
+        "fixed": 0
+      },
+      "witness": "inbox/archive/row-inset",
+      "signals": {
+        "inbox/archive/row-inset": 1,
+        "archive/inbox/row-inset": -1
+      }
+    },
+    {
+      "id": "collection-tree",
+      "label": "Folder label inset",
+      "profiles": ["wide", "tablet", "compact"],
+      "offsets": {
+        "baseline": 4,
+        "rails": 0,
+        "fixed": 0
+      },
+      "witness": "collections/collection-detail/tree-inset",
+      "signals": {
+        "collections/collection-detail/tree-inset": 1
+      }
+    },
+    {
+      "id": "search-query",
+      "label": "Empty search text inset",
+      "profiles": ["compact"],
+      "offsets": {
+        "baseline": 3,
+        "rails": 3,
+        "fixed": 0
+      },
+      "witness": "search/search-empty/query-inset",
+      "signals": {
+        "search/search-empty/query-inset": 1
+      }
+    },
+    {
+      "id": "tag-chip",
+      "label": "Tag chip spacing",
+      "profiles": ["wide", "tablet", "compact"],
+      "offsets": {
+        "baseline": 2,
+        "rails": 0,
+        "fixed": 0
+      },
+      "witness": "tags/tag-detail/chip-gap",
+      "signals": {
+        "tags/tag-detail/chip-gap": 1
+      }
+    },
+    {
+      "id": "site-legend",
+      "label": "Map legend spacing",
+      "profiles": ["wide", "tablet"],
+      "offsets": {
+        "baseline": -2,
+        "rails": -2,
+        "fixed": 0
+      },
+      "witness": "sites/site-detail/legend-gap",
+      "signals": {
+        "sites/site-detail/legend-gap": 1
+      }
+    },
+    {
+      "id": "observation-header",
+      "label": "Observation table heading inset",
+      "profiles": ["compact"],
+      "offsets": {
+        "baseline": 2,
+        "rails": 2,
+        "fixed": 0
+      },
+      "witness": "observations/observation-detail/header-inset",
+      "signals": {
+        "observations/observation-detail/header-inset": 1
+      }
+    },
+    {
+      "id": "calendar-date",
+      "label": "Itinerary date number inset",
+      "profiles": ["wide", "tablet"],
+      "offsets": {
+        "baseline": 2,
+        "rails": 0,
+        "fixed": 0
+      },
+      "witness": "calendar/itinerary/day-inset",
+      "signals": {
+        "calendar/itinerary/day-inset": 1
+      }
+    },
+    {
+      "id": "member-avatar",
+      "label": "Member avatar spacing",
+      "profiles": ["wide", "tablet", "compact"],
+      "offsets": {
+        "baseline": 3,
+        "rails": 3,
+        "fixed": 0
+      },
+      "witness": "team/member/avatar-gap",
+      "signals": {
+        "team/member/avatar-gap": 1
+      }
+    },
+    {
+      "id": "activity-marker",
+      "label": "Notification marker inset",
+      "profiles": ["compact"],
+      "offsets": {
+        "baseline": -1.5,
+        "rails": -1.5,
+        "fixed": 0
+      },
+      "witness": "activity/notifications/marker-inset",
+      "signals": {
+        "activity/notifications/marker-inset": 1
+      }
+    },
+    {
+      "id": "form-hint",
+      "label": "New note field hint inset",
+      "profiles": ["wide", "tablet", "compact"],
+      "offsets": {
+        "baseline": 4,
+        "rails": 4,
+        "fixed": 0
+      },
+      "witness": "preferences/new-note/hint-inset",
+      "signals": {
+        "preferences/new-note/hint-inset": 1
+      }
+    },
+    {
+      "id": "import-footer",
+      "label": "Import action trailing inset",
+      "profiles": ["wide", "tablet"],
+      "offsets": {
+        "baseline": -3,
+        "rails": 0,
+        "fixed": 0
+      },
+      "witness": "review/imports/footer-inset",
+      "signals": {
+        "review/imports/footer-inset": 1
+      }
+    }
+  ]
+}

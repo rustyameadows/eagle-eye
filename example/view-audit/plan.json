@@ -1,37 +1,510 @@
 {
   "title": "Fieldwork library",
   "profiles": {
-    "wide": {"width": 1040, "height": 640, "scale": 1},
-    "compact": {"width": 390, "height": 720, "scale": 2}
+    "wide": {
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    },
+    "tablet": {
+      "width": 820,
+      "height": 980,
+      "scale": 1
+    },
+    "compact": {
+      "width": 390,
+      "height": 720,
+      "scale": 2
+    }
   },
   "views": {
-    "inbox": {"url": "index.html?view=inbox", "ready": "body[data-ready]"},
-    "archive": {"url": "index.html?view=archive", "ready": "body[data-ready]"},
-    "record": {"url": "index.html?view=record", "ready": "body[data-ready]"},
-    "settings": {"url": "index.html?view=settings", "ready": "body[data-ready]"},
-    "returned-inbox": {"url": "index.html?view=inbox", "ready": "body[data-ready][data-arrival=archive]",
-      "arriveVia": {"url": "index.html?view=archive", "link": "nav [data-route=inbox]", "ready": "body[data-ready]"}}
+    "inbox": {
+      "url": "index.html",
+      "ready": "body[data-ready][data-view=\"inbox\"]"
+    },
+    "archive": {
+      "url": "screen-archive.html",
+      "ready": "body[data-ready][data-view=\"archive\"]"
+    },
+    "record": {
+      "url": "screen-record.html",
+      "ready": "body[data-ready][data-view=\"record\"]"
+    },
+    "settings": {
+      "url": "screen-settings.html",
+      "ready": "body[data-ready][data-view=\"settings\"]"
+    },
+    "returned-inbox": {
+      "url": "index.html#journal",
+      "ready": "body#journal:target[data-ready][data-view=\"inbox\"]",
+      "arriveVia": {
+        "url": "screen-archive.html",
+        "link": "nav [data-route=inbox]",
+        "ready": "body[data-ready][data-view=\"archive\"]"
+      }
+    },
+    "collections": {
+      "url": "screen-collections.html",
+      "ready": "body[data-ready][data-view=\"collections\"]"
+    },
+    "collection-detail": {
+      "url": "screen-collection-detail.html",
+      "ready": "body[data-ready][data-view=\"collection-detail\"]",
+      "arriveVia": {
+        "url": "screen-collections.html",
+        "link": "a[data-open=\"collection-detail\"]",
+        "ready": "body[data-ready][data-view=\"collections\"]"
+      }
+    },
+    "search": {
+      "url": "screen-search.html",
+      "ready": "body[data-ready][data-view=\"search\"]"
+    },
+    "search-empty": {
+      "url": "screen-search-empty.html",
+      "ready": "body[data-ready][data-view=\"search-empty\"]",
+      "arriveVia": {
+        "url": "screen-search.html",
+        "link": "a[data-open=\"search-empty\"]",
+        "ready": "body[data-ready][data-view=\"search\"]"
+      }
+    },
+    "tags": {
+      "url": "screen-tags.html",
+      "ready": "body[data-ready][data-view=\"tags\"]"
+    },
+    "tag-detail": {
+      "url": "screen-tag-detail.html",
+      "ready": "body[data-ready][data-view=\"tag-detail\"]",
+      "arriveVia": {
+        "url": "screen-tags.html",
+        "link": "a[data-open=\"tag-detail\"]",
+        "ready": "body[data-ready][data-view=\"tags\"]"
+      }
+    },
+    "sites": {
+      "url": "screen-sites.html",
+      "ready": "body[data-ready][data-view=\"sites\"]"
+    },
+    "site-detail": {
+      "url": "screen-site-detail.html",
+      "ready": "body[data-ready][data-view=\"site-detail\"]",
+      "arriveVia": {
+        "url": "screen-sites.html",
+        "link": "a[data-open=\"site-detail\"]",
+        "ready": "body[data-ready][data-view=\"sites\"]"
+      }
+    },
+    "observations": {
+      "url": "screen-observations.html",
+      "ready": "body[data-ready][data-view=\"observations\"]"
+    },
+    "observation-detail": {
+      "url": "screen-observation-detail.html",
+      "ready": "body[data-ready][data-view=\"observation-detail\"]",
+      "arriveVia": {
+        "url": "screen-observations.html",
+        "link": "a[data-open=\"observation-detail\"]",
+        "ready": "body[data-ready][data-view=\"observations\"]"
+      }
+    },
+    "calendar": {
+      "url": "screen-calendar.html",
+      "ready": "body[data-ready][data-view=\"calendar\"]"
+    },
+    "itinerary": {
+      "url": "screen-itinerary.html",
+      "ready": "body[data-ready][data-view=\"itinerary\"]",
+      "arriveVia": {
+        "url": "screen-calendar.html",
+        "link": "a[data-open=\"itinerary\"]",
+        "ready": "body[data-ready][data-view=\"calendar\"]"
+      }
+    },
+    "team": {
+      "url": "screen-team.html",
+      "ready": "body[data-ready][data-view=\"team\"]"
+    },
+    "member": {
+      "url": "screen-member.html",
+      "ready": "body[data-ready][data-view=\"member\"]",
+      "arriveVia": {
+        "url": "screen-team.html",
+        "link": "a[data-open=\"member\"]",
+        "ready": "body[data-ready][data-view=\"team\"]"
+      }
+    },
+    "activity": {
+      "url": "screen-activity.html",
+      "ready": "body[data-ready][data-view=\"activity\"]"
+    },
+    "notifications": {
+      "url": "screen-notifications.html",
+      "ready": "body[data-ready][data-view=\"notifications\"]",
+      "arriveVia": {
+        "url": "screen-activity.html",
+        "link": "a[data-open=\"notifications\"]",
+        "ready": "body[data-ready][data-view=\"activity\"]"
+      }
+    },
+    "preferences": {
+      "url": "screen-preferences.html",
+      "ready": "body[data-ready][data-view=\"preferences\"]"
+    },
+    "new-note": {
+      "url": "screen-new-note.html",
+      "ready": "body[data-ready][data-view=\"new-note\"]",
+      "arriveVia": {
+        "url": "screen-preferences.html",
+        "link": "a[data-open=\"new-note\"]",
+        "ready": "body[data-ready][data-view=\"preferences\"]"
+      }
+    },
+    "review": {
+      "url": "screen-review.html",
+      "ready": "body[data-ready][data-view=\"review\"]"
+    },
+    "imports": {
+      "url": "screen-imports.html",
+      "ready": "body[data-ready][data-view=\"imports\"]",
+      "arriveVia": {
+        "url": "screen-review.html",
+        "link": "a[data-open=\"imports\"]",
+        "ready": "body[data-ready][data-view=\"review\"]"
+      }
+    }
   },
   "anchors": {
-    "pane": "main", "title": "h1", "tools": ".toolbar", "workspace": ".workspace",
-    "first-row": ".entry:first-child", "name": ".entry:first-child .name"
+    "pane": "main",
+    "title": "h1",
+    "tools": ".toolbar",
+    "workspace": ".workspace",
+    "first-row": ".entry:first-child",
+    "name": ".entry:first-child .name",
+    "header": ".bar",
+    "tree-label": ".tree-label",
+    "tree-row": ".tree-row",
+    "query-text": ".query-text",
+    "query-box": ".query-box",
+    "tag-label": ".tag-label",
+    "tag-swatch": ".tag-swatch",
+    "legend-label": ".legend-label",
+    "legend-key": ".legend-key",
+    "column-label": ".column-label",
+    "column-head": ".column-head",
+    "day-number": ".day-number",
+    "date-badge": ".date-badge",
+    "person-name": ".person-name",
+    "person-avatar": ".person-avatar",
+    "event-dot": ".event-dot",
+    "event-list": ".event-list",
+    "field-hint": ".field-hint",
+    "field-group": ".field-group",
+    "foot-action": ".foot-action",
+    "panel-foot": ".panel-foot"
   },
   "checks": {
-    "pane-left": {"label": "Content pane edge", "point": ["pane","left"], "tolerance": 0.25},
-    "title-left": {"label": "Title start", "point": ["title","left"], "tolerance": 0.25},
-    "title-inset": {"label": "Title inset within pane", "point": ["title","left"], "relativeTo": ["pane","left"], "tolerance": 0.25},
-    "row-inset": {"label": "First label inset within row", "point": ["name","left"], "relativeTo": ["first-row","left"], "tolerance": 0.25},
-    "toolbar-gap": {"label": "Title to toolbar gap", "point": ["tools","top"], "relativeTo": ["title","bottom"], "tolerance": 0.25},
-    "action-right": {"label": "Workspace link trailing edge", "point": ["workspace","right"], "tolerance": 0.25},
-    "title-top": {"label": "Title top", "point": ["title","top"], "tolerance": 0.25}
+    "pane-left": {
+      "label": "Content pane edge",
+      "point": ["pane", "left"],
+      "tolerance": 0.25
+    },
+    "title-left": {
+      "label": "Title start",
+      "point": ["title", "left"],
+      "tolerance": 0.25
+    },
+    "title-inset": {
+      "label": "Title inset within pane",
+      "point": ["title", "left"],
+      "relativeTo": ["pane", "left"],
+      "tolerance": 0.25
+    },
+    "row-inset": {
+      "label": "First label inset within row",
+      "point": ["name", "left"],
+      "relativeTo": ["first-row", "left"],
+      "tolerance": 0.25
+    },
+    "toolbar-gap": {
+      "label": "Title to toolbar gap",
+      "point": ["tools", "top"],
+      "relativeTo": ["title", "bottom"],
+      "tolerance": 0.25
+    },
+    "action-right": {
+      "label": "Workspace link trailing edge",
+      "point": ["workspace", "right"],
+      "tolerance": 0.25
+    },
+    "title-top": {
+      "label": "Title top",
+      "point": ["title", "top"],
+      "tolerance": 0.25
+    },
+    "workspace-center": {
+      "label": "Workspace link vertical alignment",
+      "point": ["workspace", "centerY"],
+      "relativeTo": ["header", "centerY"],
+      "tolerance": 0.25
+    },
+    "tree-inset": {
+      "label": "Folder label inset",
+      "point": ["tree-label", "left"],
+      "relativeTo": ["tree-row", "left"],
+      "tolerance": 0.25
+    },
+    "tree-inset-control": {
+      "label": "Folder label top inset",
+      "point": ["tree-label", "top"],
+      "relativeTo": ["tree-row", "top"],
+      "tolerance": 0.25
+    },
+    "query-inset": {
+      "label": "Search text inset",
+      "point": ["query-text", "left"],
+      "relativeTo": ["query-box", "left"],
+      "tolerance": 0.25
+    },
+    "query-inset-control": {
+      "label": "Search text top inset",
+      "point": ["query-text", "top"],
+      "relativeTo": ["query-box", "top"],
+      "tolerance": 0.25
+    },
+    "chip-gap": {
+      "label": "Tag swatch to label gap",
+      "point": ["tag-label", "left"],
+      "relativeTo": ["tag-swatch", "right"],
+      "tolerance": 0.25
+    },
+    "chip-gap-control": {
+      "label": "Tag label vertical position",
+      "point": ["tag-label", "top"],
+      "relativeTo": ["tag-swatch", "top"],
+      "tolerance": 0.25
+    },
+    "legend-gap": {
+      "label": "Legend key to label gap",
+      "point": ["legend-label", "left"],
+      "relativeTo": ["legend-key", "right"],
+      "tolerance": 0.25
+    },
+    "legend-gap-control": {
+      "label": "Legend label vertical position",
+      "point": ["legend-label", "top"],
+      "relativeTo": ["legend-key", "top"],
+      "tolerance": 0.25
+    },
+    "header-inset": {
+      "label": "Table heading inset",
+      "point": ["column-label", "left"],
+      "relativeTo": ["column-head", "left"],
+      "tolerance": 0.25
+    },
+    "header-inset-control": {
+      "label": "Table heading top inset",
+      "point": ["column-label", "top"],
+      "relativeTo": ["column-head", "top"],
+      "tolerance": 0.25
+    },
+    "day-inset": {
+      "label": "Day number top inset",
+      "point": ["day-number", "top"],
+      "relativeTo": ["date-badge", "top"],
+      "tolerance": 0.25
+    },
+    "day-inset-control": {
+      "label": "Day number left inset",
+      "point": ["day-number", "left"],
+      "relativeTo": ["date-badge", "left"],
+      "tolerance": 0.25
+    },
+    "avatar-gap": {
+      "label": "Avatar to name gap",
+      "point": ["person-name", "left"],
+      "relativeTo": ["person-avatar", "right"],
+      "tolerance": 0.25
+    },
+    "avatar-gap-control": {
+      "label": "Name vertical position",
+      "point": ["person-name", "top"],
+      "relativeTo": ["person-avatar", "top"],
+      "tolerance": 0.25
+    },
+    "marker-inset": {
+      "label": "Event marker inset",
+      "point": ["event-dot", "left"],
+      "relativeTo": ["event-list", "left"],
+      "tolerance": 0.25
+    },
+    "marker-inset-control": {
+      "label": "Event marker top inset",
+      "point": ["event-dot", "top"],
+      "relativeTo": ["event-list", "top"],
+      "tolerance": 0.25
+    },
+    "hint-inset": {
+      "label": "Field hint inset",
+      "point": ["field-hint", "left"],
+      "relativeTo": ["field-group", "left"],
+      "tolerance": 0.25
+    },
+    "hint-inset-control": {
+      "label": "Field hint top inset",
+      "point": ["field-hint", "top"],
+      "relativeTo": ["field-group", "top"],
+      "tolerance": 0.25
+    },
+    "footer-inset": {
+      "label": "Footer action trailing inset",
+      "point": ["foot-action", "right"],
+      "relativeTo": ["panel-foot", "right"],
+      "tolerance": 0.25
+    },
+    "footer-inset-control": {
+      "label": "Footer action top inset",
+      "point": ["foot-action", "top"],
+      "relativeTo": ["panel-foot", "top"],
+      "tolerance": 0.25
+    }
   },
   "pairs": [
-    {"from": "inbox", "to": "archive", "checks": ["title-inset","title-left","row-inset","pane-left","toolbar-gap","action-right"]},
-    {"from": "inbox", "to": "record", "checks": ["toolbar-gap","title-top","title-inset","pane-left","action-right"],
-      "expect": {"title-top": {"delta": 32, "reason": "The record view adds a 32 CSS px breadcrumb above the title."}}},
-    {"from": "inbox", "to": "settings", "checks": ["pane-left","title-left","title-inset","action-right"]},
-    {"from": "archive", "to": "inbox", "checks": ["title-inset","row-inset"]},
-    {"from": "inbox", "to": "returned-inbox", "checks": ["title-inset","action-right"]},
-    {"from": "archive", "to": "returned-inbox", "checks": ["title-inset"]}
+    {
+      "from": "inbox",
+      "to": "archive",
+      "checks": ["title-inset", "title-left", "row-inset", "pane-left", "toolbar-gap", "action-right", "workspace-center"]
+    },
+    {
+      "from": "inbox",
+      "to": "record",
+      "checks": ["toolbar-gap", "title-top", "title-inset", "pane-left", "action-right", "workspace-center"],
+      "expect": {
+        "title-top": {
+          "delta": 32,
+          "reason": "The record view adds a 32 CSS px breadcrumb above the title."
+        }
+      }
+    },
+    {
+      "from": "inbox",
+      "to": "settings",
+      "checks": ["pane-left", "title-left", "title-inset", "action-right", "workspace-center"]
+    },
+    {
+      "from": "archive",
+      "to": "inbox",
+      "checks": ["title-inset", "row-inset"]
+    },
+    {
+      "from": "inbox",
+      "to": "returned-inbox",
+      "checks": ["title-inset", "action-right", "workspace-center"]
+    },
+    {
+      "from": "archive",
+      "to": "returned-inbox",
+      "checks": ["title-inset"]
+    },
+    {
+      "from": "collections",
+      "to": "collection-detail",
+      "checks": ["tree-inset", "tree-inset-control"]
+    },
+    {
+      "from": "search",
+      "to": "search-empty",
+      "checks": ["query-inset", "query-inset-control"]
+    },
+    {
+      "from": "tags",
+      "to": "tag-detail",
+      "checks": ["chip-gap", "chip-gap-control"]
+    },
+    {
+      "from": "sites",
+      "to": "site-detail",
+      "checks": ["legend-gap", "legend-gap-control"]
+    },
+    {
+      "from": "observations",
+      "to": "observation-detail",
+      "checks": ["header-inset", "header-inset-control"]
+    },
+    {
+      "from": "calendar",
+      "to": "itinerary",
+      "checks": ["day-inset", "day-inset-control"]
+    },
+    {
+      "from": "team",
+      "to": "member",
+      "checks": ["avatar-gap", "avatar-gap-control"]
+    },
+    {
+      "from": "activity",
+      "to": "notifications",
+      "checks": ["marker-inset", "marker-inset-control"]
+    },
+    {
+      "from": "preferences",
+      "to": "new-note",
+      "checks": ["hint-inset", "hint-inset-control"]
+    },
+    {
+      "from": "review",
+      "to": "imports",
+      "checks": ["footer-inset", "footer-inset-control"]
+    },
+    {
+      "from": "inbox",
+      "to": "collections",
+      "checks": ["title-inset", "toolbar-gap", "workspace-center"]
+    },
+    {
+      "from": "inbox",
+      "to": "search",
+      "checks": ["title-inset", "toolbar-gap", "workspace-center"]
+    },
+    {
+      "from": "inbox",
+      "to": "tags",
+      "checks": ["title-inset", "toolbar-gap", "workspace-center"]
+    },
+    {
+      "from": "inbox",
+      "to": "sites",
+      "checks": ["title-inset", "toolbar-gap", "workspace-center"]
+    },
+    {
+      "from": "inbox",
+      "to": "observations",
+      "checks": ["title-inset", "toolbar-gap", "workspace-center"]
+    },
+    {
+      "from": "inbox",
+      "to": "calendar",
+      "checks": ["title-inset", "toolbar-gap", "workspace-center"]
+    },
+    {
+      "from": "inbox",
+      "to": "team",
+      "checks": ["title-inset", "toolbar-gap", "workspace-center"]
+    },
+    {
+      "from": "inbox",
+      "to": "activity",
+      "checks": ["title-inset", "toolbar-gap", "workspace-center"]
+    },
+    {
+      "from": "inbox",
+      "to": "preferences",
+      "checks": ["title-inset", "toolbar-gap", "workspace-center"]
+    },
+    {
+      "from": "inbox",
+      "to": "review",
+      "checks": ["title-inset", "toolbar-gap", "workspace-center"]
+    }
   ]
 }

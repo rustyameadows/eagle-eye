@@ -1,0 +1,262 @@
+{
+  "title": "Fieldwork interface audit",
+  "subject": "Cross-view visual review",
+  "summary": "A review of how Fieldwork’s shared shell, navigation and components line up across its research library. Follow the measured shifts from the first capture through two repair passes.",
+  "runs": "reports",
+  "cover": [
+    "wide",
+    "observation-detail"
+  ],
+  "stages": [
+    {
+      "id": "baseline",
+      "label": "Baseline"
+    },
+    {
+      "id": "rails",
+      "label": "Shared rails"
+    },
+    {
+      "id": "fixed",
+      "label": "Final retest"
+    }
+  ],
+  "findings": [
+    {
+      "title": "Archive content shifts right",
+      "row": [
+        "wide",
+        "inbox",
+        "archive",
+        "title-inset"
+      ],
+      "observation": "Archive adds left padding to the entire content area. The pane edge holds its position while the title moves inward.",
+      "correction": "Use the library’s shared content padding in Archive.",
+      "criterion": "Compare the title’s distance from the pane edge at each width.",
+      "illustrate": true
+    },
+    {
+      "title": "Settings widens the sidebar",
+      "row": [
+        "wide",
+        "inbox",
+        "settings",
+        "pane-left"
+      ],
+      "observation": "At wider widths the Settings sidebar pushes both the pane and title to the right. The title’s local inset is stable.",
+      "correction": "Use the shared sidebar track width in Settings.",
+      "criterion": "Measure the pane edge and the title inset independently on wide and tablet.",
+      "illustrate": false
+    },
+    {
+      "title": "Returning to Inbox changes its inset",
+      "row": [
+        "wide",
+        "inbox",
+        "returned-inbox",
+        "title-inset"
+      ],
+      "observation": "Following the Archive link back to Inbox moves the content relative to a direct Inbox visit. This shows up on the same page with the same data.",
+      "correction": "Apply the same content padding on direct and link arrivals.",
+      "criterion": "Travel through Archive again and compare the returned Inbox with direct entry.",
+      "illustrate": true
+    },
+    {
+      "title": "The Record toolbar loses space",
+      "row": [
+        "wide",
+        "inbox",
+        "record",
+        "toolbar-gap"
+      ],
+      "observation": "Record intentionally adds a breadcrumb above the title. The toolbar also moves closer to the title, tightening a gap that other views share.",
+      "correction": "Restore the shared title-to-toolbar margin and keep the breadcrumb.",
+      "criterion": "Measure the toolbar gap and the intended 32 CSS px title shift on the same pair.",
+      "illustrate": false
+    },
+    {
+      "title": "The mobile header action moves inward",
+      "row": [
+        "compact",
+        "inbox",
+        "settings",
+        "action-right"
+      ],
+      "observation": "The workspace link shifts left in compact Settings because the header has extra trailing padding.",
+      "correction": "Restore the shared right inset on compact Settings.",
+      "criterion": "Compare the workspace link’s trailing edge across both views.",
+      "illustrate": false
+    },
+    {
+      "title": "The first Archive label slips half a pixel",
+      "row": [
+        "compact",
+        "inbox",
+        "archive",
+        "row-inset"
+      ],
+      "observation": "In the compact Archive list, the first label moves slightly inside its own row. Measuring the row separately isolates that shift from the page padding.",
+      "correction": "Remove the label transform and keep the shared row padding.",
+      "criterion": "Check both directions on the compact profile at device scale 2.",
+      "illustrate": true
+    },
+    {
+      "title": "A folder label moves inside its row",
+      "row": [
+        "wide",
+        "collections",
+        "collection-detail",
+        "tree-inset"
+      ],
+      "observation": "The collection detail indents its first folder label farther than the corresponding collection tree row.",
+      "correction": "Apply the same local inset to folder labels in both trees.",
+      "criterion": "Compare the first label’s inset and check the neighboring control row.",
+      "illustrate": true
+    },
+    {
+      "title": "Empty search shifts the query text",
+      "row": [
+        "compact",
+        "search",
+        "search-empty",
+        "query-inset"
+      ],
+      "observation": "On compact screens the empty result state adds an inset inside the search field.",
+      "correction": "Keep the query text on the same edge in both search states.",
+      "criterion": "Check the compact query inset and its control.",
+      "illustrate": false
+    },
+    {
+      "title": "Tag chips open an extra gap",
+      "row": [
+        "wide",
+        "tags",
+        "tag-detail",
+        "chip-gap"
+      ],
+      "observation": "On tag detail, the space between the swatch and its label grows within the first chip.",
+      "correction": "Apply the shared swatch-to-label gap.",
+      "criterion": "Compare the chip’s local spacing across all captured profiles.",
+      "illustrate": false
+    },
+    {
+      "title": "The map legend crowds its key",
+      "row": [
+        "wide",
+        "sites",
+        "site-detail",
+        "legend-gap"
+      ],
+      "observation": "The site detail’s legend draws the label closer to its key at wide and tablet widths.",
+      "correction": "Restore the shared spacing between the key and its label.",
+      "criterion": "Measure from the key’s trailing edge to the label.",
+      "illustrate": false
+    },
+    {
+      "title": "A compact table heading shifts",
+      "row": [
+        "compact",
+        "observations",
+        "observation-detail",
+        "header-inset"
+      ],
+      "observation": "The first column heading in observation detail has extra padding on compact screens.",
+      "correction": "Use the shared header inset on the compact table.",
+      "criterion": "Compare the first heading’s distance from the column edge.",
+      "illustrate": false
+    },
+    {
+      "title": "The itinerary date sits low",
+      "row": [
+        "wide",
+        "calendar",
+        "itinerary",
+        "day-inset"
+      ],
+      "observation": "The day number moves down inside a date badge on wide and tablet itineraries.",
+      "correction": "Restore the date number’s shared top inset.",
+      "criterion": "Compare the day number against the badge’s top edge.",
+      "illustrate": false
+    },
+    {
+      "title": "Member names pull away from avatars",
+      "row": [
+        "wide",
+        "team",
+        "member",
+        "avatar-gap"
+      ],
+      "observation": "The identity row adds space between a member’s avatar and name on the detail view.",
+      "correction": "Apply the shared avatar-to-name spacing.",
+      "criterion": "Compare the local gap at every measured width.",
+      "illustrate": false
+    },
+    {
+      "title": "A timeline marker misses its rail",
+      "row": [
+        "compact",
+        "activity",
+        "notifications",
+        "marker-inset"
+      ],
+      "observation": "The compact notifications marker lands left of the position used on the activity timeline.",
+      "correction": "Use the shared marker inset on the compact timeline.",
+      "criterion": "Compare the marker with its list edge and check the neighboring marker.",
+      "illustrate": false
+    },
+    {
+      "title": "A form hint loses its alignment",
+      "row": [
+        "wide",
+        "preferences",
+        "new-note",
+        "hint-inset"
+      ],
+      "observation": "The new-note helper text starts farther from its field group than the matching preferences hint.",
+      "correction": "Use the shared hint inset for the new-note field.",
+      "criterion": "Compare the hint and field group on all measured profiles.",
+      "illustrate": false
+    },
+    {
+      "title": "The import action moves inward",
+      "row": [
+        "wide",
+        "review",
+        "imports",
+        "footer-inset"
+      ],
+      "observation": "The Import footer action has more trailing space than the corresponding Review action on wide and tablet.",
+      "correction": "Use the shared footer action inset.",
+      "criterion": "Compare the two action edges relative to their footers.",
+      "illustrate": false
+    }
+  ],
+  "scope": [
+    "Direct page entries and the return to Inbox through the Archive navigation link.",
+    "Shared shell edges, parent-relative spacing, stable controls and the intended Record breadcrumb shift."
+  ],
+  "limits": [
+    "The layout passes measure settled views at the top of the page in Chromium. Transitions, browser Back and other engines remain outside this matrix.",
+    "Each profile uses the fixture’s supplied data. The component evidence covers the named anchors and checks."
+  ],
+  "score": "score.json",
+  "related": [
+    {
+      "path": "atlas.html",
+      "label": "Browse all 24 captured screens",
+      "coverLink": true
+    },
+    {
+      "path": "visual-review/index.html",
+      "results": "visual-review/results.json",
+      "label": "Paint, content and focus checks",
+      "description": "Review the icon, text contrast, compact identifier and keyboard focus ring. The companion report also checks intentional truncation, sticky table headers and mixed-direction text."
+    },
+    {
+      "path": "blind-review/index.html",
+      "blindScore": "blind-review/score.json",
+      "label": "Blind visual discovery pilot",
+      "description": "Read the independent reviewer’s submitted findings, examine their screenshot evidence and compare the submission with the fixture key."
+    }
+  ]
+}

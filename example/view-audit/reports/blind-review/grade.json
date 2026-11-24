@@ -1,0 +1,168 @@
+{
+  "conditions": "One independent Eagle Eye reviewer received 77 clean baseline captures, device scale and arrival metadata. The reviewer had no fixture source, comparator plan, answer key, flagged rows, marked-up screenshots or repaired views. The submission was frozen before grading.",
+  "coverage": "24 physical pages, a separate Inbox arrival, three viewport profiles, plus before/after keyboard focus on the member page. All 20 seeded baseline causes were eligible. The grader checked the submission against the pre-existing key and the linked captures.",
+  "limit": "This is a single screenshot-only pilot. The reviewer accepted the breadcrumb but missed its separate 2 px toolbar-gap defect, and identified the outer Archive shift without detecting the additional half-pixel mobile row inset. The two additional observations are supported visual findings outside the seed key.",
+  "submissionSha256": "5f5f331b6d5a8e08dc1ca19b36b9a16bd99465f0730cbbd5fc0fc1d696574944",
+  "eligible": [
+    "archive-content",
+    "settings-sidebar",
+    "arrival-padding",
+    "record-toolbar",
+    "compact-header",
+    "archive-row",
+    "collection-tree",
+    "search-query",
+    "tag-chip",
+    "site-legend",
+    "observation-header",
+    "calendar-date",
+    "member-avatar",
+    "activity-marker",
+    "form-hint",
+    "import-footer",
+    "ink",
+    "contrast",
+    "clip",
+    "focus"
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "title": "Keyboard focus is invisible",
+      "status": "confirmed",
+      "reason": "The unfocused and keyboard screenshots are identical, and the live Tab test records zero ring pixels.",
+      "seed": "focus"
+    },
+    {
+      "id": "F02",
+      "title": "Compact imports hide the identifying suffix",
+      "status": "confirmed",
+      "reason": "The required suffix is missing on compact; the independent probe measures 433 px of content in 324 px.",
+      "seed": "clip"
+    },
+    {
+      "id": "F03",
+      "title": "The archived-search confirmation is hard to read",
+      "status": "confirmed",
+      "reason": "The empty-state confirmation and measured 2.25 to 1 ratio match the paint case.",
+      "seed": "contrast"
+    },
+    {
+      "id": "F04",
+      "title": "Field desk details lose the section indicator",
+      "status": "additional",
+      "reason": "Additional wayfinding issue. Directly verified that the highlighted parent on the list loses its treatment on the related detail view."
+    },
+    {
+      "id": "F05",
+      "title": "The compact chart scales its axes down to fine print",
+      "status": "additional",
+      "reason": "Additional readability issue. The compact screenshot shows axis labels with substantially smaller visible ink than the adjacent legend."
+    },
+    {
+      "id": "F06",
+      "title": "Archive shifts the content start",
+      "status": "confirmed",
+      "reason": "Correct views, direction and 3 px outer-content shift on all measured widths.",
+      "seed": "archive-content"
+    },
+    {
+      "id": "F07",
+      "title": "Returning to Inbox changes its position",
+      "status": "confirmed",
+      "reason": "Isolates the +2 px shift on an Inbox reached by the Archive link.",
+      "seed": "arrival-padding"
+    },
+    {
+      "id": "F08",
+      "title": "Settings widens the shared sidebar",
+      "status": "confirmed",
+      "reason": "Separates the +4 px wide/tablet rail change from the stable local title inset.",
+      "seed": "settings-sidebar"
+    },
+    {
+      "id": "F09",
+      "title": "Compact Settings shifts the header actions",
+      "status": "confirmed",
+      "reason": "Correctly identifies a 2 px leftward mobile action shift.",
+      "seed": "compact-header"
+    },
+    {
+      "id": "F10",
+      "title": "A selected tree item gets an extra level of indentation",
+      "status": "confirmed",
+      "reason": "Identifies the 4 px local indentation and preserved sibling rail.",
+      "seed": "collection-tree"
+    },
+    {
+      "id": "F11",
+      "title": "The Hydrology chip changes its internal gap",
+      "status": "confirmed",
+      "reason": "The repeated dot stays fixed while the chip label starts 2 px farther right.",
+      "seed": "tag-chip"
+    },
+    {
+      "id": "F12",
+      "title": "The filled plot symbol sits low",
+      "status": "confirmed",
+      "reason": "The repeated plot marks establish the filled glyph\u2019s 2 px vertical offset.",
+      "seed": "ink"
+    },
+    {
+      "id": "F13",
+      "title": "Entering a site changes the chart legend\u2019s spacing",
+      "status": "confirmed",
+      "reason": "Correctly scopes the 2 px legend gap reduction to wide and tablet.",
+      "seed": "site-legend"
+    },
+    {
+      "id": "F14",
+      "title": "The compact Sample header moves away from its values",
+      "status": "confirmed",
+      "reason": "Identifies the 2 px compact table-header shift against the data column.",
+      "seed": "observation-header"
+    },
+    {
+      "id": "F15",
+      "title": "The itinerary day number drops in its date tile",
+      "status": "confirmed",
+      "reason": "Identifies the 2 px downward shift inside the fixed date tile on wide and tablet.",
+      "seed": "calendar-date"
+    },
+    {
+      "id": "F16",
+      "title": "Lina\u2019s name steps away from the same avatar",
+      "status": "confirmed",
+      "reason": "Identifies the 3 px gap increase next to the same avatar.",
+      "seed": "member-avatar"
+    },
+    {
+      "id": "F17",
+      "title": "The first compact notification marker misses its timeline",
+      "status": "confirmed",
+      "reason": "Identifies the 1.5 px leftward shift at compact density.",
+      "seed": "activity-marker"
+    },
+    {
+      "id": "F18",
+      "title": "The valid title field\u2019s helper is indented on New field note",
+      "status": "confirmed",
+      "reason": "Identifies the approximately 4 px helper inset and separates glyph bearings from layout.",
+      "seed": "form-hint"
+    },
+    {
+      "id": "F19",
+      "title": "The Import footer action sits farther from the card edge",
+      "status": "confirmed",
+      "reason": "Identifies the same 3 px increase in trailing space on the affected widths.",
+      "seed": "import-footer"
+    },
+    {
+      "id": "F20",
+      "title": "The compact empty-search query starts farther inside its field",
+      "status": "confirmed",
+      "reason": "Identifies the 3 px compact query inset and checks wide/tablet as controls.",
+      "seed": "search-query"
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "browser": "Chromium 158.0.8127.18",
+  "cases": [
+    {
+      "id": "ink",
+      "view": "tags",
+      "profile": "compact",
+      "title": "Icon ink in a centered frame",
+      "claim": "The painted mark shares the vertical midpoint of its 20 px frame."
+    },
+    {
+      "id": "contrast",
+      "view": "search-empty",
+      "profile": "wide",
+      "title": "Quiet text in an empty state",
+      "claim": "The secondary label reaches the fixture’s 4.5 to 1 contrast threshold on its own background."
+    },
+    {
+      "id": "clip",
+      "view": "imports",
+      "profile": "compact",
+      "title": "A required identifier on mobile",
+      "claim": "The entire identifier remains readable inside the content area at 390 CSS px."
+    },
+    {
+      "id": "focus",
+      "view": "member",
+      "profile": "wide",
+      "title": "Keyboard focus on a member link",
+      "claim": "Tab reaches the link and leaves a visibly painted indicator around it."
+    },
+    {
+      "id": "ellipsis",
+      "control": true,
+      "view": "record",
+      "profile": "compact",
+      "title": "Intentional label truncation",
+      "claim": "A secondary label uses an ellipsis by design. Its clipping is recorded as an intentional control."
+    },
+    {
+      "id": "sticky",
+      "control": true,
+      "view": "observations",
+      "profile": "compact",
+      "title": "A two-axis sticky data table",
+      "claim": "After native horizontal and vertical scrolling, the column heading stays pinned at the corner and the sample ID column stays at its left edge."
+    },
+    {
+      "id": "bidi",
+      "control": true,
+      "view": "member",
+      "profile": "compact",
+      "title": "Mixed-direction station instructions",
+      "claim": "The Arabic block remains right-to-left. The embedded station code is isolated and its visible bounds remain inside the text column."
+    }
+  ],
+  "rows": [
+    {
+      "stage": "baseline",
+      "id": "ink",
+      "expected": true,
+      "issue": true,
+      "measurement": "+2 CSS px from center",
+      "file": "baseline-ink.png"
+    },
+    {
+      "stage": "baseline",
+      "id": "contrast",
+      "expected": true,
+      "issue": true,
+      "measurement": "2.25 to 1",
+      "file": "baseline-contrast.png"
+    },
+    {
+      "stage": "baseline",
+      "id": "clip",
+      "expected": true,
+      "issue": true,
+      "measurement": "433 px of content · 324 px available",
+      "file": "baseline-clip.png"
+    },
+    {
+      "stage": "baseline",
+      "id": "focus",
+      "expected": true,
+      "issue": true,
+      "measurement": "0 changed ring pixels",
+      "file": "baseline-focus.png"
+    },
+    {
+      "stage": "baseline",
+      "id": "ellipsis",
+      "expected": false,
+      "issue": false,
+      "measurement": "Declared ellipsis · 511 px inside 324 px",
+      "file": "baseline-ellipsis.png"
+    },
+    {
+      "stage": "baseline",
+      "id": "sticky",
+      "expected": false,
+      "issue": false,
+      "measurement": "Scrolled 55 × 76 CSS px · pinned-edge drift 0 px",
+      "file": "baseline-sticky.png"
+    },
+    {
+      "stage": "baseline",
+      "id": "bidi",
+      "expected": false,
+      "issue": false,
+      "measurement": "rtl · isolate · code inside column",
+      "file": "baseline-bidi.png"
+    },
+    {
+      "stage": "rails",
+      "id": "ink",
+      "expected": true,
+      "issue": true,
+      "measurement": "+2 CSS px from center",
+      "file": "rails-ink.png"
+    },
+    {
+      "stage": "rails",
+      "id": "contrast",
+      "expected": true,
+      "issue": true,
+      "measurement": "2.25 to 1",
+      "file": "rails-contrast.png"
+    },
+    {
+      "stage": "rails",
+      "id": "clip",
+      "expected": true,
+      "issue": true,
+      "measurement": "433 px of content · 324 px available",
+      "file": "rails-clip.png"
+    },
+    {
+      "stage": "rails",
+      "id": "focus",
+      "expected": true,
+      "issue": true,
+      "measurement": "0 changed ring pixels",
+      "file": "rails-focus.png"
+    },
+    {
+      "stage": "rails",
+      "id": "ellipsis",
+      "expected": false,
+      "issue": false,
+      "measurement": "Declared ellipsis · 511 px inside 324 px",
+      "file": "rails-ellipsis.png"
+    },
+    {
+      "stage": "rails",
+      "id": "sticky",
+      "expected": false,
+      "issue": false,
+      "measurement": "Scrolled 55 × 76 CSS px · pinned-edge drift 0 px",
+      "file": "rails-sticky.png"
+    },
+    {
+      "stage": "rails",
+      "id": "bidi",
+      "expected": false,
+      "issue": false,
+      "measurement": "rtl · isolate · code inside column",
+      "file": "rails-bidi.png"
+    },
+    {
+      "stage": "fixed",
+      "id": "ink",
+      "expected": false,
+      "issue": false,
+      "measurement": "0 CSS px from center",
+      "file": "fixed-ink.png"
+    },
+    {
+      "stage": "fixed",
+      "id": "contrast",
+      "expected": false,
+      "issue": false,
+      "measurement": "6.30 to 1",
+      "file": "fixed-contrast.png"
+    },
+    {
+      "stage": "fixed",
+      "id": "clip",
+      "expected": false,
+      "issue": false,
+      "measurement": "324 px of content · 324 px available",
+      "file": "fixed-clip.png"
+    },
+    {
+      "stage": "fixed",
+      "id": "focus",
+      "expected": false,
+      "issue": false,
+      "measurement": "488 changed ring pixels",
+      "file": "fixed-focus.png"
+    },
+    {
+      "stage": "fixed",
+      "id": "ellipsis",
+      "expected": false,
+      "issue": false,
+      "measurement": "Declared ellipsis · 511 px inside 324 px",
+      "file": "fixed-ellipsis.png"
+    },
+    {
+      "stage": "fixed",
+      "id": "sticky",
+      "expected": false,
+      "issue": false,
+      "measurement": "Scrolled 55 × 76 CSS px · pinned-edge drift 0 px",
+      "file": "fixed-sticky.png"
+    },
+    {
+      "stage": "fixed",
+      "id": "bidi",
+      "expected": false,
+      "issue": false,
+      "measurement": "rtl · isolate · code inside column",
+      "file": "fixed-bidi.png"
+    }
+  ]
+}
