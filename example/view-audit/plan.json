@@ -1,0 +1,37 @@
+{
+  "title": "Fieldwork library",
+  "profiles": {
+    "wide": {"width": 1040, "height": 640, "scale": 1},
+    "compact": {"width": 390, "height": 720, "scale": 2}
+  },
+  "views": {
+    "inbox": {"url": "index.html?view=inbox", "ready": "body[data-ready]"},
+    "archive": {"url": "index.html?view=archive", "ready": "body[data-ready]"},
+    "record": {"url": "index.html?view=record", "ready": "body[data-ready]"},
+    "settings": {"url": "index.html?view=settings", "ready": "body[data-ready]"},
+    "returned-inbox": {"url": "index.html?view=inbox", "ready": "body[data-ready][data-arrival=archive]",
+      "arriveVia": {"url": "index.html?view=archive", "link": "nav [data-route=inbox]", "ready": "body[data-ready]"}}
+  },
+  "anchors": {
+    "pane": "main", "title": "h1", "tools": ".toolbar", "workspace": ".workspace",
+    "first-row": ".entry:first-child", "name": ".entry:first-child .name"
+  },
+  "checks": {
+    "pane-left": {"label": "Content pane edge", "point": ["pane","left"], "tolerance": 0.25},
+    "title-left": {"label": "Title start", "point": ["title","left"], "tolerance": 0.25},
+    "title-inset": {"label": "Title inset within pane", "point": ["title","left"], "relativeTo": ["pane","left"], "tolerance": 0.25},
+    "row-inset": {"label": "First label inset within row", "point": ["name","left"], "relativeTo": ["first-row","left"], "tolerance": 0.25},
+    "toolbar-gap": {"label": "Title to toolbar gap", "point": ["tools","top"], "relativeTo": ["title","bottom"], "tolerance": 0.25},
+    "action-right": {"label": "Workspace link trailing edge", "point": ["workspace","right"], "tolerance": 0.25},
+    "title-top": {"label": "Title top", "point": ["title","top"], "tolerance": 0.25}
+  },
+  "pairs": [
+    {"from": "inbox", "to": "archive", "checks": ["title-inset","title-left","row-inset","pane-left","toolbar-gap","action-right"]},
+    {"from": "inbox", "to": "record", "checks": ["toolbar-gap","title-top","title-inset","pane-left","action-right"],
+      "expect": {"title-top": {"delta": 32, "reason": "The record view adds a 32 CSS px breadcrumb above the title."}}},
+    {"from": "inbox", "to": "settings", "checks": ["pane-left","title-left","title-inset","action-right"]},
+    {"from": "archive", "to": "inbox", "checks": ["title-inset","row-inset"]},
+    {"from": "inbox", "to": "returned-inbox", "checks": ["title-inset","action-right"]},
+    {"from": "archive", "to": "returned-inbox", "checks": ["title-inset"]}
+  ]
+}

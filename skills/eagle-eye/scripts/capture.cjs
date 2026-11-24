@@ -1,6 +1,7 @@
 // Capture a clean, repeatable browser state. Use an interactive browser for signed-in flows.
 const { parseArgs } = require('node:util');
 const path = require('node:path');
+const { launchChromium } = require('./browser.cjs');
 const fs = require('node:fs/promises');
 
 async function main() {
@@ -23,10 +24,7 @@ async function main() {
   if (![width, height].every(n => Number.isSafeInteger(n) && n > 0) || !Number.isFinite(scale) || scale <= 0)
     throw new Error('Use positive viewport dimensions and device scale.');
   if (!['light', 'dark'].includes(values.theme)) throw new Error('Use light or dark for --theme.');
-  const modulePath = process.env.EAGLE_EYE_PLAYWRIGHT ||
-    require.resolve('playwright', { paths: [process.cwd(), __dirname] });
-  const { chromium } = require(modulePath);
-  const browser = await chromium.launch();
+  const browser = await launchChromium();
   try {
     const page = await browser.newPage({
       viewport: { width, height }, deviceScaleFactor: scale,

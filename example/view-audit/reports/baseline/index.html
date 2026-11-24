@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eagle Eye · View comparison</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18291f;
+      --quiet: #4c5c52;
+      --line: #cbd4ca;
+      --paper: #f5f6f1;
+      --green: #066843;
+      --red: #a4313e;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    main {
+      max-width: 1184px;
+      margin: auto;
+      padding: 30px clamp(14px, 4vw, 56px) 52px;
+    }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+    }
+    header small {
+      color: var(--green);
+      font-weight: 700;
+    }
+    h1 {
+      font:
+        500 clamp(28px, 4vw, 46px)/1.15 Georgia,
+        serif;
+      margin: 10px 0;
+    }
+    p {
+      line-height: 1.5;
+      margin: 8px 0;
+    }
+    .muted {
+      color: var(--quiet);
+      font-size: 14px;
+    }
+    .controls,
+    .tools,
+    .readout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      align-items: center;
+    }
+    .controls {
+      padding: 16px 0;
+    }
+    .controls label {
+      display: grid;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 650;
+    }
+    select,
+    button,
+    input {
+      font: inherit;
+    }
+    select,
+    button {
+      padding: 7px 10px;
+      border: 1px solid #adb8ae;
+      background: white;
+      color: var(--ink);
+      border-radius: 5px;
+    }
+    button {
+      cursor: pointer;
+    }
+    button[aria-pressed='true'] {
+      background: var(--ink);
+      color: white;
+    }
+    button:focus-visible,
+    select:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #bd8112;
+      outline-offset: 2px;
+    }
+    .tools {
+      font-size: 14px;
+      margin: 0 0 12px;
+    }
+    .tools label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tools input[type='range'] {
+      width: 115px;
+    }
+    .panels {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .panels.overlay {
+      grid-template-columns: 1fr;
+    }
+    figure {
+      margin: 0;
+      min-width: 0;
+    }
+    figcaption {
+      padding: 6px 0;
+      color: var(--quiet);
+      font-size: 13px;
+      font-weight: 650;
+    }
+    .stage {
+      height: clamp(180px, 31vw, 336px);
+      overflow: hidden;
+      position: relative;
+      background: #ebece5;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+    .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: top left;
+    }
+    .layer img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .guide {
+      position: absolute;
+      pointer-events: none;
+    }
+    .guide.x {
+      height: 100%;
+      top: 0;
+      border-left: 1px dashed var(--green);
+    }
+    .guide.y {
+      width: 100%;
+      left: 0;
+      border-top: 1px dashed var(--green);
+    }
+    .guide.to {
+      border-color: var(--red);
+      border-style: solid;
+      border-width: 0;
+    }
+    .guide.x.to {
+      border-left-width: 1px;
+    }
+    .guide.y.to {
+      border-top-width: 1px;
+    }
+    .guide.relative {
+      opacity: 0.8;
+    }
+    .guide.x.relative {
+      height: 45%;
+    }
+    .guide.y.relative {
+      width: 45%;
+    }
+    .readout {
+      padding: 14px 0 4px;
+      font-size: 15px;
+    }
+    details {
+      margin: 12px 0;
+      color: var(--quiet);
+      font-size: 14px;
+    }
+    summary {
+      cursor: pointer;
+    }
+    details ul {
+      padding-left: 20px;
+    }
+    details li {
+      margin: 5px 0;
+    }
+    .legend {
+      font-size: 12px;
+      color: var(--quiet);
+    }
+    .legend b {
+      color: var(--green);
+    }
+    .legend strong {
+      color: var(--red);
+    }
+    h2 {
+      font:
+        500 22px/1.3 Georgia,
+        serif;
+      margin: 20px 0 4px;
+    }
+    .table-scroll {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+    }
+    th,
+    td {
+      text-align: left;
+      padding: 9px 8px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    th {
+      color: var(--quiet);
+      font-size: 12px;
+    }
+    tbody button {
+      background: transparent;
+      border: 0;
+      padding: 4px 0;
+      font-weight: 600;
+      text-align: left;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    tr.selected {
+      background: #e7ede4;
+    }
+    .drift {
+      color: var(--red);
+      font-weight: 650;
+    }
+    .expected,
+    .aligned {
+      color: var(--green);
+    }
+    .unverified {
+      color: #814c0c;
+    }
+    a {
+      color: var(--green);
+    }
+    [hidden] {
+      display: none !important;
+    }
+    @media (max-width: 600px) {
+      main {
+        padding-top: 18px;
+      }
+      .panels {
+        grid-template-columns: 1fr;
+      }
+      .tools {
+        gap: 8px 12px;
+      }
+      .stage {
+        height: 185px;
+      }
+    }
+  </style>
+  <main>
+    <header>
+      <small>Eagle Eye / View comparison</small>
+      <h1 id="title"></h1>
+      <p id="summary" class="muted"></p>
+    </header>
+    <div class="controls">
+      <label>Viewport<select id="profile"></select></label
+      ><label>Compare views<select id="pair"></select></label>
+    </div>
+    <div class="tools">
+      <button id="side" aria-pressed="true">Side by side</button
+      ><button id="overlay" aria-pressed="false">Overlay</button> <button id="next">Next issue</button
+      ><label id="blendControl" hidden
+        >Blend <input id="blend" aria-label="Overlay blend" type="range" min="0" max="100" value="50"
+      /></label>
+      <label><input id="detail" type="checkbox" checked /> 2× detail</label
+      ><label><input id="guides" type="checkbox" checked /> Guides</label>
+    </div>
+    <div id="panels" class="panels"></div>
+    <p class="legend">
+      <b>Dashed green</b> marks the source view. <strong>Solid red</strong> marks the destination. Short
+      guides mark the relative anchor.
+    </p>
+    <div class="readout"><strong id="selectedLabel"></strong><span id="numbers"></span></div>
+    <p id="note" class="muted" aria-live="polite"></p>
+    <details>
+      <summary>Computed spacing changes</summary>
+      <ul id="styles"></ul>
+    </details>
+    <h2>Measurements</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Check</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Change</th>
+            <th>Intended</th>
+            <th>Tolerance</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="muted"><a href="AUDIT.md">Audit log</a> · <a href="report.json">Measurement data</a></p>
+  </main>
+  <script>
+    'use strict';
+    const data = {"version":1,"browser":"Chromium 158.0.8127.18","reducedMotion":"reduce","plan":{"title":"Fieldwork library · baseline","profiles":{"wide":{"width":1040,"height":640,"scale":1},"compact":{"width":390,"height":720,"scale":2}},"views":{"inbox":{"url":"index.html?view=inbox&revision=baseline","ready":"body[data-ready]"},"archive":{"url":"index.html?view=archive&revision=baseline","ready":"body[data-ready]"},"record":{"url":"index.html?view=record&revision=baseline","ready":"body[data-ready]"},"settings":{"url":"index.html?view=settings&revision=baseline","ready":"body[data-ready]"},"returned-inbox":{"url":"index.html?view=inbox&revision=baseline","ready":"body[data-ready][data-arrival=archive]","arriveVia":{"url":"index.html?view=archive&revision=baseline","link":"nav [data-route=inbox]","ready":"body[data-ready]"}}},"anchors":{"pane":"main","title":"h1","tools":".toolbar","workspace":".workspace","first-row":".entry:first-child","name":".entry:first-child .name"},"checks":{"pane-left":{"label":"Content pane edge","point":["pane","left"],"tolerance":0.25},"title-left":{"label":"Title start","point":["title","left"],"tolerance":0.25},"title-inset":{"label":"Title inset within pane","point":["title","left"],"relativeTo":["pane","left"],"tolerance":0.25},"row-inset":{"label":"First label inset within row","point":["name","left"],"relativeTo":["first-row","left"],"tolerance":0.25},"toolbar-gap":{"label":"Title to toolbar gap","point":["tools","top"],"relativeTo":["title","bottom"],"tolerance":0.25},"action-right":{"label":"Workspace link trailing edge","point":["workspace","right"],"tolerance":0.25},"title-top":{"label":"Title top","point":["title","top"],"tolerance":0.25}},"pairs":[{"from":"inbox","to":"archive","checks":["title-inset","title-left","row-inset","pane-left","toolbar-gap","action-right"]},{"from":"inbox","to":"record","checks":["toolbar-gap","title-top","title-inset","pane-left","action-right"],"expect":{"title-top":{"delta":32,"reason":"The record view adds a 32 CSS px breadcrumb above the title."}}},{"from":"inbox","to":"settings","checks":["pane-left","title-left","title-inset","action-right"]},{"from":"archive","to":"inbox","checks":["title-inset","row-inset"]},{"from":"inbox","to":"returned-inbox","checks":["title-inset","action-right"]},{"from":"archive","to":"returned-inbox","checks":["title-inset"]}]},"captures":{"wide":{"inbox":{"anchors":{"pane":{"box":{"left":192,"right":1040,"top":56,"bottom":640},"styles":{"padding-left":"30px","padding-right":"30px","padding-top":"28px","padding-bottom":"28px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"title":{"box":{"left":222,"right":1010,"top":84,"bottom":131.40625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"tools":{"box":{"left":222,"right":1010,"top":145.40625,"bottom":181.40625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"14px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"8px","row-gap":"8px","transform":"none","box-sizing":"border-box"}},"workspace":{"box":{"left":894.96875,"right":1014,"top":15.5,"bottom":40.5},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"3px","padding-bottom":"3px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"first-row":{"box":{"left":223,"right":1009,"top":200.40625,"bottom":251.40625},"styles":{"padding-left":"15px","padding-right":"15px","padding-top":"8px","padding-bottom":"8px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"12px","row-gap":"12px","transform":"none","box-sizing":"border-box"}},"name":{"box":{"left":238,"right":340.90625,"top":215.90625,"bottom":234.90625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}}},"scroll":[0,0],"viewport":[1040,640],"dpr":1,"file":"wide/inbox.png","arrival":"Direct entry"},"archive":{"anchors":{"pane":{"box":{"left":192,"right":1040,"top":56,"bottom":640},"styles":{"padding-left":"33px","padding-right":"30px","padding-top":"28px","padding-bottom":"28px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"title":{"box":{"left":225,"right":1010,"top":84,"bottom":131.40625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"tools":{"box":{"left":225,"right":1010,"top":145.40625,"bottom":181.40625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"14px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"8px","row-gap":"8px","transform":"none","box-sizing":"border-box"}},"workspace":{"box":{"left":894.96875,"right":1014,"top":15.5,"bottom":40.5},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"3px","padding-bottom":"3px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"first-row":{"box":{"left":226,"right":1009,"top":200.40625,"bottom":251.40625},"styles":{"padding-left":"15px","padding-right":"15px","padding-top":"8px","padding-bottom":"8px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"12px","row-gap":"12px","transform":"none","box-sizing":"border-box"}},"name":{"box":{"left":241,"right":332.9375,"top":215.90625,"bottom":234.90625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}}},"scroll":[0,0],"viewport":[1040,640],"dpr":1,"file":"wide/archive.png","arrival":"Direct entry"},"record":{"anchors":{"pane":{"box":{"left":192,"right":1040,"top":56,"bottom":640},"styles":{"padding-left":"30px","padding-right":"30px","padding-top":"28px","padding-bottom":"28px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"title":{"box":{"left":222,"right":1010,"top":116,"bottom":163.40625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"tools":{"box":{"left":222,"right":1010,"top":175.40625,"bottom":211.40625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"12px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"8px","row-gap":"8px","transform":"none","box-sizing":"border-box"}},"workspace":{"box":{"left":894.96875,"right":1014,"top":15.5,"bottom":40.5},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"3px","padding-bottom":"3px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"first-row":{"issue":"missing"},"name":{"issue":"missing"}},"scroll":[0,0],"viewport":[1040,640],"dpr":1,"file":"wide/record.png","arrival":"Direct entry"},"settings":{"anchors":{"pane":{"box":{"left":196,"right":1040,"top":56,"bottom":640},"styles":{"padding-left":"30px","padding-right":"30px","padding-top":"28px","padding-bottom":"28px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"title":{"box":{"left":226,"right":1010,"top":84,"bottom":131.40625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"tools":{"box":{"left":226,"right":1010,"top":145.40625,"bottom":181.40625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"14px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"8px","row-gap":"8px","transform":"none","box-sizing":"border-box"}},"workspace":{"box":{"left":894.96875,"right":1014,"top":15.5,"bottom":40.5},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"3px","padding-bottom":"3px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"first-row":{"issue":"missing"},"name":{"issue":"missing"}},"scroll":[0,0],"viewport":[1040,640],"dpr":1,"file":"wide/settings.png","arrival":"Direct entry"},"returned-inbox":{"anchors":{"pane":{"box":{"left":192,"right":1040,"top":56,"bottom":640},"styles":{"padding-left":"32px","padding-right":"30px","padding-top":"28px","padding-bottom":"28px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"title":{"box":{"left":224,"right":1010,"top":84,"bottom":131.40625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"tools":{"box":{"left":224,"right":1010,"top":145.40625,"bottom":181.40625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"14px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"8px","row-gap":"8px","transform":"none","box-sizing":"border-box"}},"workspace":{"box":{"left":894.96875,"right":1014,"top":15.5,"bottom":40.5},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"3px","padding-bottom":"3px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"first-row":{"box":{"left":225,"right":1009,"top":200.40625,"bottom":251.40625},"styles":{"padding-left":"15px","padding-right":"15px","padding-top":"8px","padding-bottom":"8px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"12px","row-gap":"12px","transform":"none","box-sizing":"border-box"}},"name":{"box":{"left":240,"right":342.90625,"top":215.90625,"bottom":234.90625},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}}},"scroll":[0,0],"viewport":[1040,640],"dpr":1,"file":"wide/returned-inbox.png","arrival":"Link from archive"}},"compact":{"inbox":{"anchors":{"pane":{"box":{"left":0,"right":390,"top":97,"bottom":404.1875},"styles":{"padding-left":"16px","padding-right":"16px","padding-top":"22px","padding-bottom":"28px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"title":{"box":{"left":16,"right":374,"top":119,"bottom":153.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"tools":{"box":{"left":16,"right":374,"top":167.1875,"bottom":203.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"14px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"8px","row-gap":"8px","transform":"none","box-sizing":"border-box"}},"workspace":{"box":{"left":254.96875,"right":374,"top":12.5,"bottom":37.5},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"3px","padding-bottom":"3px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"first-row":{"box":{"left":17,"right":373,"top":222.1875,"bottom":273.1875},"styles":{"padding-left":"15px","padding-right":"15px","padding-top":"8px","padding-bottom":"8px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"12px","row-gap":"12px","transform":"none","box-sizing":"border-box"}},"name":{"box":{"left":32,"right":127.5625,"top":238.1875,"bottom":256.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}}},"scroll":[0,0],"viewport":[390,720],"dpr":2,"file":"compact/inbox.png","arrival":"Direct entry"},"archive":{"anchors":{"pane":{"box":{"left":0,"right":390,"top":97,"bottom":353.1875},"styles":{"padding-left":"19px","padding-right":"16px","padding-top":"22px","padding-bottom":"28px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"title":{"box":{"left":19,"right":374,"top":119,"bottom":153.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"tools":{"box":{"left":19,"right":374,"top":167.1875,"bottom":203.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"14px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"8px","row-gap":"8px","transform":"none","box-sizing":"border-box"}},"workspace":{"box":{"left":254.96875,"right":374,"top":12.5,"bottom":37.5},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"3px","padding-bottom":"3px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"first-row":{"box":{"left":20,"right":373,"top":222.1875,"bottom":273.1875},"styles":{"padding-left":"15px","padding-right":"15px","padding-top":"8px","padding-bottom":"8px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"12px","row-gap":"12px","transform":"none","box-sizing":"border-box"}},"name":{"box":{"left":35.5,"right":120.859375,"top":238.1875,"bottom":256.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"matrix(1, 0, 0, 1, 0.5, 0)","box-sizing":"border-box"}}},"scroll":[0,0],"viewport":[390,720],"dpr":2,"file":"compact/archive.png","arrival":"Direct entry"},"record":{"anchors":{"pane":{"box":{"left":0,"right":390,"top":97,"bottom":465.125},"styles":{"padding-left":"16px","padding-right":"16px","padding-top":"22px","padding-bottom":"28px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"title":{"box":{"left":16,"right":374,"top":151,"bottom":185.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"tools":{"box":{"left":16,"right":374,"top":197.1875,"bottom":233.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"12px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"8px","row-gap":"8px","transform":"none","box-sizing":"border-box"}},"workspace":{"box":{"left":254.96875,"right":374,"top":12.5,"bottom":37.5},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"3px","padding-bottom":"3px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"first-row":{"issue":"missing"},"name":{"issue":"missing"}},"scroll":[0,0],"viewport":[390,720],"dpr":2,"file":"compact/record.png","arrival":"Direct entry"},"settings":{"anchors":{"pane":{"box":{"left":0,"right":390,"top":97,"bottom":394.1875},"styles":{"padding-left":"16px","padding-right":"16px","padding-top":"22px","padding-bottom":"28px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"title":{"box":{"left":16,"right":374,"top":119,"bottom":153.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"tools":{"box":{"left":16,"right":374,"top":167.1875,"bottom":203.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"14px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"8px","row-gap":"8px","transform":"none","box-sizing":"border-box"}},"workspace":{"box":{"left":252.96875,"right":372,"top":12.5,"bottom":37.5},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"3px","padding-bottom":"3px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"first-row":{"issue":"missing"},"name":{"issue":"missing"}},"scroll":[0,0],"viewport":[390,720],"dpr":2,"file":"compact/settings.png","arrival":"Direct entry"},"returned-inbox":{"anchors":{"pane":{"box":{"left":0,"right":390,"top":97,"bottom":404.1875},"styles":{"padding-left":"18px","padding-right":"16px","padding-top":"22px","padding-bottom":"28px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"title":{"box":{"left":18,"right":374,"top":119,"bottom":153.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"tools":{"box":{"left":18,"right":374,"top":167.1875,"bottom":203.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"14px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"8px","row-gap":"8px","transform":"none","box-sizing":"border-box"}},"workspace":{"box":{"left":254.96875,"right":374,"top":12.5,"bottom":37.5},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"3px","padding-bottom":"3px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}},"first-row":{"box":{"left":19,"right":373,"top":222.1875,"bottom":273.1875},"styles":{"padding-left":"15px","padding-right":"15px","padding-top":"8px","padding-bottom":"8px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"1px","column-gap":"12px","row-gap":"12px","transform":"none","box-sizing":"border-box"}},"name":{"box":{"left":34,"right":129.5625,"top":238.1875,"bottom":256.1875},"styles":{"padding-left":"0px","padding-right":"0px","padding-top":"0px","padding-bottom":"0px","margin-left":"0px","margin-right":"0px","margin-top":"0px","margin-bottom":"0px","border-left-width":"0px","border-right-width":"0px","border-top-width":"0px","border-bottom-width":"0px","column-gap":"normal","row-gap":"normal","transform":"none","box-sizing":"border-box"}}},"scroll":[0,0],"viewport":[390,720],"dpr":2,"file":"compact/returned-inbox.png","arrival":"Link from archive"}}},"rows":[{"profile":"wide","from":"inbox","to":"archive","check":"title-inset","a":{"value":30,"positions":[222,192]},"b":{"value":33,"positions":[225,192]},"expected":0,"delta":3,"tolerance":0.25,"status":"drift","reason":""},{"profile":"wide","from":"inbox","to":"archive","check":"title-left","a":{"value":222,"positions":[222]},"b":{"value":225,"positions":[225]},"expected":0,"delta":3,"tolerance":0.25,"status":"drift","reason":""},{"profile":"wide","from":"inbox","to":"archive","check":"row-inset","a":{"value":15,"positions":[238,223]},"b":{"value":15,"positions":[241,226]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"inbox","to":"archive","check":"pane-left","a":{"value":192,"positions":[192]},"b":{"value":192,"positions":[192]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"inbox","to":"archive","check":"toolbar-gap","a":{"value":14,"positions":[145.40625,131.40625]},"b":{"value":14,"positions":[145.40625,131.40625]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"inbox","to":"archive","check":"action-right","a":{"value":1014,"positions":[1014]},"b":{"value":1014,"positions":[1014]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"inbox","to":"record","check":"toolbar-gap","a":{"value":14,"positions":[145.40625,131.40625]},"b":{"value":12,"positions":[175.40625,163.40625]},"expected":0,"delta":-2,"tolerance":0.25,"status":"drift","reason":""},{"profile":"wide","from":"inbox","to":"record","check":"title-top","a":{"value":84,"positions":[84]},"b":{"value":116,"positions":[116]},"expected":32,"delta":32,"tolerance":0.25,"status":"expected","reason":"The record view adds a 32 CSS px breadcrumb above the title."},{"profile":"wide","from":"inbox","to":"record","check":"title-inset","a":{"value":30,"positions":[222,192]},"b":{"value":30,"positions":[222,192]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"inbox","to":"record","check":"pane-left","a":{"value":192,"positions":[192]},"b":{"value":192,"positions":[192]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"inbox","to":"record","check":"action-right","a":{"value":1014,"positions":[1014]},"b":{"value":1014,"positions":[1014]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"inbox","to":"settings","check":"pane-left","a":{"value":192,"positions":[192]},"b":{"value":196,"positions":[196]},"expected":0,"delta":4,"tolerance":0.25,"status":"drift","reason":""},{"profile":"wide","from":"inbox","to":"settings","check":"title-left","a":{"value":222,"positions":[222]},"b":{"value":226,"positions":[226]},"expected":0,"delta":4,"tolerance":0.25,"status":"drift","reason":""},{"profile":"wide","from":"inbox","to":"settings","check":"title-inset","a":{"value":30,"positions":[222,192]},"b":{"value":30,"positions":[226,196]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"inbox","to":"settings","check":"action-right","a":{"value":1014,"positions":[1014]},"b":{"value":1014,"positions":[1014]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"archive","to":"inbox","check":"title-inset","a":{"value":33,"positions":[225,192]},"b":{"value":30,"positions":[222,192]},"expected":0,"delta":-3,"tolerance":0.25,"status":"drift","reason":""},{"profile":"wide","from":"archive","to":"inbox","check":"row-inset","a":{"value":15,"positions":[241,226]},"b":{"value":15,"positions":[238,223]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"inbox","to":"returned-inbox","check":"title-inset","a":{"value":30,"positions":[222,192]},"b":{"value":32,"positions":[224,192]},"expected":0,"delta":2,"tolerance":0.25,"status":"drift","reason":""},{"profile":"wide","from":"inbox","to":"returned-inbox","check":"action-right","a":{"value":1014,"positions":[1014]},"b":{"value":1014,"positions":[1014]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"wide","from":"archive","to":"returned-inbox","check":"title-inset","a":{"value":33,"positions":[225,192]},"b":{"value":32,"positions":[224,192]},"expected":0,"delta":-1,"tolerance":0.25,"status":"drift","reason":""},{"profile":"compact","from":"inbox","to":"archive","check":"title-inset","a":{"value":16,"positions":[16,0]},"b":{"value":19,"positions":[19,0]},"expected":0,"delta":3,"tolerance":0.25,"status":"drift","reason":""},{"profile":"compact","from":"inbox","to":"archive","check":"title-left","a":{"value":16,"positions":[16]},"b":{"value":19,"positions":[19]},"expected":0,"delta":3,"tolerance":0.25,"status":"drift","reason":""},{"profile":"compact","from":"inbox","to":"archive","check":"row-inset","a":{"value":15,"positions":[32,17]},"b":{"value":15.5,"positions":[35.5,20]},"expected":0,"delta":0.5,"tolerance":0.25,"status":"drift","reason":""},{"profile":"compact","from":"inbox","to":"archive","check":"pane-left","a":{"value":0,"positions":[0]},"b":{"value":0,"positions":[0]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"compact","from":"inbox","to":"archive","check":"toolbar-gap","a":{"value":14,"positions":[167.1875,153.1875]},"b":{"value":14,"positions":[167.1875,153.1875]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"compact","from":"inbox","to":"archive","check":"action-right","a":{"value":374,"positions":[374]},"b":{"value":374,"positions":[374]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"compact","from":"inbox","to":"record","check":"toolbar-gap","a":{"value":14,"positions":[167.1875,153.1875]},"b":{"value":12,"positions":[197.1875,185.1875]},"expected":0,"delta":-2,"tolerance":0.25,"status":"drift","reason":""},{"profile":"compact","from":"inbox","to":"record","check":"title-top","a":{"value":119,"positions":[119]},"b":{"value":151,"positions":[151]},"expected":32,"delta":32,"tolerance":0.25,"status":"expected","reason":"The record view adds a 32 CSS px breadcrumb above the title."},{"profile":"compact","from":"inbox","to":"record","check":"title-inset","a":{"value":16,"positions":[16,0]},"b":{"value":16,"positions":[16,0]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"compact","from":"inbox","to":"record","check":"pane-left","a":{"value":0,"positions":[0]},"b":{"value":0,"positions":[0]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"compact","from":"inbox","to":"record","check":"action-right","a":{"value":374,"positions":[374]},"b":{"value":374,"positions":[374]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"compact","from":"inbox","to":"settings","check":"pane-left","a":{"value":0,"positions":[0]},"b":{"value":0,"positions":[0]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"compact","from":"inbox","to":"settings","check":"title-left","a":{"value":16,"positions":[16]},"b":{"value":16,"positions":[16]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"compact","from":"inbox","to":"settings","check":"title-inset","a":{"value":16,"positions":[16,0]},"b":{"value":16,"positions":[16,0]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"compact","from":"inbox","to":"settings","check":"action-right","a":{"value":374,"positions":[374]},"b":{"value":372,"positions":[372]},"expected":0,"delta":-2,"tolerance":0.25,"status":"drift","reason":""},{"profile":"compact","from":"archive","to":"inbox","check":"title-inset","a":{"value":19,"positions":[19,0]},"b":{"value":16,"positions":[16,0]},"expected":0,"delta":-3,"tolerance":0.25,"status":"drift","reason":""},{"profile":"compact","from":"archive","to":"inbox","check":"row-inset","a":{"value":15.5,"positions":[35.5,20]},"b":{"value":15,"positions":[32,17]},"expected":0,"delta":-0.5,"tolerance":0.25,"status":"drift","reason":""},{"profile":"compact","from":"inbox","to":"returned-inbox","check":"title-inset","a":{"value":16,"positions":[16,0]},"b":{"value":18,"positions":[18,0]},"expected":0,"delta":2,"tolerance":0.25,"status":"drift","reason":""},{"profile":"compact","from":"inbox","to":"returned-inbox","check":"action-right","a":{"value":374,"positions":[374]},"b":{"value":374,"positions":[374]},"expected":0,"delta":0,"tolerance":0.25,"status":"aligned","reason":""},{"profile":"compact","from":"archive","to":"returned-inbox","check":"title-inset","a":{"value":19,"positions":[19,0]},"b":{"value":18,"positions":[18,0]},"expected":0,"delta":-1,"tolerance":0.25,"status":"drift","reason":""}]};
+    const el = (id) => document.getElementById(id);
+    const add = (parent, tag, text) => {
+      const node = document.createElement(tag);
+      if (text !== undefined) node.textContent = text;
+      parent.append(node);
+      return node;
+    };
+    const fmt = (value) => (value == null ? '—' : String(Number(value.toFixed(4))));
+    const signed = (value) => (value > 0 ? '+' + fmt(value) : fmt(value));
+    let overlaid = false,
+      current,
+      rows = [],
+      layers = [];
+    el('title').textContent = data.plan.title;
+    document.title = data.plan.title + ' · Eagle Eye';
+    const counts = data.rows.reduce((n, r) => ((n[r.status] = (n[r.status] || 0) + 1), n), {});
+    el('summary').textContent =
+      data.rows.length +
+      ' comparisons · ' +
+      (counts.drift || 0) +
+      ' drift · ' +
+      (counts.expected || 0) +
+      ' intended changes · ' +
+      (counts.unverified || 0) +
+      ' unverified';
+    function option(select, value, label) {
+      const item = add(select, 'option', label);
+      item.value = value;
+    }
+    for (const [id, p] of Object.entries(data.plan.profiles)) {
+      if (data.rows.some((r) => r.profile === id))
+        option(el('profile'), id, id + ' · ' + p.width + ' × ' + p.height + ' @ ' + p.scale + '×');
+    }
+    function selectProfile() {
+      const options = data.rows.filter((r) => r.profile === el('profile').value);
+      el('pair').replaceChildren();
+      for (const key of new Set(options.map((r) => r.from + ' / ' + r.to))) {
+        const issues = options.filter((r) => r.from + ' / ' + r.to === key && isIssue(r)).length;
+        option(el('pair'), key, key.replace(' / ', ' → ') + ' · ' + (issues ? issues + ' open' : 'clear'));
+      }
+      el('next').disabled = !options.some(isIssue);
+      const first = options.find((r) => r.status === 'drift') || options[0];
+      el('pair').value = first.from + ' / ' + first.to;
+      selectPair();
+    }
+    function isIssue(row) {
+      return row.status === 'drift' || row.status === 'unverified';
+    }
+    el('next').onclick = () => {
+      const issues = data.rows.filter((r) => r.profile === current.profile && isIssue(r));
+      const next = issues[(issues.indexOf(current) + 1) % issues.length];
+      el('pair').value = next.from + ' / ' + next.to;
+      rows = data.rows.filter(
+        (r) => r.profile === next.profile && r.from === next.from && r.to === next.to
+      );
+      selectRow(next);
+    };
+    function selectPair() {
+      rows = data.rows.filter(
+        (r) => r.profile === el('profile').value && r.from + ' / ' + r.to === el('pair').value
+      );
+      current = rows.find((r) => r.status === 'drift') || rows[0];
+      selectRow(current);
+    }
+    function selectRow(row) {
+      current = row;
+      el('rows').replaceChildren();
+      for (const item of rows) {
+        const tr = add(el('rows'), 'tr');
+        if (item === row) tr.className = 'selected';
+        const btn = add(add(tr, 'td'), 'button', data.plan.checks[item.check].label);
+        btn.onclick = () => {
+          selectRow(item);
+          el('rows').querySelector('.selected button').focus({ preventScroll: true });
+        };
+        for (const value of [
+          fmt(item.a.value),
+          fmt(item.b.value),
+          signed(item.delta),
+          signed(item.expected),
+          '±' + fmt(item.tolerance),
+          item.status
+        ])
+          add(tr, 'td', value);
+        tr.lastChild.className = item.status;
+      }
+      const rule = data.plan.checks[row.check];
+      el('selectedLabel').textContent = rule.label;
+      el('numbers').textContent =
+        row.delta == null
+          ? 'Unverified'
+          : signed(row.delta) + ' CSS px · intended ' + signed(row.expected) + ' ± ' + fmt(row.tolerance);
+      const point = (p) => p[0] + '.' + p[1];
+      el('note').textContent = [
+        point(rule.point) +
+          (rule.relativeTo ? ' minus ' + point(rule.relativeTo) : ' in viewport coordinates'),
+        row.reason,
+        row.a.issue && row.from + ' — ' + row.a.issue,
+        row.b.issue && row.to + ' — ' + row.b.issue
+      ]
+        .filter(Boolean)
+        .join(' · ');
+      const styles = el('styles');
+      styles.replaceChildren();
+      const pair = data.captures[row.profile];
+      for (const id of new Set([rule.point[0], rule.relativeTo?.[0]].filter(Boolean))) {
+        const a = pair[row.from].anchors?.[id]?.styles,
+          b = pair[row.to].anchors?.[id]?.styles;
+        if (!a || !b) continue;
+        for (const prop of Object.keys(a))
+          if (a[prop] !== b[prop]) add(styles, 'li', id + ' · ' + prop + ' · ' + a[prop] + ' → ' + b[prop]);
+      }
+      if (!styles.children.length)
+        add(
+          styles,
+          'li',
+          row.status === 'unverified'
+            ? 'See capture and anchor availability above.'
+            : 'The measured anchors share the sampled spacing properties. Check ancestor layout and sibling geometry if their positions differ.'
+        );
+      drawPanels();
+    }
+    function drawPanels() {
+      const row = current;
+      const rule = data.plan.checks[row.check];
+      const profile = data.plan.profiles[row.profile];
+      const pair = [row.from, row.to].map((id) => data.captures[row.profile][id]);
+      el('panels').replaceChildren();
+      layers = [];
+      el('panels').className = overlaid ? 'panels overlay' : 'panels';
+      el('blendControl').hidden = !overlaid;
+      el('side').setAttribute('aria-pressed', !overlaid);
+      el('overlay').setAttribute('aria-pressed', overlaid);
+      function panel(caption) {
+        const figure = add(el('panels'), 'figure');
+        add(figure, 'figcaption', caption);
+        const stage = add(figure, 'div');
+        stage.className = 'stage';
+        return stage;
+      }
+      const captions = [row.from, row.to].map((id, index) => id + ' · ' + pair[index].arrival);
+      const stages = overlaid ? [panel(captions.join(' / '))] : captions.map(panel);
+      const axis = ['left', 'right', 'centerX'].includes(rule.point[1]) ? 'x' : 'y';
+      const sourceBox = pair[0].anchors?.[rule.point[0]]?.box || pair[1].anchors?.[rule.point[0]]?.box;
+      const pos = (row.a.positions || row.b.positions || [])[0];
+      const focus = sourceBox
+        ? [(sourceBox.left + sourceBox.right) / 2, (sourceBox.top + sourceBox.bottom) / 2]
+        : [profile.width / 2, profile.height / 2];
+      if (pos != null) focus[axis === 'x' ? 0 : 1] = pos;
+      for (const [i, c] of pair.entries()) {
+        const stage = stages[overlaid ? 0 : i];
+        if (!c.file) {
+          add(stage, 'p', c.issue || 'Missing capture');
+          continue;
+        }
+        const layer = add(stage, 'div');
+        layer.className = 'layer';
+        layer.style.width = profile.width + 'px';
+        layer.style.height = profile.height + 'px';
+        const img = add(layer, 'img');
+        img.src = c.file;
+        img.alt = 'Clean view ' + [row.from, row.to][i];
+        if (el('guides').checked && (!overlaid || i === 1)) {
+          for (const [j, side] of [row.a, row.b].entries())
+            for (const [k, v] of (side.positions || []).entries()) {
+              const line = add(layer, 'div');
+              line.className = 'guide ' + axis + (j ? ' to' : '') + (k ? ' relative' : '');
+              line.style[axis === 'x' ? 'left' : 'top'] = v + 'px';
+            }
+        }
+        layers.push({ layer, stage, profile, focus, img, index: i });
+      }
+      position();
+    }
+    function position() {
+      for (const { layer, stage, profile, focus, img, index } of layers) {
+        const w = stage.clientWidth,
+          h = stage.clientHeight;
+        const s = el('detail').checked ? 2 : Math.min(w / profile.width, h / profile.height);
+        function shift(size, full, center) {
+          return full * s <= size
+            ? (size - full * s) / 2
+            : Math.max(size - full * s, Math.min(0, size / 2 - center * s));
+        }
+        layer.style.transform =
+          'translate(' +
+          shift(w, profile.width, focus[0]) +
+          'px,' +
+          shift(h, profile.height, focus[1]) +
+          'px) scale(' +
+          s +
+          ')';
+        img.style.opacity = overlaid && index === 1 ? Number(el('blend').value) / 100 : 1;
+      }
+    }
+    el('profile').onchange = selectProfile;
+    el('pair').onchange = selectPair;
+    el('side').onclick = () => {
+      overlaid = false;
+      drawPanels();
+    };
+    el('overlay').onclick = () => {
+      overlaid = true;
+      drawPanels();
+    };
+    el('detail').onchange = position;
+    el('guides').onchange = drawPanels;
+    el('blend').oninput = position;
+    window.addEventListener('resize', position);
+    selectProfile();
+  </script>
+</html>

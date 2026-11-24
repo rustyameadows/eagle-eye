@@ -17,6 +17,13 @@ Use one row per meaningful combination. Change the status as you inspect it. Use
 | ID | Route, region or component | State and viewport | Status and evidence |
 | --- | --- | --- | --- |
 
+## View pairs
+
+For continuity audits, add a row per intended relationship. Record the expected change and its basis before measuring. Link to the paired captures or interactive comparison. Use the same IDs across fix cycles. Omit this section for a single-view audit.
+
+| Pair and profile | Shared element and reference edge | Intended delta and tolerance | From / to / signed change | Finding or intentional change | Retest |
+| --- | --- | --- | --- | --- | --- |
+
 ## Findings
 
 Keep the same ID through verification. For each finding, record where it occurs, the observed mismatch and user impact, expected behavior and its basis, confidence, evidence, correction and retest criterion. Prioritize by task impact and how widely the pattern is reused. Use open, fixed awaiting verification, verified, deferred, or intentional.

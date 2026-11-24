@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fieldwork library</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, system-ui, sans-serif;
+      color: #273731;
+      background: #f6f6ef;
+      --rail: 192px;
+      --inset: 30px;
+      --divider: #d4d9ce;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    .bar {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 26px;
+      background: #223d32;
+      color: #fff;
+    }
+    .brand {
+      font:
+        600 21px/1.1 Georgia,
+        serif;
+      letter-spacing: -0.4px;
+    }
+    .bar a {
+      color: #e2eade;
+      text-decoration: none;
+      font-size: 13px;
+      border-bottom: 1px solid #91ad99;
+      padding: 3px 0;
+    }
+    .shell {
+      display: grid;
+      grid-template-columns: var(--rail) minmax(0, 1fr);
+      min-height: calc(100vh - 56px);
+    }
+    aside {
+      border-right: 1px solid var(--divider);
+      padding: 23px 12px;
+      background: #e9eee3;
+    }
+    aside p {
+      margin: 0 11px 14px;
+      color: #506457;
+      font-size: 12px;
+    }
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    nav a {
+      display: block;
+      color: #33483b;
+      padding: 8px 11px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    nav a[aria-current] {
+      background: #d5e2d2;
+      font-weight: 650;
+    }
+    main {
+      padding: 28px var(--inset);
+      min-width: 0;
+    }
+    .crumb {
+      display: flex;
+      align-items: flex-start;
+      height: 32px;
+      font-size: 13px;
+    }
+    .crumb a {
+      color: #466552;
+    }
+    h1 {
+      font:
+        500 clamp(30px, 4vw, 46px)/1.14 Georgia,
+        serif;
+      letter-spacing: -0.7px;
+      margin: 0;
+    }
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 36px;
+      margin-top: 14px;
+      border-bottom: 1px solid var(--divider);
+      color: #506457;
+      font-size: 13px;
+      gap: 8px;
+    }
+    .sheet {
+      background: #fffefa;
+      border: 1px solid var(--divider);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 18px;
+    }
+    .entry {
+      min-height: 51px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 15px;
+      gap: 12px;
+      border-bottom: 1px solid #e3e5dc;
+      font-size: 14px;
+    }
+    .entry:last-child {
+      border: 0;
+    }
+    .entry a {
+      color: #274936;
+    }
+    .entry small {
+      font-size: 12px;
+      color: #566659;
+      white-space: nowrap;
+    }
+    .record {
+      padding: 18px;
+      font:
+        17px/1.6 Georgia,
+        serif;
+    }
+    .record p {
+      max-width: 54ch;
+      margin: 0 0 12px;
+    }
+    .record p:last-child {
+      margin: 0;
+    }
+    .preferences {
+      margin: 0;
+    }
+    .preferences div {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 15px;
+      border-bottom: 1px solid var(--divider);
+      gap: 12px;
+      font-size: 14px;
+    }
+    .preferences div:last-child {
+      border: 0;
+    }
+    dd {
+      margin: 0;
+      color: #506457;
+    }
+    @media (max-width: 700px) {
+      :root {
+        --inset: 16px;
+      }
+      .shell {
+        display: block;
+      }
+      .bar {
+        padding: 0 16px;
+        height: 50px;
+      }
+      aside {
+        padding: 8px 12px;
+        border: 0;
+        border-bottom: 1px solid var(--divider);
+      }
+      aside p {
+        display: none;
+      }
+      nav {
+        flex-direction: row;
+        gap: 3px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        font-size: 13px;
+        padding: 6px 8px;
+      }
+      main {
+        padding-top: 22px;
+      }
+      .entry {
+        font-size: 13px;
+      }
+      .entry small {
+        font-size: 11px;
+      }
+    }
+    body[data-arrival='archive']:not([data-revision='fixed'])[data-view='inbox'] main {
+      padding-left: calc(var(--inset) + 2px);
+    }
+    /* Each revision removes a known cause; the earlier states remain reproducible. */
+    [data-revision='baseline'][data-view='archive'] main {
+      padding-left: calc(var(--inset) + 3px);
+    }
+    @media (min-width: 701px) {
+      [data-revision='baseline'][data-view='settings'] {
+        --rail: 196px;
+      }
+    }
+    body:not([data-revision='fixed'])[data-view='record'] .toolbar {
+      margin-top: 12px;
+    }
+    @media (max-width: 700px) {
+      body:not([data-revision='fixed'])[data-view='settings'] .bar {
+        padding-right: 18px;
+      }
+      body:not([data-revision='fixed'])[data-view='archive'] .entry .name {
+        transform: translateX(0.5px);
+      }
+    }
+  </style>
+  <header class="bar">
+    <span class="brand">Fieldwork</span><a class="workspace" data-route="settings">Workspace settings</a>
+  </header>
+  <div class="shell">
+    <aside>
+      <p>Research library</p>
+      <nav aria-label="Library views">
+        <a data-route="inbox">Inbox</a><a data-route="archive">Archive</a><a data-route="record">Record</a
+        ><a data-route="settings">Settings</a>
+      </nav>
+    </aside>
+    <main>
+      <div id="context"></div>
+      <h1></h1>
+      <div class="toolbar"><span id="subtitle"></span><span id="meta"></span></div>
+      <div id="body"></div>
+    </main>
+  </div>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const view = params.get('view') || 'inbox',
+      revision = params.get('revision') || 'baseline';
+    document.body.dataset.view = view;
+    document.body.dataset.revision = revision;
+    document.body.dataset.arrival = sessionStorage.getItem('previousView') || 'direct';
+    sessionStorage.removeItem('previousView');
+    const screens = {
+      inbox: ['Inbox', 'Current collection', '3 records'],
+      archive: ['Archive', 'Archived collection', '2 records'],
+      record: ['Meadow survey', 'Record details', 'Field notes'],
+      settings: ['Settings', 'Workspace preferences', 'Research library']
+    };
+    const [title, subtitle, meta] = screens[view];
+    document.querySelector('h1').textContent = title;
+    document.title = title + ' · Fieldwork';
+    document.querySelector('#subtitle').textContent = subtitle;
+    document.querySelector('#meta').textContent = meta;
+    if (view === 'record')
+      document.querySelector('#context').innerHTML =
+        '<div class="crumb"><a data-route="inbox">Back to inbox</a></div>';
+    const body = document.querySelector('#body');
+    body.className = 'sheet';
+    if (view === 'inbox' || view === 'archive') {
+      const entries =
+        view === 'inbox'
+          ? [
+              ['Meadow survey', 'Nov 20'],
+              ['Coastal transect', 'Nov 18'],
+              ['Wetland index', 'Nov 12']
+            ]
+          : [
+              ['Spring census', 'Apr 16'],
+              ['Estuary observations', 'Mar 22']
+            ];
+      for (const [name, date] of entries) {
+        const row = document.createElement('div');
+        row.className = 'entry';
+        const label = document.createElement(name === 'Meadow survey' ? 'a' : 'span');
+        label.className = 'name';
+        label.textContent = name;
+        if (name === 'Meadow survey') label.dataset.route = 'record';
+        const time = document.createElement('small');
+        time.textContent = date;
+        row.append(label, time);
+        body.append(row);
+      }
+    } else if (view === 'record') {
+      body.innerHTML =
+        '<article class="record"><p>We returned to the western meadow after the first frost. The north plot held standing water along its outer edge.</p><p>Repeat the transect in early spring and compare the sedge cover.</p></article>';
+    } else {
+      body.innerHTML =
+        '<dl class="preferences"><div><dt>Workspace name</dt><dd>Fieldwork</dd></div><div><dt>Default collection</dt><dd>Inbox</dd></div><div><dt>Date format</dt><dd>Month and day</dd></div></dl>';
+    }
+    for (const link of document.querySelectorAll('[data-route]')) {
+      const query = new URLSearchParams({ view: link.dataset.route, revision });
+      if (revision === 'baseline' && !params.has('revision')) query.delete('revision');
+      link.addEventListener('click', () => sessionStorage.setItem('previousView', view));
+      link.href = '?' + query;
+      if (link.closest('nav') && link.dataset.route === view) link.setAttribute('aria-current', 'page');
+    }
+    document.body.dataset.ready = 'true';
+  </script>
+</html>

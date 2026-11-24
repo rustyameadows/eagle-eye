@@ -15,6 +15,8 @@ Use the site's actual tasks and surface names. The table suggests starting hypot
 | Responsive transitions and special states | One-pixel wrapping thresholds, intermediate layouts that fit neither breakpoint, placeholders that jump on load. | Test just below/at/above a relevant breakpoint, long translated strings when supported, empty/loading/error, and zoom when appropriate. |
 | Repeated patterns across routes and themes | One implementation quietly diverges in gap, type weight, contrast, icon stroke or corner radius. | Line up equivalent screenshots with the same theme, role, data and viewport. Compare computed tokens and inspect rendered pixels. |
 
+Use the [view-to-view audit](view-to-view.md) when switching routes exposes a shift in any of these shared surfaces.
+
 ## Choosing the next pass
 
 - **Screen to component.** An unclear primary action deserves a hierarchy finding even if all edges line up. A one-off icon drift belongs in a focused crop.

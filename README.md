@@ -18,13 +18,19 @@ Invoke it in a new chat with a target and the kind of work you want.
 - `Use $eagle-eye to refine this tab bar. Check the visible icon and text at 1× and 2×, fix the causes, and capture each verification pass.`
 - `Use $eagle-eye for a whole-site critique. Inventory routes and shared layouts, walk the primary flows, and document sampled or blocked states.`
 
+## Audit layout shifts between views
+
+Ask: `Use $eagle-eye to compare the shared shell, page titles, toolbar gaps and list insets across Inbox, Archive and Settings. Check direct and return navigation on desktop and mobile. Group related shifts by cause and re-run the same pairs after each fix.`
+
+Open the [interactive baseline](example/view-audit/reports/baseline/index.html) to inspect a 3 px archive inset with the source and destination guides. Change the viewport, pick a measurement, or blend the two captures. The [worked multi-view audit](example/view-audit/README.md) includes the outcomes across three revisions and commands for the retained browser suite. The [agent workflow](skills/eagle-eye/references/view-to-view.md) explains how to choose trustworthy anchors and compare another app.
+
 ## How the repo stays current
 
 [SKILL.md](skills/eagle-eye/SKILL.md) defines the audit. The [target catalog](skills/eagle-eye/references/audit-targets.md) lists likely defects and how to reveal them. The [evidence guide](skills/eagle-eye/references/evidence.md) covers capture, guide recipes and interpretation. [Maintainer instructions](AGENTS.md) keep these files current alongside changes to behavior.
 
 During an audit the agent updates the target repo's `docs/eagle-eye/<run>/AUDIT.md` as each screen is inspected, issue found, fix made and result verified. [The template](skills/eagle-eye/assets/AUDIT.md) is also usable by hand. The report and images are ordinary local files, available while work is in progress.
 
-## Run the local example
+## Run the single-screen example
 
 Read the [worked audit](example/AUDIT.md) or reproduce its screenshots with the commands below. The example page uses local HTML and CSS. Install Python 3 and Pillow for overlays. For the optional capture helper, use Node 18.3+ and a local Playwright install with its matching Chromium browser. From a checkout without those packages, `npm install --no-save --package-lock=false playwright` and `npx playwright install chromium` supply the browser tool; install Pillow in your Python environment with `python -m pip install Pillow`. An existing Playwright module can be selected with the absolute path in `EAGLE_EYE_PLAYWRIGHT`. An agent with a browser tool can supply its own clean PNGs.
 
