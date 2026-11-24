@@ -1,0 +1,109 @@
+{
+  "items": [
+    {
+      "id": "P001",
+      "view": "dispatch",
+      "profile": "tablet"
+    },
+    {
+      "id": "P002",
+      "view": "herbarium",
+      "profile": "compact"
+    },
+    {
+      "id": "P003",
+      "view": "almanac",
+      "profile": "tablet"
+    },
+    {
+      "id": "P004",
+      "view": "weather",
+      "profile": "tablet"
+    },
+    {
+      "id": "P005",
+      "view": "tide",
+      "profile": "tablet"
+    },
+    {
+      "id": "P006",
+      "view": "almanac",
+      "profile": "compact"
+    },
+    {
+      "id": "P007",
+      "view": "valley",
+      "profile": "compact"
+    },
+    {
+      "id": "P008",
+      "view": "herbarium",
+      "profile": "wide"
+    },
+    {
+      "id": "P009",
+      "view": "dispatch",
+      "profile": "wide"
+    },
+    {
+      "id": "P010",
+      "view": "stations",
+      "profile": "tablet"
+    },
+    {
+      "id": "P011",
+      "view": "weather",
+      "profile": "compact"
+    },
+    {
+      "id": "P012",
+      "view": "herbarium",
+      "profile": "tablet"
+    },
+    {
+      "id": "P013",
+      "view": "dispatch",
+      "profile": "compact"
+    },
+    {
+      "id": "P014",
+      "view": "valley",
+      "profile": "wide"
+    },
+    {
+      "id": "P015",
+      "view": "stations",
+      "profile": "compact"
+    },
+    {
+      "id": "P016",
+      "view": "tide",
+      "profile": "wide"
+    },
+    {
+      "id": "P017",
+      "view": "stations",
+      "profile": "wide"
+    },
+    {
+      "id": "P018",
+      "view": "tide",
+      "profile": "compact"
+    },
+    {
+      "id": "P019",
+      "view": "valley",
+      "profile": "tablet"
+    },
+    {
+      "id": "P020",
+      "view": "almanac",
+      "profile": "wide"
+    },
+    {
+      "id": "P021",
+      "view": "weather",
+      "profile": "wide"
+    }
+  ]
+}

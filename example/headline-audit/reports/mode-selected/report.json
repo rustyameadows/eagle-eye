@@ -1,0 +1,344 @@
+{
+  "title": "Headline audit",
+  "browser": "Chromium 158.0.8127.18",
+  "scope": "selector",
+  "selector": "#log-title",
+  "profiles": {
+    "default": {
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    }
+  },
+  "captures": {
+    "default": {
+      "page": {
+        "file": "default/page/page.png",
+        "headings": [
+          {
+            "selector": "#log-title",
+            "text": "“At slack water”",
+            "renderedText": "“At slack water”",
+            "box": {
+              "x": 36,
+              "y": 1213.109375,
+              "width": 968,
+              "height": 42.21875
+            },
+            "lines": [
+              {
+                "text": "“At slack water”",
+                "box": {
+                  "x": 36,
+                  "y": 1212.109375,
+                  "width": 289,
+                  "height": 43
+                }
+              }
+            ],
+            "styles": {
+              "font-family": "\"Fieldwork Serif\", serif",
+              "font-size": "36.4px",
+              "font-style": "normal",
+              "font-weight": "400",
+              "font-stretch": "100%",
+              "font-kerning": "normal",
+              "font-optical-sizing": "auto",
+              "font-variation-settings": "normal",
+              "font-feature-settings": "normal",
+              "font-variant-ligatures": "normal",
+              "letter-spacing": "normal",
+              "word-spacing": "0px",
+              "line-height": "42.224px",
+              "direction": "ltr",
+              "writing-mode": "horizontal-tb",
+              "text-transform": "none",
+              "color": "rgb(32, 43, 38)",
+              "user-select": "auto"
+            },
+            "runs": [
+              {
+                "text": "“At slack water”",
+                "styles": {
+                  "font-family": "\"Fieldwork Serif\", serif",
+                  "font-size": "36.4px",
+                  "font-style": "normal",
+                  "font-weight": "400",
+                  "font-stretch": "100%",
+                  "font-kerning": "normal",
+                  "font-optical-sizing": "auto",
+                  "font-variation-settings": "normal",
+                  "font-feature-settings": "normal",
+                  "font-variant-ligatures": "normal",
+                  "letter-spacing": "normal",
+                  "word-spacing": "0px",
+                  "line-height": "42.224px",
+                  "direction": "ltr",
+                  "writing-mode": "horizontal-tb",
+                  "text-transform": "none",
+                  "color": "rgb(32, 43, 38)",
+                  "user-select": "auto"
+                },
+                "graphemes": [
+                  {
+                    "text": "“",
+                    "start": 0,
+                    "end": 1,
+                    "box": {
+                      "x": 36,
+                      "y": 1212.109375,
+                      "width": 13,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "A",
+                    "start": 1,
+                    "end": 2,
+                    "box": {
+                      "x": 49,
+                      "y": 1212.109375,
+                      "width": 25,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "t",
+                    "start": 2,
+                    "end": 3,
+                    "box": {
+                      "x": 74,
+                      "y": 1212.109375,
+                      "width": 14,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": " ",
+                    "start": 3,
+                    "end": 4,
+                    "box": {
+                      "x": 88,
+                      "y": 1212.109375,
+                      "width": 11,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "s",
+                    "start": 4,
+                    "end": 5,
+                    "box": {
+                      "x": 99,
+                      "y": 1212.109375,
+                      "width": 18,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "l",
+                    "start": 5,
+                    "end": 6,
+                    "box": {
+                      "x": 117,
+                      "y": 1212.109375,
+                      "width": 12,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "a",
+                    "start": 6,
+                    "end": 7,
+                    "box": {
+                      "x": 129,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "c",
+                    "start": 7,
+                    "end": 8,
+                    "box": {
+                      "x": 150,
+                      "y": 1212.109375,
+                      "width": 20,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "k",
+                    "start": 8,
+                    "end": 9,
+                    "box": {
+                      "x": 170,
+                      "y": 1212.109375,
+                      "width": 22,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": " ",
+                    "start": 9,
+                    "end": 10,
+                    "box": {
+                      "x": 192,
+                      "y": 1212.109375,
+                      "width": 11,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "w",
+                    "start": 10,
+                    "end": 11,
+                    "box": {
+                      "x": 203,
+                      "y": 1212.109375,
+                      "width": 31,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "a",
+                    "start": 11,
+                    "end": 12,
+                    "box": {
+                      "x": 234,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "t",
+                    "start": 12,
+                    "end": 13,
+                    "box": {
+                      "x": 255,
+                      "y": 1212.109375,
+                      "width": 14,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "e",
+                    "start": 13,
+                    "end": 14,
+                    "box": {
+                      "x": 269,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "r",
+                    "start": 14,
+                    "end": 15,
+                    "box": {
+                      "x": 290,
+                      "y": 1212.109375,
+                      "width": 17,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "”",
+                    "start": 15,
+                    "end": 16,
+                    "box": {
+                      "x": 307,
+                      "y": 1212.109375,
+                      "width": 18,
+                      "height": 43
+                    }
+                  }
+                ]
+              }
+            ],
+            "selection": {
+              "text": "“At slack water”",
+              "selectable": true
+            },
+            "lang": "en",
+            "direction": "ltr",
+            "fonts": [
+              {
+                "familyName": "DejaVu Serif",
+                "postScriptName": "DejaVuSerif",
+                "isCustomFont": true,
+                "glyphCount": 16
+              }
+            ],
+            "fontRuns": [
+              {
+                "text": "“At slack water”",
+                "fonts": [
+                  {
+                    "familyName": "DejaVu Serif",
+                    "postScriptName": "DejaVuSerif",
+                    "isCustomFont": true,
+                    "glyphCount": 16
+                  }
+                ]
+              }
+            ],
+            "accessibility": {
+              "role": "heading",
+              "name": "“At slack water”"
+            },
+            "diagnosticWarnings": [],
+            "file": "default/page/heading-01.png",
+            "variants": [],
+            "cropBox": {
+              "x": 30,
+              "y": 1206,
+              "width": 301,
+              "height": 56
+            },
+            "suspects": [],
+            "details": [
+              {
+                "word": "“At",
+                "pair": "At",
+                "wordFile": "default/page/heading-01-detail-1-word.png",
+                "wordBox": {
+                  "x": 32,
+                  "y": 1208,
+                  "width": 60,
+                  "height": 52
+                },
+                "file": "default/page/heading-01-detail-1.png",
+                "box": {
+                  "x": 42,
+                  "y": 1205,
+                  "width": 53,
+                  "height": 58
+                },
+                "inkSample": {
+                  "cssPx": 9,
+                  "x1": 68,
+                  "x2": 78,
+                  "y": 1234
+                },
+                "rangeGap": 0
+              }
+            ]
+          }
+        ],
+        "warnings": [],
+        "url": "../specimens/baseline/fixture/index.html",
+        "arrival": "direct"
+      }
+    }
+  },
+  "warnings": [],
+  "contactSheets": {
+    "default": [
+      "default/contact-1.png"
+    ]
+  }
+}

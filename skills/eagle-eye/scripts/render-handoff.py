@@ -534,11 +534,15 @@ def manual_sections(config, root, output):
 def render(config, root, output):
     nav, sections = (manual_sections(config, root, output) if config.get("mode") == "manual"
                      else measured_sections(config, root, output))
+    return document(config["title"], nav, sections)
+
+
+def document(title, nav, sections):
     template = (ASSETS / "handoff.html").read_text(encoding="utf-8")
     nav_html = "".join(f'<a href="#{id_}">{text}</a>' for id_, text in nav)
     return (template.replace("<!--STYLE-->", (ASSETS / "handoff.css").read_text(encoding="utf-8"))
             .replace("<!--SCRIPT-->", (ASSETS / "handoff.js").read_text(encoding="utf-8"))
-            .replace("<!--TITLE-->", h(config["title"])).replace("<!--NAV-->", nav_html)
+            .replace("<!--TITLE-->", h(title)).replace("<!--NAV-->", nav_html)
             .replace("<!--SECTIONS-->", "\n".join(sections)))
 
 
@@ -546,15 +550,26 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("brief", type=Path, help="Handoff JSON with stages and optional finding narratives")
     parser.add_argument("output", type=Path, help="Destination HTML")
+    parser.add_argument("--headlines", action="store_true", help="Read a headline inspector report")
+    parser.add_argument("--eval-report", type=Path, help="Include the scored typography corpus")
+    parser.add_argument("--retest", type=Path, help="Fresh inspector report after a source correction")
+    parser.add_argument("--review", type=Path, help="Include frozen typography review results")
     parser.add_argument("--runs", type=Path, help="Override the directory containing saved stage reports")
     args = parser.parse_args()
     try:
         config = read(args.brief)
         root = (args.runs or args.brief.parent / config.get("runs", ".")).resolve()
         output = args.output.resolve()
-        document = render(config, root, output)
+        if args.headlines:
+            from headline_handoff import headline_sections
+            title, nav, sections = headline_sections(config, args.brief.resolve(), output, args.eval_report, args.review, args.retest)
+            html = document(title, nav, sections)
+        else:
+            if args.eval_report or args.review or args.retest:
+                parser.error("--eval-report, --review and --retest require --headlines")
+            html = render(config, root, output)
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(document, encoding="utf-8")
+        output.write_text(html, encoding="utf-8")
         print(output)
     except (OSError, ValueError, TypeError, KeyError) as error:
         sys.exit(f"Could not render handoff: {error}")

@@ -1,0 +1,117 @@
+{
+  "frozen": {
+    "discovery": "83ff23e4451157ab5b74bbdd5a369495aaf2be35bc3bd3067f4e6265de4ba55c",
+    "preferences": "cbed038a342433b66f4dfe7ffe332a251763eaa3448e9834c9579d72090fa0b9"
+  },
+  "findings": [
+    {
+      "id": "1",
+      "status": "localized",
+      "case": "dispatch-boundary",
+      "directionCorrect": true,
+      "assessment": "finding",
+      "pages": [
+        "P009",
+        "P001",
+        "P013"
+      ],
+      "reason": "The W–a split, its direction and the change of color at the boundary are identified at all three widths."
+    },
+    {
+      "id": "2",
+      "status": "localized",
+      "case": "specimen-compact",
+      "directionCorrect": true,
+      "assessment": "finding",
+      "pages": [
+        "P002",
+        "P008",
+        "P012"
+      ],
+      "reason": "The report isolates the expanded tracking to the 390 px title and distinguishes the intended two-line layout."
+    },
+    {
+      "id": "3",
+      "status": "localized",
+      "case": "almanac-tracking",
+      "directionCorrect": true,
+      "assessment": "finding",
+      "pages": [
+        "P020",
+        "P003",
+        "P006"
+      ],
+      "reason": "The report identifies sustained crowding in both words at every measured width and asks for looser tracking."
+    },
+    {
+      "id": "4",
+      "status": "localized",
+      "case": "toward-opening",
+      "directionCorrect": true,
+      "assessment": "finding",
+      "pages": [
+        "P016",
+        "P005",
+        "P018"
+      ],
+      "reason": "The report isolates excess space between T and o in Toward and calls for closing it."
+    },
+    {
+      "id": "5",
+      "status": "localized",
+      "case": "station-face",
+      "directionCorrect": true,
+      "assessment": "finding",
+      "pages": [
+        "P010",
+        "P017",
+        "P015"
+      ],
+      "reason": "The intermediate-width switch from serif to sans is identified by its visible shapes. The reviewer correctly reserves the actual family and implementation cause for browser inspection."
+    },
+    {
+      "id": "6",
+      "status": "localized",
+      "case": "weather-kerning",
+      "directionCorrect": true,
+      "assessment": "comparison-candidate",
+      "pages": [
+        "P021",
+        "P004",
+        "P011"
+      ],
+      "reason": "The reviewer localizes the opening We and asks to compare a closer pair. The review leaves the need for a change open."
+    },
+    {
+      "id": "7",
+      "status": "localized",
+      "case": "valley-pinch",
+      "directionCorrect": true,
+      "assessment": "comparison-candidate",
+      "pages": [
+        "P014",
+        "P019",
+        "P007"
+      ],
+      "reason": "The reviewer identifies Va as tight and suggests an outward trial. The original is provisionally retained pending comparison."
+    },
+    {
+      "id": "8",
+      "status": "localized",
+      "case": "wind-initial",
+      "directionCorrect": true,
+      "assessment": "comparison-candidate",
+      "pages": [
+        "P020",
+        "P003",
+        "P006"
+      ],
+      "reason": "The reviewer identifies the Tw opening and proposes a closer candidate, with low confidence."
+    },
+    {
+      "id": "9",
+      "status": "intentional",
+      "reason": "The reviewer explicitly retains ligature shapes, accents, quotation spacing, spaced capitals and Arabic joining. No additional correction or control flag is claimed."
+    }
+  ]
+}

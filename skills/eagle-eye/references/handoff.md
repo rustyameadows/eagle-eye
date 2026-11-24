@@ -68,3 +68,15 @@ Use `"mode": "manual"` for reviews recorded in a living Markdown log. Summarize 
 Record each manual finding as `open`, `awaiting-verification`, `verified`, `intentional` or `unverified`. Attach as many clean captures, marked crops or linked documents as the observation needs. The handoff displays a verified repair when both before and after images exist. A missing image in that pair leaves the repair unverified. The auditor establishes whether the evidence supports the finding.
 
 Open the generated HTML directly. **Present** shows one section at a time, **←** and **→** change slides, and **Escape** returns to the reading view. Long slides scroll. The print layout includes every section. The HTML embeds the measured annotations and viewer controls. Keep the linked original reports and captures in their relative locations when sharing it.
+
+## Render a headline inspection
+
+Use the saved inspector report to build an offline presentation. Original and candidate crops appear at their captured CSS size with horizontal scrolling when the display is narrow. Each candidate links to its marked detail and surrounding evidence. Pages and headings with a clean baseline alone remain in the inventory.
+
+```sh
+python3 skills/eagle-eye/scripts/render-handoff.py --headlines /tmp/type-title-01/report.json /tmp/type-title-01/handoff.html
+```
+
+After editing a project, inspect the same target in a fresh run and pass `--retest /path/to/retest/report.json` to include the reopened source. The handoff compares matching selectors, profiles, text, accessibility, selection and line breaks, and checks whether the candidate pixels match the final heading crop.
+
+In the static benchmark, add `--eval-report RUN/report.json` to include independently reopened source retests and clean controls. Add `--review RUN/review/score.json` after the blind findings and A/B choices have been frozen and scored. An inspector-only handoff labels temporary CSS changes as candidates. For a project refinement, retain the source retest and its evidence in the living audit.

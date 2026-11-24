@@ -1,0 +1,275 @@
+{
+  "title": "Fieldwork Editions typography answer key",
+  "profiles": [
+    "wide",
+    "tablet",
+    "compact"
+  ],
+  "seeds": [
+    {
+      "id": "toward-opening",
+      "view": "tide",
+      "selector": "#lead-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "kind": "pair",
+      "text": "Toward open water",
+      "term": "Toward",
+      "direction": "loose",
+      "repairCSS": "#lead-title .tail { margin-inline-start: 0; }",
+      "observation": "The opening T separates from the o in Toward.",
+      "criterion": "Close the opening while keeping the rest of the word and headline intact.",
+      "pair": "To",
+      "start": 0,
+      "probe": "#lead-title .tail",
+      "title": "Toward open water"
+    },
+    {
+      "id": "valley-pinch",
+      "view": "valley",
+      "selector": "#lead-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "kind": "pair",
+      "text": "Valley atlas",
+      "term": "Valley",
+      "direction": "tight",
+      "repairCSS": "#lead-title .tail { margin-inline-start: 0; }",
+      "observation": "The V crowds the a in Valley.",
+      "criterion": "Return the adjacent stems to their native spacing and verify the diagonal silhouette.",
+      "pair": "Va",
+      "start": 0,
+      "probe": "#lead-title .tail",
+      "title": "Valley atlas"
+    },
+    {
+      "id": "weather-kerning",
+      "view": "weather",
+      "selector": "#lead-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "kind": "kerning",
+      "text": "Weather watch",
+      "term": "Weather",
+      "direction": "loose",
+      "repairCSS": "#lead-title { font-kerning: normal; }",
+      "observation": "Native pair positioning is disabled, leaving the W too far from the e in Weather.",
+      "criterion": "Enable native kerning, confirm the measured opening narrows, and read the full title.",
+      "pair": "We",
+      "start": 0,
+      "title": "Weather watch"
+    },
+    {
+      "id": "specimen-compact",
+      "view": "herbarium",
+      "selector": "#lead-title",
+      "profiles": [
+        "compact"
+      ],
+      "kind": "tracking",
+      "text": "Pressed leaves",
+      "term": "Pressed leaves",
+      "direction": "loose",
+      "repairCSS": "@media (max-width: 600px) { #lead-title { letter-spacing: normal; } }",
+      "observation": "On the compact spread the letters of Pressed leaves spread apart throughout both words.",
+      "criterion": "Restore the normal text rhythm at compact width, preserving the wide and tablet specimens.",
+      "breakpoint": 600,
+      "title": "Pressed leaves"
+    },
+    {
+      "id": "station-face",
+      "view": "stations",
+      "selector": "#lead-title",
+      "profiles": [
+        "tablet"
+      ],
+      "kind": "fallback",
+      "text": "Station index",
+      "term": "Station index",
+      "direction": "wrong-face",
+      "repairCSS": "@media (min-width: 601px) and (max-width: 900px) { #lead-title { font-family: \"Fieldwork Serif\", serif; } }",
+      "observation": "The tablet title changes to the sans-serif fallback while the other spreads and widths use the editorial serif.",
+      "criterion": "Confirm the actual rendered face on tablet is DejaVu Serif and verify the other profiles are unchanged.",
+      "expectedFont": "DejaVu Serif",
+      "title": "Station index"
+    },
+    {
+      "id": "dispatch-boundary",
+      "view": "dispatch",
+      "selector": "#lead-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "kind": "boundary",
+      "text": "Waterline",
+      "term": "Waterline",
+      "direction": "loose",
+      "repairCSS": "#lead-title .edition { display: inline; padding-inline-start: 0; }",
+      "observation": "The W separates from the a where an inline edition treatment introduces a new shaping boundary and inset.",
+      "criterion": "Retain the editorial color treatment, restore inline shaping, and verify the Wa opening.",
+      "pair": "Wa",
+      "start": 0,
+      "probe": "#lead-title .edition",
+      "title": "Waterline"
+    },
+    {
+      "id": "almanac-tracking",
+      "view": "almanac",
+      "selector": "#lead-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "kind": "tracking",
+      "text": "Night almanac",
+      "term": "Night almanac",
+      "direction": "tight",
+      "repairCSS": "#lead-title { letter-spacing: normal; }",
+      "observation": "The letters throughout Night almanac crowd each other, especially the upright stems in almanac.",
+      "criterion": "Restore the display title rhythm across both words.",
+      "title": "Night almanac"
+    },
+    {
+      "id": "wind-initial",
+      "view": "almanac",
+      "selector": "#wind-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "kind": "pair",
+      "text": "Twelve winds",
+      "term": "Twelve",
+      "direction": "loose",
+      "repairCSS": "#wind-title .tail { margin-inline-start: -.09em; }",
+      "observation": "The fixed two-tone drop initial opens an awkward gap between the T and w in Twelve.",
+      "criterion": "Tuck the w toward the T while preserving the initial style, other pairs, and the heading name.",
+      "pair": "Tw",
+      "start": 0,
+      "probe": "#wind-title .tail",
+      "title": "Twelve winds"
+    }
+  ],
+  "controls": [
+    {
+      "id": "diagonals",
+      "view": "valley",
+      "selector": "#transect-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "text": "Away from the ridge",
+      "reason": "The A and w enclose triangular white space in the native serif. This clean word is the optical diagonal control."
+    },
+    {
+      "id": "capitals",
+      "view": "stations",
+      "selector": "#stations-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "text": "STATION REGISTER",
+      "reason": "Intentional uniform tracking marks the uppercase station-register heading."
+    },
+    {
+      "id": "ligature",
+      "view": "dispatch",
+      "selector": "#office-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "text": "The offshore office",
+      "reason": "The normal serif retains its native ff and fi shaping in running words."
+    },
+    {
+      "id": "combining",
+      "view": "herbarium",
+      "selector": "#specimen-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "text": "Café des marais",
+      "reason": "The acute accent in Café is a combining mark in the source. The base and accent form one grapheme."
+    },
+    {
+      "id": "joining",
+      "view": "stations",
+      "selector": "#arabic-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "text": "دليل المحطات",
+      "reason": "The Arabic register title uses the bundled Noto Naskh Arabic with native joining and right-to-left direction."
+    },
+    {
+      "id": "wrap",
+      "view": "weather",
+      "selector": "#coast-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "text": "A weather station at the edge of the sound",
+      "reason": "A responsive column intentionally wraps this headline at narrow widths while preserving native spacing."
+    },
+    {
+      "id": "punctuation",
+      "view": "tide",
+      "selector": "#log-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "text": "“At slack water”",
+      "reason": "Curved quotation marks create intentional side space in an otherwise undisturbed serif headline."
+    },
+    {
+      "id": "figures",
+      "view": "almanac",
+      "selector": "#watch-title",
+      "profiles": [
+        "wide",
+        "tablet",
+        "compact"
+      ],
+      "text": "The 03:40 watch",
+      "reason": "The instrument time retains its punctuation, numerals and default spacing."
+    }
+  ],
+  "modeChecks": {
+    "view": "tide",
+    "hero": "#lead-title",
+    "nonsemantic": "#lead-title",
+    "belowFold": "#log-title",
+    "selected": "#log-title",
+    "wrap": {
+      "view": "weather",
+      "selector": "#coast-title"
+    }
+  }
+}

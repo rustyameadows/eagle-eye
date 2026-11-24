@@ -56,3 +56,5 @@ node skills/eagle-eye/scripts/compare-views.cjs example/view-audit/plan.json /tm
 To change a fixture, edit [the authoring source](fixture-source/build.py) or [the stylesheet](fixture.css), then regenerate the committed static pages with `python3 example/view-audit/fixture-source/build.py`. For a deliberately changed contract, update the plan, independent expectations and matching tests together. Regenerate the evidence and handoff when a patch changes the measured result or how it is presented.
 
 The measured scores apply to these prescribed conditions in Chromium. The corpus exercises selected localization and accessibility properties. Its screenshots do not establish overall accessibility compliance, linguistic correctness, motion quality, or cross-browser fidelity.
+
+The companion [Fieldwork Editions typography eval](../headline-audit/README.md) covers headline kerning, tracking, fallback fonts and optical A/B review in seven static editorial views.

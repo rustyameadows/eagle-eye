@@ -31,6 +31,8 @@ Keep the same ID through verification. For each finding, record where it occurs,
 | ID and priority | Affected coverage | Observation and evidence | Correction and retest criterion | Status and post-fix evidence |
 | --- | --- | --- | --- | --- |
 
+For a headline finding, record its exact copy and pair or affected run, direction, viewport, rendered face, suspected cause, and the reading-size comparison. Label temporary candidates and link the actual source retest when a fix is applied.
+
 ## Cycle log
 
 Append an entry after each pass or fix batch. Keep earlier observations even when a later pass changes the conclusion.

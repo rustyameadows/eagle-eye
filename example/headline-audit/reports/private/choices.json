@@ -1,0 +1,81 @@
+{
+  "items": [
+    {
+      "id": "T001",
+      "caseId": "dispatch-boundary",
+      "profile": "wide",
+      "candidate": "B",
+      "control": false
+    },
+    {
+      "id": "T002",
+      "caseId": "weather-kerning",
+      "profile": "wide",
+      "candidate": "A",
+      "control": false
+    },
+    {
+      "id": "T003",
+      "caseId": "station-face",
+      "profile": "tablet",
+      "candidate": "B",
+      "control": false
+    },
+    {
+      "id": "T004",
+      "caseId": "punctuation",
+      "profile": "tablet",
+      "candidate": null,
+      "control": true
+    },
+    {
+      "id": "T005",
+      "caseId": "specimen-compact",
+      "profile": "compact",
+      "candidate": "A",
+      "control": false
+    },
+    {
+      "id": "T006",
+      "caseId": "toward-opening",
+      "profile": "wide",
+      "candidate": "B",
+      "control": false
+    },
+    {
+      "id": "T007",
+      "caseId": "valley-pinch",
+      "profile": "wide",
+      "candidate": "A",
+      "control": false
+    },
+    {
+      "id": "T008",
+      "caseId": "figures",
+      "profile": "wide",
+      "candidate": null,
+      "control": true
+    },
+    {
+      "id": "T009",
+      "caseId": "combining",
+      "profile": "compact",
+      "candidate": null,
+      "control": true
+    },
+    {
+      "id": "T010",
+      "caseId": "almanac-tracking",
+      "profile": "wide",
+      "candidate": "A",
+      "control": false
+    },
+    {
+      "id": "T011",
+      "caseId": "wind-initial",
+      "profile": "wide",
+      "candidate": "B",
+      "control": false
+    }
+  ]
+}

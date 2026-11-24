@@ -1,0 +1,151 @@
+{
+  "items": [
+    {
+      "id": "P001",
+      "file": "P001.png",
+      "width": 820,
+      "height": 980,
+      "scale": 1
+    },
+    {
+      "id": "P002",
+      "file": "P002.png",
+      "width": 390,
+      "height": 720,
+      "scale": 2
+    },
+    {
+      "id": "P003",
+      "file": "P003.png",
+      "width": 820,
+      "height": 980,
+      "scale": 1
+    },
+    {
+      "id": "P004",
+      "file": "P004.png",
+      "width": 820,
+      "height": 980,
+      "scale": 1
+    },
+    {
+      "id": "P005",
+      "file": "P005.png",
+      "width": 820,
+      "height": 980,
+      "scale": 1
+    },
+    {
+      "id": "P006",
+      "file": "P006.png",
+      "width": 390,
+      "height": 720,
+      "scale": 2
+    },
+    {
+      "id": "P007",
+      "file": "P007.png",
+      "width": 390,
+      "height": 720,
+      "scale": 2
+    },
+    {
+      "id": "P008",
+      "file": "P008.png",
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    },
+    {
+      "id": "P009",
+      "file": "P009.png",
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    },
+    {
+      "id": "P010",
+      "file": "P010.png",
+      "width": 820,
+      "height": 980,
+      "scale": 1
+    },
+    {
+      "id": "P011",
+      "file": "P011.png",
+      "width": 390,
+      "height": 720,
+      "scale": 2
+    },
+    {
+      "id": "P012",
+      "file": "P012.png",
+      "width": 820,
+      "height": 980,
+      "scale": 1
+    },
+    {
+      "id": "P013",
+      "file": "P013.png",
+      "width": 390,
+      "height": 720,
+      "scale": 2
+    },
+    {
+      "id": "P014",
+      "file": "P014.png",
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    },
+    {
+      "id": "P015",
+      "file": "P015.png",
+      "width": 390,
+      "height": 720,
+      "scale": 2
+    },
+    {
+      "id": "P016",
+      "file": "P016.png",
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    },
+    {
+      "id": "P017",
+      "file": "P017.png",
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    },
+    {
+      "id": "P018",
+      "file": "P018.png",
+      "width": 390,
+      "height": 720,
+      "scale": 2
+    },
+    {
+      "id": "P019",
+      "file": "P019.png",
+      "width": 820,
+      "height": 980,
+      "scale": 1
+    },
+    {
+      "id": "P020",
+      "file": "P020.png",
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    },
+    {
+      "id": "P021",
+      "file": "P021.png",
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    }
+  ]
+}

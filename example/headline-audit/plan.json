@@ -1,0 +1,17 @@
+{
+  "title": "Fieldwork Editions",
+  "profiles": {
+    "wide": {"width":1040,"height":640,"scale":1},
+    "tablet": {"width":820,"height":980,"scale":1},
+    "compact": {"width":390,"height":720,"scale":2}
+  },
+  "views": {
+    "tide": {"url":"fixture/index.html","ready":"#lead-title"},
+    "valley": {"url":"fixture/valley.html","ready":"#lead-title"},
+    "weather": {"url":"fixture/weather.html","ready":"#lead-title"},
+    "herbarium": {"url":"fixture/herbarium.html","ready":"#lead-title"},
+    "stations": {"url":"fixture/stations.html","ready":"#lead-title"},
+    "dispatch": {"url":"fixture/dispatch.html","ready":"#lead-title"},
+    "almanac": {"url":"fixture/almanac.html","ready":"#lead-title"}
+  }
+}

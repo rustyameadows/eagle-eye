@@ -1,0 +1,1156 @@
+{
+  "title": "Headline audit",
+  "browser": "Chromium 158.0.8127.18",
+  "scope": "hero",
+  "profiles": {
+    "default": {
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    }
+  },
+  "captures": {
+    "default": {
+      "page": {
+        "file": "default/page/page.png",
+        "headings": [
+          {
+            "selector": "#lead-title",
+            "text": "Toward open water",
+            "renderedText": "Toward open water",
+            "box": {
+              "x": 36,
+              "y": 200.953125,
+              "width": 616.296875,
+              "height": 168.65625
+            },
+            "lines": [
+              {
+                "text": "Toward open",
+                "box": {
+                  "x": 36,
+                  "y": 195.953125,
+                  "width": 540.53125,
+                  "height": 93
+                }
+              },
+              {
+                "text": "water",
+                "box": {
+                  "x": 36,
+                  "y": 280.28125,
+                  "width": 233,
+                  "height": 93
+                }
+              }
+            ],
+            "styles": {
+              "font-family": "\"Fieldwork Serif\", serif",
+              "font-size": "79.56px",
+              "font-style": "normal",
+              "font-weight": "400",
+              "font-stretch": "100%",
+              "font-kerning": "normal",
+              "font-optical-sizing": "auto",
+              "font-variation-settings": "normal",
+              "font-feature-settings": "normal",
+              "font-variant-ligatures": "normal",
+              "letter-spacing": "normal",
+              "word-spacing": "0px",
+              "line-height": "84.3336px",
+              "direction": "ltr",
+              "writing-mode": "horizontal-tb",
+              "text-transform": "none",
+              "color": "rgb(32, 43, 38)",
+              "user-select": "auto"
+            },
+            "runs": [
+              {
+                "text": "T",
+                "styles": {
+                  "font-family": "\"Fieldwork Serif\", serif",
+                  "font-size": "79.56px",
+                  "font-style": "normal",
+                  "font-weight": "400",
+                  "font-stretch": "100%",
+                  "font-kerning": "normal",
+                  "font-optical-sizing": "auto",
+                  "font-variation-settings": "normal",
+                  "font-feature-settings": "normal",
+                  "font-variant-ligatures": "normal",
+                  "letter-spacing": "normal",
+                  "word-spacing": "0px",
+                  "line-height": "84.3336px",
+                  "direction": "ltr",
+                  "writing-mode": "horizontal-tb",
+                  "text-transform": "none",
+                  "color": "rgb(32, 43, 38)",
+                  "user-select": "auto"
+                },
+                "graphemes": [
+                  {
+                    "text": "T",
+                    "start": 0,
+                    "end": 1,
+                    "box": {
+                      "x": 36,
+                      "y": 195.953125,
+                      "width": 53,
+                      "height": 93
+                    }
+                  }
+                ]
+              },
+              {
+                "text": "oward",
+                "styles": {
+                  "font-family": "\"Fieldwork Serif\", serif",
+                  "font-size": "79.56px",
+                  "font-style": "normal",
+                  "font-weight": "400",
+                  "font-stretch": "100%",
+                  "font-kerning": "normal",
+                  "font-optical-sizing": "auto",
+                  "font-variation-settings": "normal",
+                  "font-feature-settings": "normal",
+                  "font-variant-ligatures": "normal",
+                  "letter-spacing": "normal",
+                  "word-spacing": "0px",
+                  "line-height": "84.3336px",
+                  "direction": "ltr",
+                  "writing-mode": "horizontal-tb",
+                  "text-transform": "none",
+                  "color": "rgb(32, 43, 38)",
+                  "user-select": "auto"
+                },
+                "graphemes": [
+                  {
+                    "text": "o",
+                    "start": 1,
+                    "end": 2,
+                    "box": {
+                      "x": 100.53125,
+                      "y": 195.953125,
+                      "width": 48,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "w",
+                    "start": 2,
+                    "end": 3,
+                    "box": {
+                      "x": 148.53125,
+                      "y": 195.953125,
+                      "width": 68,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "a",
+                    "start": 3,
+                    "end": 4,
+                    "box": {
+                      "x": 216.53125,
+                      "y": 195.953125,
+                      "width": 48,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "r",
+                    "start": 4,
+                    "end": 5,
+                    "box": {
+                      "x": 264.53125,
+                      "y": 195.953125,
+                      "width": 38,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "d",
+                    "start": 5,
+                    "end": 6,
+                    "box": {
+                      "x": 302.53125,
+                      "y": 195.953125,
+                      "width": 51,
+                      "height": 93
+                    }
+                  }
+                ]
+              },
+              {
+                "text": " open water",
+                "styles": {
+                  "font-family": "\"Fieldwork Serif\", serif",
+                  "font-size": "79.56px",
+                  "font-style": "normal",
+                  "font-weight": "400",
+                  "font-stretch": "100%",
+                  "font-kerning": "normal",
+                  "font-optical-sizing": "auto",
+                  "font-variation-settings": "normal",
+                  "font-feature-settings": "normal",
+                  "font-variant-ligatures": "normal",
+                  "letter-spacing": "normal",
+                  "word-spacing": "0px",
+                  "line-height": "84.3336px",
+                  "direction": "ltr",
+                  "writing-mode": "horizontal-tb",
+                  "text-transform": "none",
+                  "color": "rgb(32, 43, 38)",
+                  "user-select": "auto"
+                },
+                "graphemes": [
+                  {
+                    "text": " ",
+                    "start": 6,
+                    "end": 7,
+                    "box": {
+                      "x": 353.53125,
+                      "y": 195.953125,
+                      "width": 25,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "o",
+                    "start": 7,
+                    "end": 8,
+                    "box": {
+                      "x": 378.53125,
+                      "y": 195.953125,
+                      "width": 48,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "p",
+                    "start": 8,
+                    "end": 9,
+                    "box": {
+                      "x": 426.53125,
+                      "y": 195.953125,
+                      "width": 51,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "e",
+                    "start": 9,
+                    "end": 10,
+                    "box": {
+                      "x": 477.53125,
+                      "y": 195.953125,
+                      "width": 47,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "n",
+                    "start": 10,
+                    "end": 11,
+                    "box": {
+                      "x": 524.53125,
+                      "y": 195.953125,
+                      "width": 52,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": " ",
+                    "start": 11,
+                    "end": 12,
+                    "box": {
+                      "x": 576.53125,
+                      "y": 195.953125,
+                      "width": 0,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "w",
+                    "start": 12,
+                    "end": 13,
+                    "box": {
+                      "x": 36,
+                      "y": 280.28125,
+                      "width": 68,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "a",
+                    "start": 13,
+                    "end": 14,
+                    "box": {
+                      "x": 104,
+                      "y": 280.28125,
+                      "width": 48,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "t",
+                    "start": 14,
+                    "end": 15,
+                    "box": {
+                      "x": 152,
+                      "y": 280.28125,
+                      "width": 32,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "e",
+                    "start": 15,
+                    "end": 16,
+                    "box": {
+                      "x": 184,
+                      "y": 280.28125,
+                      "width": 47,
+                      "height": 93
+                    }
+                  },
+                  {
+                    "text": "r",
+                    "start": 16,
+                    "end": 17,
+                    "box": {
+                      "x": 231,
+                      "y": 280.28125,
+                      "width": 38,
+                      "height": 93
+                    }
+                  }
+                ]
+              }
+            ],
+            "selection": {
+              "text": "Toward open water",
+              "selectable": true
+            },
+            "lang": "en",
+            "direction": "ltr",
+            "fonts": [
+              {
+                "familyName": "DejaVu Serif",
+                "postScriptName": "DejaVuSerif",
+                "isCustomFont": true,
+                "glyphCount": 16
+              }
+            ],
+            "fontRuns": [
+              {
+                "text": "T",
+                "fonts": [
+                  {
+                    "familyName": "DejaVu Serif",
+                    "postScriptName": "DejaVuSerif",
+                    "isCustomFont": true,
+                    "glyphCount": 1
+                  }
+                ]
+              },
+              {
+                "text": "oward",
+                "fonts": [
+                  {
+                    "familyName": "DejaVu Serif",
+                    "postScriptName": "DejaVuSerif",
+                    "isCustomFont": true,
+                    "glyphCount": 5
+                  }
+                ]
+              },
+              {
+                "text": " open water",
+                "fonts": [
+                  {
+                    "familyName": "DejaVu Serif",
+                    "postScriptName": "DejaVuSerif",
+                    "isCustomFont": true,
+                    "glyphCount": 10
+                  }
+                ]
+              }
+            ],
+            "accessibility": {
+              "role": "paragraph",
+              "name": ""
+            },
+            "diagnosticWarnings": [],
+            "file": "default/page/heading-01.png",
+            "variants": [],
+            "cropBox": {
+              "x": 30,
+              "y": 189,
+              "width": 553,
+              "height": 191
+            },
+            "suspects": [
+              {
+                "kind": "pair-candidate",
+                "word": "Toward",
+                "pair": "To",
+                "observation": "Adjacent layout range edges differ by +11.53 CSS px. Check the complete word at reading size."
+              }
+            ],
+            "details": [
+              {
+                "word": "Toward",
+                "pair": "To",
+                "wordFile": "default/page/heading-01-detail-1-word.png",
+                "wordBox": {
+                  "x": 32,
+                  "y": 191,
+                  "width": 326,
+                  "height": 102
+                },
+                "file": "default/page/heading-01-detail-1.png",
+                "box": {
+                  "x": 29,
+                  "y": 188,
+                  "width": 127,
+                  "height": 108
+                },
+                "inkSample": {
+                  "cssPx": 40,
+                  "x1": 66,
+                  "x2": 107,
+                  "y": 239
+                },
+                "rangeGap": 11.53125
+              }
+            ]
+          },
+          {
+            "selector": "#gauge-title",
+            "text": "Along the tide gauge",
+            "renderedText": "Along the tide gauge",
+            "box": {
+              "x": 36,
+              "y": 617.890625,
+              "width": 593.703125,
+              "height": 42.21875
+            },
+            "lines": [
+              {
+                "text": "Along the tide gauge",
+                "box": {
+                  "x": 36,
+                  "y": 616.890625,
+                  "width": 378,
+                  "height": 43
+                }
+              }
+            ],
+            "styles": {
+              "font-family": "\"Fieldwork Serif\", serif",
+              "font-size": "36.4px",
+              "font-style": "normal",
+              "font-weight": "400",
+              "font-stretch": "100%",
+              "font-kerning": "normal",
+              "font-optical-sizing": "auto",
+              "font-variation-settings": "normal",
+              "font-feature-settings": "normal",
+              "font-variant-ligatures": "normal",
+              "letter-spacing": "normal",
+              "word-spacing": "0px",
+              "line-height": "42.224px",
+              "direction": "ltr",
+              "writing-mode": "horizontal-tb",
+              "text-transform": "none",
+              "color": "rgb(32, 43, 38)",
+              "user-select": "auto"
+            },
+            "runs": [
+              {
+                "text": "Along the tide gauge",
+                "styles": {
+                  "font-family": "\"Fieldwork Serif\", serif",
+                  "font-size": "36.4px",
+                  "font-style": "normal",
+                  "font-weight": "400",
+                  "font-stretch": "100%",
+                  "font-kerning": "normal",
+                  "font-optical-sizing": "auto",
+                  "font-variation-settings": "normal",
+                  "font-feature-settings": "normal",
+                  "font-variant-ligatures": "normal",
+                  "letter-spacing": "normal",
+                  "word-spacing": "0px",
+                  "line-height": "42.224px",
+                  "direction": "ltr",
+                  "writing-mode": "horizontal-tb",
+                  "text-transform": "none",
+                  "color": "rgb(32, 43, 38)",
+                  "user-select": "auto"
+                },
+                "graphemes": [
+                  {
+                    "text": "A",
+                    "start": 0,
+                    "end": 1,
+                    "box": {
+                      "x": 36,
+                      "y": 616.890625,
+                      "width": 26,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "l",
+                    "start": 1,
+                    "end": 2,
+                    "box": {
+                      "x": 62,
+                      "y": 616.890625,
+                      "width": 12,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "o",
+                    "start": 2,
+                    "end": 3,
+                    "box": {
+                      "x": 74,
+                      "y": 616.890625,
+                      "width": 22,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "n",
+                    "start": 3,
+                    "end": 4,
+                    "box": {
+                      "x": 96,
+                      "y": 616.890625,
+                      "width": 23,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "g",
+                    "start": 4,
+                    "end": 5,
+                    "box": {
+                      "x": 119,
+                      "y": 616.890625,
+                      "width": 23,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": " ",
+                    "start": 5,
+                    "end": 6,
+                    "box": {
+                      "x": 142,
+                      "y": 616.890625,
+                      "width": 11,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "t",
+                    "start": 6,
+                    "end": 7,
+                    "box": {
+                      "x": 153,
+                      "y": 616.890625,
+                      "width": 14,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "h",
+                    "start": 7,
+                    "end": 8,
+                    "box": {
+                      "x": 167,
+                      "y": 616.890625,
+                      "width": 23,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "e",
+                    "start": 8,
+                    "end": 9,
+                    "box": {
+                      "x": 190,
+                      "y": 616.890625,
+                      "width": 21,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": " ",
+                    "start": 9,
+                    "end": 10,
+                    "box": {
+                      "x": 211,
+                      "y": 616.890625,
+                      "width": 11,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "t",
+                    "start": 10,
+                    "end": 11,
+                    "box": {
+                      "x": 222,
+                      "y": 616.890625,
+                      "width": 14,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "i",
+                    "start": 11,
+                    "end": 12,
+                    "box": {
+                      "x": 236,
+                      "y": 616.890625,
+                      "width": 12,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "d",
+                    "start": 12,
+                    "end": 13,
+                    "box": {
+                      "x": 248,
+                      "y": 616.890625,
+                      "width": 23,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "e",
+                    "start": 13,
+                    "end": 14,
+                    "box": {
+                      "x": 271,
+                      "y": 616.890625,
+                      "width": 21,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": " ",
+                    "start": 14,
+                    "end": 15,
+                    "box": {
+                      "x": 292,
+                      "y": 616.890625,
+                      "width": 11,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "g",
+                    "start": 15,
+                    "end": 16,
+                    "box": {
+                      "x": 303,
+                      "y": 616.890625,
+                      "width": 23,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "a",
+                    "start": 16,
+                    "end": 17,
+                    "box": {
+                      "x": 326,
+                      "y": 616.890625,
+                      "width": 21,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "u",
+                    "start": 17,
+                    "end": 18,
+                    "box": {
+                      "x": 347,
+                      "y": 616.890625,
+                      "width": 23,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "g",
+                    "start": 18,
+                    "end": 19,
+                    "box": {
+                      "x": 370,
+                      "y": 616.890625,
+                      "width": 23,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "e",
+                    "start": 19,
+                    "end": 20,
+                    "box": {
+                      "x": 393,
+                      "y": 616.890625,
+                      "width": 21,
+                      "height": 43
+                    }
+                  }
+                ]
+              }
+            ],
+            "selection": {
+              "text": "Along the tide gauge",
+              "selectable": true
+            },
+            "lang": "en",
+            "direction": "ltr",
+            "fonts": [
+              {
+                "familyName": "DejaVu Serif",
+                "postScriptName": "DejaVuSerif",
+                "isCustomFont": true,
+                "glyphCount": 20
+              }
+            ],
+            "fontRuns": [
+              {
+                "text": "Along the tide gauge",
+                "fonts": [
+                  {
+                    "familyName": "DejaVu Serif",
+                    "postScriptName": "DejaVuSerif",
+                    "isCustomFont": true,
+                    "glyphCount": 20
+                  }
+                ]
+              }
+            ],
+            "accessibility": {
+              "role": "heading",
+              "name": "Along the tide gauge"
+            },
+            "diagnosticWarnings": [],
+            "file": "default/page/heading-02.png",
+            "variants": [],
+            "cropBox": {
+              "x": 30,
+              "y": 610,
+              "width": 390,
+              "height": 56
+            },
+            "suspects": [
+              {
+                "kind": "pair-candidate",
+                "word": "Along",
+                "pair": "Al",
+                "observation": "Sampled inter-stroke space is 11.00 CSS px; the heading median is 7.00 CSS px. Check the complete word at reading size."
+              },
+              {
+                "kind": "pair-candidate",
+                "word": "the",
+                "pair": "th",
+                "observation": "Sampled inter-stroke space is 11.00 CSS px; the heading median is 7.00 CSS px. Check the complete word at reading size."
+              },
+              {
+                "kind": "pair-candidate",
+                "word": "tide",
+                "pair": "ti",
+                "observation": "Sampled inter-stroke space is 11.00 CSS px; the heading median is 7.00 CSS px. Check the complete word at reading size."
+              }
+            ],
+            "details": [
+              {
+                "word": "Along",
+                "pair": "Al",
+                "wordFile": "default/page/heading-02-detail-1-word.png",
+                "wordBox": {
+                  "x": 32,
+                  "y": 612,
+                  "width": 114,
+                  "height": 52
+                },
+                "file": "default/page/heading-02-detail-1.png",
+                "box": {
+                  "x": 29,
+                  "y": 609,
+                  "width": 52,
+                  "height": 58
+                },
+                "inkSample": {
+                  "cssPx": 11,
+                  "x1": 54,
+                  "x2": 66,
+                  "y": 636
+                },
+                "rangeGap": 0
+              },
+              {
+                "word": "the",
+                "pair": "th",
+                "wordFile": "default/page/heading-02-detail-2-word.png",
+                "wordBox": {
+                  "x": 149,
+                  "y": 612,
+                  "width": 66,
+                  "height": 52
+                },
+                "file": "default/page/heading-02-detail-2.png",
+                "box": {
+                  "x": 146,
+                  "y": 609,
+                  "width": 51,
+                  "height": 58
+                },
+                "inkSample": {
+                  "cssPx": 11,
+                  "x1": 159,
+                  "x2": 171,
+                  "y": 631
+                },
+                "rangeGap": 0
+              }
+            ]
+          },
+          {
+            "selector": "#log-title",
+            "text": "“At slack water”",
+            "renderedText": "“At slack water”",
+            "box": {
+              "x": 36,
+              "y": 1213.109375,
+              "width": 968,
+              "height": 42.21875
+            },
+            "lines": [
+              {
+                "text": "“At slack water”",
+                "box": {
+                  "x": 36,
+                  "y": 1212.109375,
+                  "width": 289,
+                  "height": 43
+                }
+              }
+            ],
+            "styles": {
+              "font-family": "\"Fieldwork Serif\", serif",
+              "font-size": "36.4px",
+              "font-style": "normal",
+              "font-weight": "400",
+              "font-stretch": "100%",
+              "font-kerning": "normal",
+              "font-optical-sizing": "auto",
+              "font-variation-settings": "normal",
+              "font-feature-settings": "normal",
+              "font-variant-ligatures": "normal",
+              "letter-spacing": "normal",
+              "word-spacing": "0px",
+              "line-height": "42.224px",
+              "direction": "ltr",
+              "writing-mode": "horizontal-tb",
+              "text-transform": "none",
+              "color": "rgb(32, 43, 38)",
+              "user-select": "auto"
+            },
+            "runs": [
+              {
+                "text": "“At slack water”",
+                "styles": {
+                  "font-family": "\"Fieldwork Serif\", serif",
+                  "font-size": "36.4px",
+                  "font-style": "normal",
+                  "font-weight": "400",
+                  "font-stretch": "100%",
+                  "font-kerning": "normal",
+                  "font-optical-sizing": "auto",
+                  "font-variation-settings": "normal",
+                  "font-feature-settings": "normal",
+                  "font-variant-ligatures": "normal",
+                  "letter-spacing": "normal",
+                  "word-spacing": "0px",
+                  "line-height": "42.224px",
+                  "direction": "ltr",
+                  "writing-mode": "horizontal-tb",
+                  "text-transform": "none",
+                  "color": "rgb(32, 43, 38)",
+                  "user-select": "auto"
+                },
+                "graphemes": [
+                  {
+                    "text": "“",
+                    "start": 0,
+                    "end": 1,
+                    "box": {
+                      "x": 36,
+                      "y": 1212.109375,
+                      "width": 13,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "A",
+                    "start": 1,
+                    "end": 2,
+                    "box": {
+                      "x": 49,
+                      "y": 1212.109375,
+                      "width": 25,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "t",
+                    "start": 2,
+                    "end": 3,
+                    "box": {
+                      "x": 74,
+                      "y": 1212.109375,
+                      "width": 14,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": " ",
+                    "start": 3,
+                    "end": 4,
+                    "box": {
+                      "x": 88,
+                      "y": 1212.109375,
+                      "width": 11,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "s",
+                    "start": 4,
+                    "end": 5,
+                    "box": {
+                      "x": 99,
+                      "y": 1212.109375,
+                      "width": 18,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "l",
+                    "start": 5,
+                    "end": 6,
+                    "box": {
+                      "x": 117,
+                      "y": 1212.109375,
+                      "width": 12,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "a",
+                    "start": 6,
+                    "end": 7,
+                    "box": {
+                      "x": 129,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "c",
+                    "start": 7,
+                    "end": 8,
+                    "box": {
+                      "x": 150,
+                      "y": 1212.109375,
+                      "width": 20,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "k",
+                    "start": 8,
+                    "end": 9,
+                    "box": {
+                      "x": 170,
+                      "y": 1212.109375,
+                      "width": 22,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": " ",
+                    "start": 9,
+                    "end": 10,
+                    "box": {
+                      "x": 192,
+                      "y": 1212.109375,
+                      "width": 11,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "w",
+                    "start": 10,
+                    "end": 11,
+                    "box": {
+                      "x": 203,
+                      "y": 1212.109375,
+                      "width": 31,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "a",
+                    "start": 11,
+                    "end": 12,
+                    "box": {
+                      "x": 234,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "t",
+                    "start": 12,
+                    "end": 13,
+                    "box": {
+                      "x": 255,
+                      "y": 1212.109375,
+                      "width": 14,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "e",
+                    "start": 13,
+                    "end": 14,
+                    "box": {
+                      "x": 269,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "r",
+                    "start": 14,
+                    "end": 15,
+                    "box": {
+                      "x": 290,
+                      "y": 1212.109375,
+                      "width": 17,
+                      "height": 43
+                    }
+                  },
+                  {
+                    "text": "”",
+                    "start": 15,
+                    "end": 16,
+                    "box": {
+                      "x": 307,
+                      "y": 1212.109375,
+                      "width": 18,
+                      "height": 43
+                    }
+                  }
+                ]
+              }
+            ],
+            "selection": {
+              "text": "“At slack water”",
+              "selectable": true
+            },
+            "lang": "en",
+            "direction": "ltr",
+            "fonts": [
+              {
+                "familyName": "DejaVu Serif",
+                "postScriptName": "DejaVuSerif",
+                "isCustomFont": true,
+                "glyphCount": 16
+              }
+            ],
+            "fontRuns": [
+              {
+                "text": "“At slack water”",
+                "fonts": [
+                  {
+                    "familyName": "DejaVu Serif",
+                    "postScriptName": "DejaVuSerif",
+                    "isCustomFont": true,
+                    "glyphCount": 16
+                  }
+                ]
+              }
+            ],
+            "accessibility": {
+              "role": "heading",
+              "name": "“At slack water”"
+            },
+            "diagnosticWarnings": [],
+            "file": "default/page/heading-03.png",
+            "variants": [],
+            "cropBox": {
+              "x": 30,
+              "y": 1206,
+              "width": 301,
+              "height": 56
+            },
+            "suspects": [],
+            "details": [
+              {
+                "word": "“At",
+                "pair": "At",
+                "wordFile": "default/page/heading-03-detail-1-word.png",
+                "wordBox": {
+                  "x": 32,
+                  "y": 1208,
+                  "width": 60,
+                  "height": 52
+                },
+                "file": "default/page/heading-03-detail-1.png",
+                "box": {
+                  "x": 42,
+                  "y": 1205,
+                  "width": 53,
+                  "height": 58
+                },
+                "inkSample": {
+                  "cssPx": 9,
+                  "x1": 68,
+                  "x2": 78,
+                  "y": 1234
+                },
+                "rangeGap": 0
+              }
+            ]
+          }
+        ],
+        "warnings": [],
+        "url": "../specimens/baseline/fixture/index.html",
+        "arrival": "direct"
+      }
+    }
+  },
+  "warnings": [],
+  "contactSheets": {
+    "default": [
+      "default/contact-1.png"
+    ]
+  }
+}

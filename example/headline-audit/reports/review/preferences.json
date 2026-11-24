@@ -1,0 +1,15 @@
+{
+  "items": [
+    {"id":"T001","choice":"B","reason":"The a sits under the right arm of the W, so Waterline reads as one word through the color change."},
+    {"id":"T002","choice":"A","reason":"A has a slightly more even opening to Weather. The pocket between W and e in B catches my eye before the rest of the word."},
+    {"id":"T003","choice":"B","reason":"The serif forms of Station index match the journal’s display typography. I can read either version easily."},
+    {"id":"T004","choice":"no preference","reason":"The opening quote, At and the closing quote read equally clearly in both settings."},
+    {"id":"T005","choice":"A","reason":"The repeated s letters in Pressed sit together as part of a word, and my eye moves easily through both lines."},
+    {"id":"T006","choice":"B","reason":"Bringing the o under the T closes the apparent break after the initial in Toward."},
+    {"id":"T007","choice":"A","reason":"I mildly prefer the extra room between V and a in Valley. The two letters still share the diagonal space and the a feels less pinched."},
+    {"id":"T008","choice":"no preference","reason":"The time, its colon and the space before watch read equally well in both."},
+    {"id":"T009","choice":"no preference","reason":"The accent in Café and the spacing between the three words read equally clearly."},
+    {"id":"T010","choice":"A","reason":"The stems and feet in almanac are distinct in A. In B several adjacent letters crowd together along the baseline."},
+    {"id":"T011","choice":"B","reason":"I mildly prefer the closer w after the gold T. It makes the color change less disruptive to the start of Twelve."}
+  ]
+}

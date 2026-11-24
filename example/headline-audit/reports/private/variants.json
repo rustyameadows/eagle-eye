@@ -1,0 +1,99 @@
+[
+  {
+    "id": "toward-opening",
+    "view": "tide",
+    "selector": "#lead-title",
+    "profiles": [
+      "wide",
+      "tablet",
+      "compact"
+    ],
+    "css": "#lead-title .tail { margin-inline-start: 0; }",
+    "word": "Toward",
+    "pair": "To"
+  },
+  {
+    "id": "valley-pinch",
+    "view": "valley",
+    "selector": "#lead-title",
+    "profiles": [
+      "wide",
+      "tablet",
+      "compact"
+    ],
+    "css": "#lead-title .tail { margin-inline-start: 0; }",
+    "word": "Valley",
+    "pair": "Va"
+  },
+  {
+    "id": "weather-kerning",
+    "view": "weather",
+    "selector": "#lead-title",
+    "profiles": [
+      "wide",
+      "tablet",
+      "compact"
+    ],
+    "css": "#lead-title { font-kerning: normal; }",
+    "word": "Weather",
+    "pair": "We"
+  },
+  {
+    "id": "specimen-compact",
+    "view": "herbarium",
+    "selector": "#lead-title",
+    "profiles": [
+      "compact"
+    ],
+    "css": "@media (max-width: 600px) { #lead-title { letter-spacing: normal; } }",
+    "word": "Pressed"
+  },
+  {
+    "id": "station-face",
+    "view": "stations",
+    "selector": "#lead-title",
+    "profiles": [
+      "tablet"
+    ],
+    "css": "@media (min-width: 601px) and (max-width: 900px) { #lead-title { font-family: \"Fieldwork Serif\", serif; } }",
+    "word": "Station"
+  },
+  {
+    "id": "dispatch-boundary",
+    "view": "dispatch",
+    "selector": "#lead-title",
+    "profiles": [
+      "wide",
+      "tablet",
+      "compact"
+    ],
+    "css": "#lead-title .edition { display: inline; padding-inline-start: 0; }",
+    "word": "Waterline",
+    "pair": "Wa"
+  },
+  {
+    "id": "almanac-tracking",
+    "view": "almanac",
+    "selector": "#lead-title",
+    "profiles": [
+      "wide",
+      "tablet",
+      "compact"
+    ],
+    "css": "#lead-title { letter-spacing: normal; }",
+    "word": "Night"
+  },
+  {
+    "id": "wind-initial",
+    "view": "almanac",
+    "selector": "#wind-title",
+    "profiles": [
+      "wide",
+      "tablet",
+      "compact"
+    ],
+    "css": "#wind-title .tail { margin-inline-start: -.09em; }",
+    "word": "Twelve",
+    "pair": "Tw"
+  }
+]

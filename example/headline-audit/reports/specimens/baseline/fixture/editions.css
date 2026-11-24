@@ -1,0 +1,102 @@
+@font-face { font-family: "Fieldwork Serif"; src: url("fonts/DejaVuSerif.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: block; }
+@font-face { font-family: "Fieldwork Sans"; src: url("fonts/Lato-Regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: block; }
+@font-face { font-family: "Fieldwork Arabic"; src: url("fonts/NotoNaskhArabic-Regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: block; }
+* { box-sizing: border-box; }
+:root { color-scheme: light; --paper: #f8f6ed; --ink: #202b26; --muted: #4e5d54; --rule: #c4cbbf; --accent: #365f4c; --tint: #e2e9d9; }
+body { margin: 0; color: var(--ink); background: var(--paper); font: 16px/1.45 "Fieldwork Sans", sans-serif; font-kerning: normal; }
+h1,h2,h3,p,figure,blockquote,dl,dd { margin: 0; }
+h1,h2,h3,.display,.brand { font-family: "Fieldwork Serif", serif; font-weight: 400; }
+a { color: inherit; text-underline-offset: .18em; }
+a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+nav a { text-decoration: none; }
+nav a[aria-current=page],nav a:hover { text-decoration: underline; }
+.mast,.wrap,.footer { width: min(100% - 72px, 1180px); margin-inline: auto; }
+.mast { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: 16px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); font-size: 25px; text-decoration: none; }
+.stamp { display: inline-block; width: 18px; height: 22px; background: repeating-linear-gradient(to right, var(--accent) 0 2px, transparent 2px 5px); border-block: 2px solid var(--accent); transform: skew(-10deg); }
+.edition,.kicker,figcaption,.line-label,.page-count,dt,.footer,.mini-nav { font: 12px/1.4 "Fieldwork Sans", sans-serif; }
+.kicker,.line-label,dt { letter-spacing: .09em; text-transform: uppercase; }
+.edition-count,.kicker,.page-count,figcaption,dt { color: var(--muted); }
+.mast .edition-count { display: flex; align-items: baseline; gap: 12px; font-size: 13px; }
+.mini-nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 23px; border-block: 1px solid var(--rule); padding-block: 10px; }
+.mini-nav a[aria-current=page] { text-decoration-thickness: 2px; }
+.lead { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(210px, .8fr); align-items: center; gap: 4.5%; border-bottom: 1px solid var(--rule); padding-block: 36px; min-height: 385px; }
+.lead-copy,.plate,.card,.story,.chart { min-width: 0; }
+.kicker { display: flex; align-items: center; gap: 13px; }
+.kicker::before { content: ""; width: 28px; border-top: 2px solid var(--accent); }
+.display { margin-block: 18px; font-size: clamp(50px, 7.65vw, 91px); line-height: 1.06; letter-spacing: normal; overflow-wrap: normal; }
+.deck { max-width: 38em; color: var(--muted); font: 18px/1.44 "Fieldwork Sans", sans-serif; }
+.plate { border: 1px solid var(--accent); background: var(--tint); color: var(--ink); }
+.plate-head,.plate-foot { display: flex; justify-content: space-between; gap: 10px; padding: 12px 14px; }
+.plate-head { border-bottom: 1px solid var(--rule); }
+.plate-foot { border-top: 1px solid var(--rule); }
+.line-label { font-size: 10px; }
+.plate-body { padding: 21px 16px; min-height: 124px; }
+.plate-title { color: var(--accent); font: 23px/1.2 "Fieldwork Serif", serif; }
+figcaption { padding: 7px 2px 0; line-height: 1.35; }
+.series { display: flex; height: 100px; gap: 2px; align-items: end; border-bottom: 1px solid var(--accent); }
+.series i { flex: 1; height: var(--v); background: var(--accent); }
+.series i:nth-child(3n) { opacity: .73; }
+.ticks { display: flex; align-items: center; justify-content: space-between; margin-top: 5px; font: 11px/1.2 "Fieldwork Sans", sans-serif; }
+.series.wind i { border-radius: 60% 60% 0 0; }
+.rows { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+.rows td,.rows th { border-bottom: 1px solid var(--rule); padding-block: 5px; font-weight: 400; }
+.rows tr:last-child td { border: 0; }
+.rows td:last-child,.rows th:last-child { text-align: right; }
+.rows th { color: var(--muted); font-size: 11px; }
+.map { display: grid; gap: 5px; grid-template-columns: repeat(7, 1fr); padding: 3px 0; }
+.map i { display: block; aspect-ratio: 1.6; border: 1px solid var(--accent); opacity: .24; }
+.map i.plotted { background: var(--accent); opacity: 1; }
+.strap { display: grid; grid-template-columns: repeat(3,1fr); border-bottom: 1px solid var(--rule); padding-block: 17px; gap: 16px; }
+.strap dd { margin-top: 4px; font-size: 14px; }
+.story { display: grid; grid-template-columns: minmax(0,2fr) minmax(0,1fr); gap: 8%; padding-block: 38px 48px; }
+.story h2,.card h2 { font-size: clamp(27px,3.5vw,42px); line-height: 1.16; margin-block: 8px 16px; }
+.story p,.card p { max-width: 58ch; color: var(--muted); }
+.story p+p { margin-top: 12px; }
+.note { align-self: start; border-top: 2px solid var(--accent); padding-top: 12px; }
+.note p { font-size: 14px; }
+.note h3 { font-size: 22px; margin-bottom: 7px; }
+.card { padding-block: 29px 54px; border-top: 1px solid var(--rule); }
+.footer { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; padding-block: 18px 26px; border-top: 1px solid var(--rule); color: var(--muted); }
+.tide { --accent: #266457; --tint: #dce9de; }
+.valley { --accent: #77533d; --tint: #eee1cb; --paper: #f8f3e9; }
+.valley .lead { grid-template-columns: minmax(230px,.85fr) minmax(0,1.6fr); }
+.valley .lead-copy { grid-column: 2; grid-row: 1; }
+.valley .chart { grid-column: 1; grid-row: 1; }
+.weather { --accent: #435f79; --tint: #dce6eb; --paper: #f3f5ee; }
+.herbarium { --accent: #79642d; --tint: #eee6cc; --paper: #faf8ee; }
+.stations { --accent: #345673; --tint: #e1e8ea; }
+.dispatch { --accent: #8c4934; --tint: #efe2d6; }
+.almanac { color-scheme: dark; --paper: #182b31; --ink: #f4ecdb; --muted: #c5d2cd; --rule: #52676a; --accent: #e6be81; --tint: #263c42; }
+.almanac .lead { border-block-end-color: var(--accent); }
+:where(.tide) #lead-title .tail { margin-inline-start: .145em; }
+:where(.valley) #lead-title .tail { margin-inline-start: -.145em; }
+:where(.weather) #lead-title { font-kerning: none; }
+:where(.dispatch) #lead-title .edition { font: inherit; display: inline-block; padding-inline-start: .105em; color: var(--accent); }
+:where(.almanac) #lead-title { letter-spacing: -.105em; }
+#wind-title .initial { display: inline-block; color: var(--accent); padding-inline-end: .065em; }
+#stations-title { font: 16px/1.2 "Fieldwork Sans", sans-serif; letter-spacing: .15em; }
+#arabic-title { width: max-content; max-width: 100%; font-family: "Fieldwork Arabic", serif; }
+.tide .card { margin-block-start: 12px; }
+@media (min-width:601px) and (max-width:900px) {
+  :where(.stations) #lead-title { font-family: "Fieldwork Index", "Fieldwork Sans", sans-serif; }
+}
+@media (max-width:600px) {
+  .mast,.wrap,.footer { width: calc(100% - 36px); }
+  .mast { min-height: 58px; }
+  .mast .edition-count { gap: 6px; font-size: 11px; }
+  .brand { gap: 8px; font-size: 22px; }
+  .mini-nav { gap: 6px 15px; }
+  .lead,.valley .lead { grid-template-columns: minmax(0,1fr); gap: 22px; padding-block: 26px; min-height: 0; }
+  .valley .lead-copy,.valley .chart { grid-column: auto; grid-row: auto; }
+  .display { font-size: clamp(39px,12vw,66px); margin-block: 15px; }
+  .deck { font-size: 16px; }
+  .plate-body { padding: 12px 14px; min-height: 88px; }
+  .series { height: 69px; }
+  .map i { aspect-ratio: 2.8; }
+  .strap { gap: 9px; }
+  .strap dt { font-size: 10px; }
+  .strap dd { font-size: 12px; }
+  .story { grid-template-columns: minmax(0,1fr); gap: 25px; padding-block: 28px; }
+  :where(.herbarium) #lead-title { max-width: 6em; letter-spacing: .15em; }
+}

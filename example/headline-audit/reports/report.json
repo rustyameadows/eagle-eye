@@ -1,0 +1,2173 @@
+{
+  "profiles": {
+    "wide": {
+      "width": 1040,
+      "height": 640,
+      "scale": 1
+    },
+    "tablet": {
+      "width": 820,
+      "height": 980,
+      "scale": 1
+    },
+    "compact": {
+      "width": 390,
+      "height": 720,
+      "scale": 2
+    }
+  },
+  "summary": {
+    "seeds": 8,
+    "controls": 8,
+    "profiles": 3,
+    "views": 7,
+    "active": 20,
+    "observations": 48,
+    "passedObservations": 48,
+    "failedCases": 0,
+    "passed": true
+  },
+  "cases": [
+    {
+      "id": "toward-opening",
+      "title": "Toward open water",
+      "kind": "seed",
+      "category": "pair",
+      "view": "tide",
+      "selector": "#lead-title",
+      "observation": "The opening T separates from the o in Toward.",
+      "criterion": "Close the opening while keeping the rest of the word and headline intact.",
+      "pair": "To",
+      "direction": "loose",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": true,
+          "baseline": "inspection/wide/tide/heading-01.png",
+          "repair": "retest/wide/tide/heading-01.png",
+          "detail": "inspection/wide/tide/heading-01-detail-1.png",
+          "trial": "inspection/wide/tide/heading-01-toward-opening.png",
+          "status": "passed",
+          "measurement": "To glyph-origin advance 64.531 → 47 CSS px.",
+          "values": {
+            "pair": "To",
+            "original": 64.531,
+            "repaired": 47,
+            "delta": -17.531,
+            "maxOtherPairChange": 0
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "paragraph",
+            "name": ""
+          },
+          "repairedAX": {
+            "role": "paragraph",
+            "name": ""
+          },
+          "originalLines": [
+            "Toward open",
+            "water"
+          ],
+          "repairedLines": [
+            "Toward open",
+            "water"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": true,
+          "baseline": "inspection/tablet/tide/heading-01.png",
+          "repair": "retest/tablet/tide/heading-01.png",
+          "detail": "inspection/tablet/tide/heading-01-detail-1.png",
+          "trial": "inspection/tablet/tide/heading-01-toward-opening.png",
+          "status": "passed",
+          "measurement": "To glyph-origin advance 51.094 → 37 CSS px.",
+          "values": {
+            "pair": "To",
+            "original": 51.094,
+            "repaired": 37,
+            "delta": -14.094,
+            "maxOtherPairChange": 0
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "paragraph",
+            "name": ""
+          },
+          "repairedAX": {
+            "role": "paragraph",
+            "name": ""
+          },
+          "originalLines": [
+            "Toward open",
+            "water"
+          ],
+          "repairedLines": [
+            "Toward open",
+            "water"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "compact",
+          "active": true,
+          "baseline": "inspection/compact/tide/heading-01.png",
+          "repair": "retest/compact/tide/heading-01.png",
+          "detail": "inspection/compact/tide/heading-01-detail-1.png",
+          "trial": "inspection/compact/tide/heading-01-toward-opening.png",
+          "status": "passed",
+          "measurement": "To glyph-origin advance 37.781 → 27 CSS px.",
+          "values": {
+            "pair": "To",
+            "original": 37.781,
+            "repaired": 27,
+            "delta": -10.781,
+            "maxOtherPairChange": 0
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "paragraph",
+            "name": ""
+          },
+          "repairedAX": {
+            "role": "paragraph",
+            "name": ""
+          },
+          "originalLines": [
+            "Toward open",
+            "water"
+          ],
+          "repairedLines": [
+            "Toward open",
+            "water"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "valley-pinch",
+      "title": "Valley atlas",
+      "kind": "seed",
+      "category": "pair",
+      "view": "valley",
+      "selector": "#lead-title",
+      "observation": "The V crowds the a in Valley.",
+      "criterion": "Return the adjacent stems to their native spacing and verify the diagonal silhouette.",
+      "pair": "Va",
+      "direction": "tight",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": true,
+          "baseline": "inspection/wide/valley/heading-01.png",
+          "repair": "retest/wide/valley/heading-01.png",
+          "detail": "inspection/wide/valley/heading-01-detail-1.png",
+          "trial": "inspection/wide/valley/heading-01-valley-pinch.png",
+          "status": "passed",
+          "measurement": "Va glyph-origin advance 46.469 → 51 CSS px.",
+          "values": {
+            "pair": "Va",
+            "original": 46.469,
+            "repaired": 51,
+            "delta": 4.531,
+            "maxOtherPairChange": 0
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Valley atlas"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Valley atlas"
+          },
+          "originalLines": [
+            "Valley atlas"
+          ],
+          "repairedLines": [
+            "Valley atlas"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": true,
+          "baseline": "inspection/tablet/valley/heading-01.png",
+          "repair": "retest/tablet/valley/heading-01.png",
+          "detail": "inspection/tablet/valley/heading-01-detail-1.png",
+          "trial": "inspection/tablet/valley/heading-01-valley-pinch.png",
+          "status": "passed",
+          "measurement": "Va glyph-origin advance 36.906 → 40 CSS px.",
+          "values": {
+            "pair": "Va",
+            "original": 36.906,
+            "repaired": 40,
+            "delta": 3.094,
+            "maxOtherPairChange": 0
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Valley atlas"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Valley atlas"
+          },
+          "originalLines": [
+            "Valley atlas"
+          ],
+          "repairedLines": [
+            "Valley atlas"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "compact",
+          "active": true,
+          "baseline": "inspection/compact/valley/heading-01.png",
+          "repair": "retest/compact/valley/heading-01.png",
+          "detail": "inspection/compact/valley/heading-01-detail-1.png",
+          "trial": "inspection/compact/valley/heading-01-valley-pinch.png",
+          "status": "passed",
+          "measurement": "Va glyph-origin advance 27.219 → 30 CSS px.",
+          "values": {
+            "pair": "Va",
+            "original": 27.219,
+            "repaired": 30,
+            "delta": 2.781,
+            "maxOtherPairChange": 0
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Valley atlas"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Valley atlas"
+          },
+          "originalLines": [
+            "Valley atlas"
+          ],
+          "repairedLines": [
+            "Valley atlas"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "weather-kerning",
+      "title": "Weather watch",
+      "kind": "seed",
+      "category": "kerning",
+      "view": "weather",
+      "selector": "#lead-title",
+      "observation": "Native pair positioning is disabled, leaving the W too far from the e in Weather.",
+      "criterion": "Enable native kerning, confirm the measured opening narrows, and read the full title.",
+      "pair": "We",
+      "direction": "loose",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": true,
+          "baseline": "inspection/wide/weather/heading-01.png",
+          "repair": "retest/wide/weather/heading-01.png",
+          "detail": "inspection/wide/weather/heading-01-detail-1.png",
+          "trial": "inspection/wide/weather/heading-01-weather-kerning.png",
+          "status": "passed",
+          "measurement": "We glyph-origin advance 82 → 76 CSS px.",
+          "values": {
+            "pair": "We",
+            "original": 82,
+            "repaired": 76,
+            "delta": -6
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Weather watch"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Weather watch"
+          },
+          "originalLines": [
+            "Weather watch"
+          ],
+          "repairedLines": [
+            "Weather watch"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": true,
+          "baseline": "inspection/tablet/weather/heading-01.png",
+          "repair": "retest/tablet/weather/heading-01.png",
+          "detail": "inspection/tablet/weather/heading-01-detail-1.png",
+          "trial": "inspection/tablet/weather/heading-01-weather-kerning.png",
+          "status": "passed",
+          "measurement": "We glyph-origin advance 65 → 60 CSS px.",
+          "values": {
+            "pair": "We",
+            "original": 65,
+            "repaired": 60,
+            "delta": -5
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Weather watch"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Weather watch"
+          },
+          "originalLines": [
+            "Weather",
+            "watch"
+          ],
+          "repairedLines": [
+            "Weather",
+            "watch"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "compact",
+          "active": true,
+          "baseline": "inspection/compact/weather/heading-01.png",
+          "repair": "retest/compact/weather/heading-01.png",
+          "detail": "inspection/compact/weather/heading-01-detail-1.png",
+          "trial": "inspection/compact/weather/heading-01-weather-kerning.png",
+          "status": "passed",
+          "measurement": "We glyph-origin advance 48 → 44 CSS px.",
+          "values": {
+            "pair": "We",
+            "original": 48,
+            "repaired": 44,
+            "delta": -4
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Weather watch"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Weather watch"
+          },
+          "originalLines": [
+            "Weather",
+            "watch"
+          ],
+          "repairedLines": [
+            "Weather",
+            "watch"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "specimen-compact",
+      "title": "Pressed leaves",
+      "kind": "seed",
+      "category": "tracking",
+      "view": "herbarium",
+      "selector": "#lead-title",
+      "observation": "On the compact spread the letters of Pressed leaves spread apart throughout both words.",
+      "criterion": "Restore the normal text rhythm at compact width, preserving the wide and tablet specimens.",
+      "direction": "loose",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": false,
+          "baseline": "inspection/wide/herbarium/heading-01.png",
+          "repair": "retest/wide/herbarium/heading-01.png",
+          "detail": "inspection/wide/herbarium/heading-01-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Pressed leaves"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Pressed leaves"
+          },
+          "originalLines": [
+            "Pressed leaves"
+          ],
+          "repairedLines": [
+            "Pressed leaves"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": false,
+          "baseline": "inspection/tablet/herbarium/heading-01.png",
+          "repair": "retest/tablet/herbarium/heading-01.png",
+          "detail": "inspection/tablet/herbarium/heading-01-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Pressed leaves"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Pressed leaves"
+          },
+          "originalLines": [
+            "Pressed leaves"
+          ],
+          "repairedLines": [
+            "Pressed leaves"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "compact",
+          "active": true,
+          "baseline": "inspection/compact/herbarium/heading-01.png",
+          "repair": "retest/compact/herbarium/heading-01.png",
+          "detail": "inspection/compact/herbarium/heading-01-detail-1.png",
+          "trial": "inspection/compact/herbarium/heading-01-specimen-compact.png",
+          "status": "passed",
+          "measurement": "Median within-word advance changed by -7.016 CSS px across 11 pairs.",
+          "values": {
+            "medianAdvanceChange": -7.016,
+            "comparablePairs": 11,
+            "changed": 11
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Pressed leaves"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Pressed leaves"
+          },
+          "originalLines": [
+            "Pressed",
+            "leaves"
+          ],
+          "repairedLines": [
+            "Pressed",
+            "leaves"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "station-face",
+      "title": "Station index",
+      "kind": "seed",
+      "category": "fallback",
+      "view": "stations",
+      "selector": "#lead-title",
+      "observation": "The tablet title changes to the sans-serif fallback while the other spreads and widths use the editorial serif.",
+      "criterion": "Confirm the actual rendered face on tablet is DejaVu Serif and verify the other profiles are unchanged.",
+      "direction": "wrong-face",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": false,
+          "baseline": "inspection/wide/stations/heading-01.png",
+          "repair": "retest/wide/stations/heading-01.png",
+          "detail": "inspection/wide/stations/heading-01-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Station index"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Station index"
+          },
+          "originalLines": [
+            "Station index"
+          ],
+          "repairedLines": [
+            "Station index"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": true,
+          "baseline": "inspection/tablet/stations/heading-01.png",
+          "repair": "retest/tablet/stations/heading-01.png",
+          "detail": "inspection/tablet/stations/heading-01-detail-1.png",
+          "trial": "inspection/tablet/stations/heading-01-station-face.png",
+          "status": "passed",
+          "measurement": "Rendered font changed from Lato to DejaVu Serif.",
+          "values": {
+            "original": [
+              "Lato"
+            ],
+            "repaired": [
+              "DejaVu Serif"
+            ]
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Station index"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Station index"
+          },
+          "originalLines": [
+            "Station index"
+          ],
+          "repairedLines": [
+            "Station index"
+          ],
+          "originalFaces": [
+            "Lato"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "compact",
+          "active": false,
+          "baseline": "inspection/compact/stations/heading-01.png",
+          "repair": "retest/compact/stations/heading-01.png",
+          "detail": "inspection/compact/stations/heading-01-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Station index"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Station index"
+          },
+          "originalLines": [
+            "Station index"
+          ],
+          "repairedLines": [
+            "Station index"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "dispatch-boundary",
+      "title": "Waterline",
+      "kind": "seed",
+      "category": "boundary",
+      "view": "dispatch",
+      "selector": "#lead-title",
+      "observation": "The W separates from the a where an inline edition treatment introduces a new shaping boundary and inset.",
+      "criterion": "Retain the editorial color treatment, restore inline shaping, and verify the Wa opening.",
+      "pair": "Wa",
+      "direction": "loose",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": true,
+          "baseline": "inspection/wide/dispatch/heading-01.png",
+          "repair": "retest/wide/dispatch/heading-01.png",
+          "detail": "inspection/wide/dispatch/heading-01-detail-1.png",
+          "trial": "inspection/wide/dispatch/heading-01-dispatch-boundary.png",
+          "status": "passed",
+          "measurement": "Wa glyph-origin advance 90.344 → 75 CSS px.",
+          "values": {
+            "pair": "Wa",
+            "original": 90.344,
+            "repaired": 75,
+            "delta": -15.344
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "W aterline"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Waterline"
+          },
+          "originalLines": [
+            "Waterline"
+          ],
+          "repairedLines": [
+            "Waterline"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": true,
+          "baseline": "inspection/tablet/dispatch/heading-01.png",
+          "repair": "retest/tablet/dispatch/heading-01.png",
+          "detail": "inspection/tablet/dispatch/heading-01-detail-1.png",
+          "trial": "inspection/tablet/dispatch/heading-01-dispatch-boundary.png",
+          "status": "passed",
+          "measurement": "Wa glyph-origin advance 71.578 → 60 CSS px.",
+          "values": {
+            "pair": "Wa",
+            "original": 71.578,
+            "repaired": 60,
+            "delta": -11.578
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "W aterline"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Waterline"
+          },
+          "originalLines": [
+            "Waterline"
+          ],
+          "repairedLines": [
+            "Waterline"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "compact",
+          "active": true,
+          "baseline": "inspection/compact/dispatch/heading-01.png",
+          "repair": "retest/compact/dispatch/heading-01.png",
+          "detail": "inspection/compact/dispatch/heading-01-detail-1.png",
+          "trial": "inspection/compact/dispatch/heading-01-dispatch-boundary.png",
+          "status": "passed",
+          "measurement": "Wa glyph-origin advance 52.906 → 44 CSS px.",
+          "values": {
+            "pair": "Wa",
+            "original": 52.906,
+            "repaired": 44,
+            "delta": -8.906
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "W aterline"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Waterline"
+          },
+          "originalLines": [
+            "Waterline"
+          ],
+          "repairedLines": [
+            "Waterline"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "almanac-tracking",
+      "title": "Night almanac",
+      "kind": "seed",
+      "category": "tracking",
+      "view": "almanac",
+      "selector": "#lead-title",
+      "observation": "The letters throughout Night almanac crowd each other, especially the upright stems in almanac.",
+      "criterion": "Restore the display title rhythm across both words.",
+      "direction": "tight",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": true,
+          "baseline": "inspection/wide/almanac/heading-01.png",
+          "repair": "retest/wide/almanac/heading-01.png",
+          "detail": "inspection/wide/almanac/heading-01-detail-1.png",
+          "trial": "inspection/wide/almanac/heading-01-almanac-tracking.png",
+          "status": "passed",
+          "measurement": "Median within-word advance changed by 8.359 CSS px across 10 pairs.",
+          "values": {
+            "medianAdvanceChange": 8.359,
+            "comparablePairs": 10,
+            "changed": 10
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Night almanac"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Night almanac"
+          },
+          "originalLines": [
+            "Night almanac"
+          ],
+          "repairedLines": [
+            "Night almanac"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": true,
+          "baseline": "inspection/tablet/almanac/heading-01.png",
+          "repair": "retest/tablet/almanac/heading-01.png",
+          "detail": "inspection/tablet/almanac/heading-01-detail-1.png",
+          "trial": "inspection/tablet/almanac/heading-01-almanac-tracking.png",
+          "status": "passed",
+          "measurement": "Median within-word advance changed by 6.594 CSS px across 10 pairs.",
+          "values": {
+            "medianAdvanceChange": 6.594,
+            "comparablePairs": 10,
+            "changed": 10
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Night almanac"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Night almanac"
+          },
+          "originalLines": [
+            "Night almanac"
+          ],
+          "repairedLines": [
+            "Night almanac"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "compact",
+          "active": true,
+          "baseline": "inspection/compact/almanac/heading-01.png",
+          "repair": "retest/compact/almanac/heading-01.png",
+          "detail": "inspection/compact/almanac/heading-01-detail-1.png",
+          "trial": "inspection/compact/almanac/heading-01-almanac-tracking.png",
+          "status": "passed",
+          "measurement": "Median within-word advance changed by 4.922 CSS px across 10 pairs.",
+          "values": {
+            "medianAdvanceChange": 4.922,
+            "comparablePairs": 10,
+            "changed": 10
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Night almanac"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Night almanac"
+          },
+          "originalLines": [
+            "Night almanac"
+          ],
+          "repairedLines": [
+            "Night almanac"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "wind-initial",
+      "title": "Twelve winds",
+      "kind": "seed",
+      "category": "pair",
+      "view": "almanac",
+      "selector": "#wind-title",
+      "observation": "The fixed two-tone drop initial opens an awkward gap between the T and w in Twelve.",
+      "criterion": "Tuck the w toward the T while preserving the initial style, other pairs, and the heading name.",
+      "pair": "Tw",
+      "direction": "loose",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": true,
+          "baseline": "inspection/wide/almanac/heading-04.png",
+          "repair": "retest/wide/almanac/heading-04.png",
+          "detail": "inspection/wide/almanac/heading-04-detail-1.png",
+          "trial": "inspection/wide/almanac/heading-04-wind-initial.png",
+          "status": "passed",
+          "measurement": "Tw glyph-origin advance 26.359 → 23.094 CSS px.",
+          "values": {
+            "pair": "Tw",
+            "original": 26.359,
+            "repaired": 23.094,
+            "delta": -3.266,
+            "maxOtherPairChange": 0
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Twelve winds"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Twelve winds"
+          },
+          "originalLines": [
+            "Twelve winds"
+          ],
+          "repairedLines": [
+            "Twelve winds"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": true,
+          "baseline": "inspection/tablet/almanac/heading-04.png",
+          "repair": "retest/tablet/almanac/heading-04.png",
+          "detail": "inspection/tablet/almanac/heading-04-detail-1.png",
+          "trial": "inspection/tablet/almanac/heading-04-wind-initial.png",
+          "status": "passed",
+          "measurement": "Tw glyph-origin advance 20.859 → 18.281 CSS px.",
+          "values": {
+            "pair": "Tw",
+            "original": 20.859,
+            "repaired": 18.281,
+            "delta": -2.578,
+            "maxOtherPairChange": 0
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Twelve winds"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Twelve winds"
+          },
+          "originalLines": [
+            "Twelve winds"
+          ],
+          "repairedLines": [
+            "Twelve winds"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        },
+        {
+          "profile": "compact",
+          "active": true,
+          "baseline": "inspection/compact/almanac/heading-04.png",
+          "repair": "retest/compact/almanac/heading-04.png",
+          "detail": "inspection/compact/almanac/heading-04-detail-1.png",
+          "trial": "inspection/compact/almanac/heading-04-wind-initial.png",
+          "status": "passed",
+          "measurement": "Tw glyph-origin advance 19.75 → 17.328 CSS px.",
+          "values": {
+            "pair": "Tw",
+            "original": 19.75,
+            "repaired": 17.328,
+            "delta": -2.422,
+            "maxOtherPairChange": 0
+          },
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Twelve winds"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Twelve winds"
+          },
+          "originalLines": [
+            "Twelve winds"
+          ],
+          "repairedLines": [
+            "Twelve winds"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": true,
+            "verified": true
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "diagonals",
+      "title": "Away from the ridge",
+      "kind": "control",
+      "category": "control",
+      "view": "valley",
+      "selector": "#transect-title",
+      "observation": "The A and w enclose triangular white space in the native serif. This clean word is the optical diagonal control.",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": false,
+          "baseline": "inspection/wide/valley/heading-02.png",
+          "repair": "retest/wide/valley/heading-02.png",
+          "detail": "inspection/wide/valley/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Away from the ridge"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Away from the ridge"
+          },
+          "originalLines": [
+            "Away from the ridge"
+          ],
+          "repairedLines": [
+            "Away from the ridge"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": false,
+          "baseline": "inspection/tablet/valley/heading-02.png",
+          "repair": "retest/tablet/valley/heading-02.png",
+          "detail": "inspection/tablet/valley/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Away from the ridge"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Away from the ridge"
+          },
+          "originalLines": [
+            "Away from the ridge"
+          ],
+          "repairedLines": [
+            "Away from the ridge"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "compact",
+          "active": false,
+          "baseline": "inspection/compact/valley/heading-02.png",
+          "repair": "retest/compact/valley/heading-02.png",
+          "detail": "inspection/compact/valley/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Away from the ridge"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Away from the ridge"
+          },
+          "originalLines": [
+            "Away from the ridge"
+          ],
+          "repairedLines": [
+            "Away from the ridge"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "capitals",
+      "title": "STATION REGISTER",
+      "kind": "control",
+      "category": "control",
+      "view": "stations",
+      "selector": "#stations-title",
+      "observation": "Intentional uniform tracking marks the uppercase station-register heading.",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": false,
+          "baseline": "inspection/wide/stations/heading-02.png",
+          "repair": "retest/wide/stations/heading-02.png",
+          "detail": "inspection/wide/stations/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "STATION REGISTER"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "STATION REGISTER"
+          },
+          "originalLines": [
+            "STATION REGISTER"
+          ],
+          "repairedLines": [
+            "STATION REGISTER"
+          ],
+          "originalFaces": [
+            "Lato"
+          ],
+          "repairedFaces": [
+            "Lato"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": false,
+          "baseline": "inspection/tablet/stations/heading-02.png",
+          "repair": "retest/tablet/stations/heading-02.png",
+          "detail": "inspection/tablet/stations/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "STATION REGISTER"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "STATION REGISTER"
+          },
+          "originalLines": [
+            "STATION REGISTER"
+          ],
+          "repairedLines": [
+            "STATION REGISTER"
+          ],
+          "originalFaces": [
+            "Lato"
+          ],
+          "repairedFaces": [
+            "Lato"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "compact",
+          "active": false,
+          "baseline": "inspection/compact/stations/heading-02.png",
+          "repair": "retest/compact/stations/heading-02.png",
+          "detail": "inspection/compact/stations/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "STATION REGISTER"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "STATION REGISTER"
+          },
+          "originalLines": [
+            "STATION REGISTER"
+          ],
+          "repairedLines": [
+            "STATION REGISTER"
+          ],
+          "originalFaces": [
+            "Lato"
+          ],
+          "repairedFaces": [
+            "Lato"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "ligature",
+      "title": "The offshore office",
+      "kind": "control",
+      "category": "control",
+      "view": "dispatch",
+      "selector": "#office-title",
+      "observation": "The normal serif retains its native ff and fi shaping in running words.",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": false,
+          "baseline": "inspection/wide/dispatch/heading-02.png",
+          "repair": "retest/wide/dispatch/heading-02.png",
+          "detail": "inspection/wide/dispatch/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "The offshore office"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "The offshore office"
+          },
+          "originalLines": [
+            "The offshore office"
+          ],
+          "repairedLines": [
+            "The offshore office"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": false,
+          "baseline": "inspection/tablet/dispatch/heading-02.png",
+          "repair": "retest/tablet/dispatch/heading-02.png",
+          "detail": "inspection/tablet/dispatch/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "The offshore office"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "The offshore office"
+          },
+          "originalLines": [
+            "The offshore office"
+          ],
+          "repairedLines": [
+            "The offshore office"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "compact",
+          "active": false,
+          "baseline": "inspection/compact/dispatch/heading-02.png",
+          "repair": "retest/compact/dispatch/heading-02.png",
+          "detail": "inspection/compact/dispatch/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "The offshore office"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "The offshore office"
+          },
+          "originalLines": [
+            "The offshore office"
+          ],
+          "repairedLines": [
+            "The offshore office"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "combining",
+      "title": "Café des marais",
+      "kind": "control",
+      "category": "control",
+      "view": "herbarium",
+      "selector": "#specimen-title",
+      "observation": "The acute accent in Café is a combining mark in the source. The base and accent form one grapheme.",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": false,
+          "baseline": "inspection/wide/herbarium/heading-02.png",
+          "repair": "retest/wide/herbarium/heading-02.png",
+          "detail": "inspection/wide/herbarium/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Café des marais"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Café des marais"
+          },
+          "originalLines": [
+            "Café des marais"
+          ],
+          "repairedLines": [
+            "Café des marais"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": false,
+          "baseline": "inspection/tablet/herbarium/heading-02.png",
+          "repair": "retest/tablet/herbarium/heading-02.png",
+          "detail": "inspection/tablet/herbarium/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Café des marais"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Café des marais"
+          },
+          "originalLines": [
+            "Café des marais"
+          ],
+          "repairedLines": [
+            "Café des marais"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "compact",
+          "active": false,
+          "baseline": "inspection/compact/herbarium/heading-02.png",
+          "repair": "retest/compact/herbarium/heading-02.png",
+          "detail": "inspection/compact/herbarium/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "Café des marais"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "Café des marais"
+          },
+          "originalLines": [
+            "Café des marais"
+          ],
+          "repairedLines": [
+            "Café des marais"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "joining",
+      "title": "دليل المحطات",
+      "kind": "control",
+      "category": "control",
+      "view": "stations",
+      "selector": "#arabic-title",
+      "observation": "The Arabic register title uses the bundled Noto Naskh Arabic with native joining and right-to-left direction.",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": false,
+          "baseline": "inspection/wide/stations/heading-04.png",
+          "repair": "retest/wide/stations/heading-04.png",
+          "detail": "inspection/wide/stations/heading-04-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "دليل المحطات"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "دليل المحطات"
+          },
+          "originalLines": [
+            "دليل المحطات"
+          ],
+          "repairedLines": [
+            "دليل المحطات"
+          ],
+          "originalFaces": [
+            "Noto Naskh Arabic"
+          ],
+          "repairedFaces": [
+            "Noto Naskh Arabic"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": false,
+          "baseline": "inspection/tablet/stations/heading-04.png",
+          "repair": "retest/tablet/stations/heading-04.png",
+          "detail": "inspection/tablet/stations/heading-04-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "دليل المحطات"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "دليل المحطات"
+          },
+          "originalLines": [
+            "دليل المحطات"
+          ],
+          "repairedLines": [
+            "دليل المحطات"
+          ],
+          "originalFaces": [
+            "Noto Naskh Arabic"
+          ],
+          "repairedFaces": [
+            "Noto Naskh Arabic"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "compact",
+          "active": false,
+          "baseline": "inspection/compact/stations/heading-04.png",
+          "repair": "retest/compact/stations/heading-04.png",
+          "detail": "inspection/compact/stations/heading-04-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "دليل المحطات"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "دليل المحطات"
+          },
+          "originalLines": [
+            "دليل المحطات"
+          ],
+          "repairedLines": [
+            "دليل المحطات"
+          ],
+          "originalFaces": [
+            "Noto Naskh Arabic"
+          ],
+          "repairedFaces": [
+            "Noto Naskh Arabic"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "wrap",
+      "title": "A weather station at the edge of the sound",
+      "kind": "control",
+      "category": "control",
+      "view": "weather",
+      "selector": "#coast-title",
+      "observation": "A responsive column intentionally wraps this headline at narrow widths while preserving native spacing.",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": false,
+          "baseline": "inspection/wide/weather/heading-02.png",
+          "repair": "retest/wide/weather/heading-02.png",
+          "detail": "inspection/wide/weather/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "A weather station at the edge of the sound"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "A weather station at the edge of the sound"
+          },
+          "originalLines": [
+            "A weather station at the edge of",
+            "the sound"
+          ],
+          "repairedLines": [
+            "A weather station at the edge of",
+            "the sound"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": false,
+          "baseline": "inspection/tablet/weather/heading-02.png",
+          "repair": "retest/tablet/weather/heading-02.png",
+          "detail": "inspection/tablet/weather/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "A weather station at the edge of the sound"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "A weather station at the edge of the sound"
+          },
+          "originalLines": [
+            "A weather station at the edge",
+            "of the sound"
+          ],
+          "repairedLines": [
+            "A weather station at the edge",
+            "of the sound"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "compact",
+          "active": false,
+          "baseline": "inspection/compact/weather/heading-02.png",
+          "repair": "retest/compact/weather/heading-02.png",
+          "detail": "inspection/compact/weather/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "A weather station at the edge of the sound"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "A weather station at the edge of the sound"
+          },
+          "originalLines": [
+            "A weather station at the",
+            "edge of the sound"
+          ],
+          "repairedLines": [
+            "A weather station at the",
+            "edge of the sound"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "punctuation",
+      "title": "“At slack water”",
+      "kind": "control",
+      "category": "control",
+      "view": "tide",
+      "selector": "#log-title",
+      "observation": "Curved quotation marks create intentional side space in an otherwise undisturbed serif headline.",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": false,
+          "baseline": "inspection/wide/tide/heading-04.png",
+          "repair": "retest/wide/tide/heading-04.png",
+          "detail": "inspection/wide/tide/heading-04-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "“At slack water”"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "“At slack water”"
+          },
+          "originalLines": [
+            "“At slack water”"
+          ],
+          "repairedLines": [
+            "“At slack water”"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": false,
+          "baseline": "inspection/tablet/tide/heading-04.png",
+          "repair": "retest/tablet/tide/heading-04.png",
+          "detail": "inspection/tablet/tide/heading-04-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "“At slack water”"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "“At slack water”"
+          },
+          "originalLines": [
+            "“At slack water”"
+          ],
+          "repairedLines": [
+            "“At slack water”"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "compact",
+          "active": false,
+          "baseline": "inspection/compact/tide/heading-04.png",
+          "repair": "retest/compact/tide/heading-04.png",
+          "detail": "inspection/compact/tide/heading-04-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "“At slack water”"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "“At slack water”"
+          },
+          "originalLines": [
+            "“At slack water”"
+          ],
+          "repairedLines": [
+            "“At slack water”"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "figures",
+      "title": "The 03:40 watch",
+      "kind": "control",
+      "category": "control",
+      "view": "almanac",
+      "selector": "#watch-title",
+      "observation": "The instrument time retains its punctuation, numerals and default spacing.",
+      "observations": [
+        {
+          "profile": "wide",
+          "active": false,
+          "baseline": "inspection/wide/almanac/heading-02.png",
+          "repair": "retest/wide/almanac/heading-02.png",
+          "detail": "inspection/wide/almanac/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "The 03:40 watch"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "The 03:40 watch"
+          },
+          "originalLines": [
+            "The 03:40 watch"
+          ],
+          "repairedLines": [
+            "The 03:40 watch"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "tablet",
+          "active": false,
+          "baseline": "inspection/tablet/almanac/heading-02.png",
+          "repair": "retest/tablet/almanac/heading-02.png",
+          "detail": "inspection/tablet/almanac/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "The 03:40 watch"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "The 03:40 watch"
+          },
+          "originalLines": [
+            "The 03:40 watch"
+          ],
+          "repairedLines": [
+            "The 03:40 watch"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        },
+        {
+          "profile": "compact",
+          "active": false,
+          "baseline": "inspection/compact/almanac/heading-02.png",
+          "repair": "retest/compact/almanac/heading-02.png",
+          "detail": "inspection/compact/almanac/heading-02-detail-1.png",
+          "status": "passed",
+          "measurement": "Local crop, line breaks and rendered face preserved.",
+          "values": {},
+          "failures": [],
+          "originalAX": {
+            "role": "heading",
+            "name": "The 03:40 watch"
+          },
+          "repairedAX": {
+            "role": "heading",
+            "name": "The 03:40 watch"
+          },
+          "originalLines": [
+            "The 03:40 watch"
+          ],
+          "repairedLines": [
+            "The 03:40 watch"
+          ],
+          "originalFaces": [
+            "DejaVu Serif"
+          ],
+          "repairedFaces": [
+            "DejaVu Serif"
+          ],
+          "proof": {
+            "sameBaseline": true,
+            "changed": false,
+            "verified": false
+          }
+        }
+      ],
+      "status": "passed"
+    }
+  ],
+  "modes": [
+    {
+      "criterion": "hero includes the nonsemantic display title",
+      "status": "passed"
+    },
+    {
+      "criterion": "all includes the below-fold semantic heading",
+      "status": "passed"
+    },
+    {
+      "criterion": "selected returns only the requested below-fold heading",
+      "status": "passed"
+    },
+    {
+      "criterion": "hero and all have different breadth",
+      "status": "passed"
+    },
+    {
+      "criterion": "the wrap control changes lines across viewport profiles",
+      "status": "passed"
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "specimen-compact",
+      "width": 599,
+      "active": true,
+      "delta": -128.71875,
+      "baseline": "boundary/specimen-compact-599-baseline.png",
+      "repair": "boundary/specimen-compact-599-fixed.png",
+      "status": "passed"
+    },
+    {
+      "id": "specimen-compact",
+      "width": 600,
+      "active": true,
+      "delta": -128.71875,
+      "baseline": "boundary/specimen-compact-600-baseline.png",
+      "repair": "boundary/specimen-compact-600-fixed.png",
+      "status": "passed"
+    },
+    {
+      "id": "specimen-compact",
+      "width": 601,
+      "active": false,
+      "delta": 0,
+      "baseline": "boundary/specimen-compact-601-baseline.png",
+      "repair": "boundary/specimen-compact-601-fixed.png",
+      "status": "passed"
+    }
+  ],
+  "revisions": {
+    "baseline": "specimens/baseline/plan.json",
+    "repaired": "specimens/fixed/plan.json"
+  }
+}

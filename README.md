@@ -22,6 +22,10 @@ Invoke it in a new chat with a target and the kind of work you want.
 - `Use $eagle-eye to refine this tab bar. Check the visible icon and text at 1× and 2×, fix the causes, and capture each verification pass.`
 - `Use $eagle-eye for a whole-site critique. Inventory routes and shared layouts, walk the primary flows, and document sampled or blocked states.`
 
+## Audit headline spacing
+
+General audits include the hero or dominant display heading on each scoped view. Ask `Use $eagle-eye to audit every headline across these pages` for an exhaustive pass, or `Fix the spacing around the T in this hero and show the original beside the repair` for a focused refinement. The [typography workflow](skills/eagle-eye/references/headline-typography.md) covers optical review, font diagnosis, and scoped repairs. [Open the headline audit presentation](example/headline-audit/reports/handoff.html) or [reproduce the static typography eval](example/headline-audit/README.md).
+
 ## Audit layout shifts between views
 
 Ask: `Use $eagle-eye to compare the shared shell, page titles, toolbar gaps and list insets across Inbox, Archive and Settings. Check direct and return navigation on desktop and mobile. Group related shifts by cause and re-run the same pairs after each fix.`

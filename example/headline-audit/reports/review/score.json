@@ -1,0 +1,96 @@
+{
+  "discovery": {
+    "eligible": 8,
+    "localized": 8,
+    "direction": 8,
+    "firm": 5,
+    "tentative": 3,
+    "controlFlags": 0,
+    "controls": 8,
+    "additional": 0,
+    "other": {
+      "intentional": 1
+    },
+    "missed": []
+  },
+  "preference": {
+    "active": 8,
+    "repair": 8,
+    "original": 0,
+    "neutral": 0,
+    "controls": 3,
+    "controlNeutral": 3
+  },
+  "decoded": [
+    {
+      "id": "T001",
+      "case": "dispatch-boundary",
+      "profile": "wide",
+      "outcome": "repair"
+    },
+    {
+      "id": "T002",
+      "case": "weather-kerning",
+      "profile": "wide",
+      "outcome": "repair"
+    },
+    {
+      "id": "T003",
+      "case": "station-face",
+      "profile": "tablet",
+      "outcome": "repair"
+    },
+    {
+      "id": "T004",
+      "case": "punctuation",
+      "profile": "tablet",
+      "outcome": "identical / no preference"
+    },
+    {
+      "id": "T005",
+      "case": "specimen-compact",
+      "profile": "compact",
+      "outcome": "repair"
+    },
+    {
+      "id": "T006",
+      "case": "toward-opening",
+      "profile": "wide",
+      "outcome": "repair"
+    },
+    {
+      "id": "T007",
+      "case": "valley-pinch",
+      "profile": "wide",
+      "outcome": "repair"
+    },
+    {
+      "id": "T008",
+      "case": "figures",
+      "profile": "wide",
+      "outcome": "identical / no preference"
+    },
+    {
+      "id": "T009",
+      "case": "combining",
+      "profile": "compact",
+      "outcome": "identical / no preference"
+    },
+    {
+      "id": "T010",
+      "case": "almanac-tracking",
+      "profile": "wide",
+      "outcome": "repair"
+    },
+    {
+      "id": "T011",
+      "case": "wind-initial",
+      "profile": "wide",
+      "outcome": "repair"
+    }
+  ],
+  "frozen": {
+    "discovery": "83ff23e4451157ab5b74bbdd5a369495aaf2be35bc3bd3067f4e6265de4ba55c",
+    "preferences": "cbed038a342433b66f4dfe7ffe332a251763eaa3448e9834c9579d72090fa0b9"
+  }
+}

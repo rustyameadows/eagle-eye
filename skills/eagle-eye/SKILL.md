@@ -1,6 +1,6 @@
 ---
 name: eagle-eye
-description: Audit a rendered screen, component, user flow, or site for visual imperfections and inconsistencies. Use for a systematic design critique, view-to-view layout shifts, screenshot-guided alignment and polish, or repeated visual refinement with documented coverage and verified fixes.
+description: Audit a rendered screen, component, user flow, or site for visual imperfections and inconsistencies. Use for a systematic design critique, view-to-view layout shifts, headline kerning and tracking, screenshot-guided alignment and polish, or repeated visual refinement with documented coverage and verified fixes.
 ---
 
 # Eagle Eye
@@ -16,7 +16,7 @@ Find small, consequential defects by looking at an interface at three scales. At
 
 ## Run the passes
 
-1. **Read the screen at normal size.** Capture the stable state without guides. Scan from top to bottom, including below the fold. Write what draws attention first, what the user is trying to do, and any region whose hierarchy competes with that task. Compare the header, content and footer on their shared edges.
+1. **Read the screen at normal size.** Capture the stable state without guides. Scan from top to bottom, including below the fold. Write what draws attention first, what the user is trying to do, and any region whose hierarchy competes with that task. Compare the header, content and footer on their shared edges. Inspect the hero or dominant display heading on each scoped view using the [headline typography audit](references/headline-typography.md). For a typography request, inspect the named heading or every heading when requested.
 2. **Compare siblings and states.** For a shared element that jumps between views, follow the [view-to-view audit](references/view-to-view.md). Pair the routes, identify stable edges and parent-relative gaps, and preserve one viewport origin for both screenshots. Put comparable rows, tabs, cards, forms, and routes side by side at the same scale. Check rhythm, type roles, icon family, image crops, and whether labels stay put when controls change state. Open overlays and inspect focus, hover, selected, error, and responsive states where relevant. Stress a likely failure with real or representative long/empty content.
 3. **Measure suspects.** State a testable claim and identify the intended reference line or sibling. Crop from the clean capture, add centerlines, edge rails, boxes or baseline guides on a copy, and inspect both the crop and the untouched view. Follow [capture and measurement](references/evidence.md) for local tools and coordinate rules. Use raster ink for a claim about a drawn glyph, and layout geometry for a claim about padding or a hit area. Record source, scale, measured offset and tolerance. A subjective finding needs visible evidence and the design reason; a pixel value is optional.
 4. **Triage and refine.** Give each confirmed issue a stable ID, affected screens, impact, concrete correction, and verification criterion. Group repeats under the shared cause. Start with a layout or token fix where that explains several symptoms. Preserve intentional optical adjustments. In refinement mode, change one cause or a coherent batch, then re-render the *same* viewport, state, data and scale before moving on. Keep earlier captures and reopen any finding that regresses.

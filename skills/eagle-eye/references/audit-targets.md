@@ -17,6 +17,8 @@ Use the site's actual tasks and surface names. The table suggests starting hypot
 
 Use the [view-to-view audit](view-to-view.md) when switching routes exposes a shift in any of these shared surfaces.
 
+For hero headlines, editorial titles, and repeated display headings, follow the [headline typography audit](headline-typography.md). Compare the spacing inside the word, the rhythm of the line and the face used at each size.
+
 ## Choosing the next pass
 
 - **Screen to component.** An unclear primary action deserves a hierarchy finding even if all edges line up. A one-off icon drift belongs in a focused crop.

@@ -171,3 +171,23 @@ body.presenting { padding-bottom: 80px; }
   .crops.blending figure:last-child img { opacity: 1; }
   .crops.blending figcaption { visibility: visible; }
 }
+
+.type-record { margin: 14px 0; border: 1px solid var(--line); border-radius: 6px; }
+.type-record > summary { padding: 12px 16px; font-weight: 650; }
+.type-record > summary small { margin-left: .65rem; color: var(--muted); font-weight: 500; }
+.type-record-body { padding: 0 16px 16px; }
+.type-reading, .type-guide { margin: 15px 0; }
+.type-reading figcaption, .type-guide figcaption { color: var(--muted); font-size: 13px; margin-bottom: 4px; }
+.type-reading > div, .type-guide > div { max-width: 100%; overflow-x: auto; border: 1px solid var(--line); background: #fff; }
+.type-reading img, .type-guide img { display: block; max-width: none; height: auto; }
+.type-guide img { max-width: 100%; }
+.type-rows, .type-inventory { padding-inline-start: 1.35rem; }
+.type-rows li, .type-inventory li { padding: 4px 0; }
+.type-rows span, .type-rows small, .type-inventory small { display: block; color: var(--muted); overflow-wrap: anywhere; }
+.type-inventory { columns: 2 21rem; }
+.type-inventory li { break-inside: avoid; }
+@media print {
+  .type-reading > div, .type-guide > div { overflow: visible; }
+  .type-reading img { max-width: 100%; }
+}
+.type-css { white-space: pre-wrap; overflow-wrap: anywhere; padding: 10px; background: var(--sage); }

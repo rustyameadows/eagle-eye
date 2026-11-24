@@ -257,6 +257,11 @@
       "blindScore": "blind-review/score.json",
       "label": "Blind visual discovery pilot",
       "description": "Read the independent reviewer’s submitted findings, examine their screenshot evidence and compare the submission with the fixture key."
+    },
+    {
+      "path": "../../headline-audit/reports/handoff.html",
+      "label": "Fieldwork Editions headline audit",
+      "description": "Inspect individual letter pairs, whole-line tracking, and font substitution across seven editorial views. The typography handoff includes actual-size comparisons and the independently graded visual review."
     }
   ]
 }

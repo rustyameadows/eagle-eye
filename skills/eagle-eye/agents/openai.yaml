@@ -1,4 +1,4 @@
 interface:
   display_name: "Eagle Eye"
-  short_description: "Audit screens, measure visual drift, and verify fixes"
+  short_description: "Audit layout, headline spacing, and visual repairs"
   default_prompt: "Use $eagle-eye to audit this interface and document visual issues with annotated screenshots."
