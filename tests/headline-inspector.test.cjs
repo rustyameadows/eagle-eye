@@ -169,3 +169,48 @@ test('a compact nonsemantic lead can outrank smaller main copy without pulling i
     ['#lead']
   );
 });
+
+test('focused proof preserves every boundary and measures local changes against a repeated control', async () => {
+  const page = path.join(root, 'study.html');
+  await fs.writeFile(page, `<!doctype html><meta charset="utf-8"><style>
+    h1{font:52px "DejaVu Serif",serif;letter-spacing:normal;color:#252221;background:#f6efe9}
+    #expanded{margin-inline-start:.25em}
+    </style><h1 id="proof">L’<span id="expanded">été</span> · L’été</h1>
+    <h1 id="wrap">Cloud<br>River</h1><h1 id="joined" lang="ar" dir="rtl">نهر</h1>`);
+  const variants = path.join(root, 'proof-variants.json');
+  await fs.writeFile(variants, JSON.stringify([
+    {id:'native',selector:'#proof',css:'#expanded { margin-inline-start:0 }'}
+  ]));
+  const inspected = await inspect('study', page, ['--selector','h1','--variants',variants]);
+  const [observed, wrapped, joined] = inspected.captures.default.page.headings;
+  const letters = [...new Intl.Segmenter('fr',{granularity:'grapheme'}).segment(observed.text)].map(v => v.segment);
+  const records = observed.proof.boundaries;
+  assert.deepEqual(records.map(b => [b.index,b.left,b.right]),
+    letters.slice(1).map((right,i) => [i+1,letters[i],right]));
+  assert.equal(records.filter(b=>b.kind==='word-space').length,4);
+  const target = bs=>bs.filter(b=>b.left==='’' && b.right==='é');
+  const [first, control] = target(records);
+  const [fixed, unchanged] = target(observed.variants[0].proof.boundaries);
+  assert.notEqual(first.start,control.start);
+  assert.equal(first.kind,'punctuation');
+  assert.equal(first.word,'L’été');
+  assert.equal(first.method,'column-clearance');
+  assert.ok(first.columnClearance.cssPx > fixed.columnClearance.cssPx + 11);
+  assert.equal(unchanged.columnClearance.cssPx,control.columnClearance.cssPx);
+  assert.ok(first.rangeGap - fixed.rangeGap > 12);
+  assert.deepEqual(records.map(b=>b.index), observed.variants[0].proof.boundaries.map(b=>b.index));
+  assert.notEqual(first.detailFile,control.detailFile);
+  const rendered = [observed, observed.variants[0], wrapped, joined];
+  for (const item of rendered) {
+    for (const file of [...item.proof.sheets, ...item.proof.words.map(w=>w.file)]) {
+      const png = await fs.readFile(path.join(root,'study',file));
+      assert.ok(png.readUInt32BE(16)>0 && png.readUInt32BE(20)>0);
+    }
+  }
+  assert.equal(wrapped.proof.boundaries.find(b=>b.left==='d' && b.right==='R').method,'line-break');
+  assert.ok(joined.proof.boundaries.every(b=>b.method==='visual-only' && b.columnClearance===null));
+  assert.equal(observed.text,observed.variants[0].text);
+  assert.deepEqual(observed.accessibility,observed.variants[0].accessibility);
+  assert.deepEqual(observed.selection,observed.variants[0].selection);
+  assert.equal(heading.proof,undefined); // broad baseline stays lightweight
+});

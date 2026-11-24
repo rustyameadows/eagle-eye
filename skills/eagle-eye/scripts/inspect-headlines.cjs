@@ -8,10 +8,11 @@ const { launchChromium, openView } = require('./browser.cjs');
 const { discoverHeadlines, observeHeading } = require('./headline-dom.cjs');
 
 const usage = `Usage: node inspect-headlines.cjs URL_OR_HTML_OR_PLAN_JSON NEW_OUTPUT_DIR
-  [--scope hero|all | --selector CSS] [--variants VARIANTS.json]
+  [--scope hero|all | --selector CSS] [--proof] [--variants VARIANTS.json]
   [--width 1440 --height 900 --scale 1 --ready SELECTOR] (single page)
 Variants: [{"id":"native","selector":"#title","css":"#title{font-kerning:normal}","word":"Today","pair":"To"}]
 Optional view and profiles restrict each variant. Each targeted heading is inspected within scope.
+A selector enables an indexed visual proof of every grapheme boundary; use --proof to request it for a whole scope.
 Capture uses unmodified baseline text. Range boxes are layout anchors; inspect the original raster.
 The output includes report.json, clean screenshots, annotated details and contact sheets.`;
 const idOK = (value) =>
@@ -281,6 +282,7 @@ async function main() {
     options: {
       scope: { type: 'string' },
       selector: { type: 'string' },
+      proof: { type: 'boolean' },
       variants: { type: 'string' },
       width: { type: 'string' },
       height: { type: 'string' },
@@ -308,6 +310,7 @@ async function main() {
     browser: 'Chromium ' + browser.version(),
     scope: values.selector ? 'selector' : (values.scope ?? 'hero'),
     selector: values.selector,
+    ...(values.selector || values.proof ? { proof: true } : {}),
     profiles: plan.profiles,
     captures: {},
     warnings: []

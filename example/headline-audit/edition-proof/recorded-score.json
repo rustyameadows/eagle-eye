@@ -1,0 +1,22 @@
+{
+  "observations": [
+    {
+      "profile": "wide",
+      "boundariesPerEdition": 16,
+      "changedIndex": 10,
+      "cleanCssPx": 6.0,
+      "seededCssPx": 17.0,
+      "changeCssPx": 11.0,
+      "publicEvidenceMethod": "column-clearance"
+    },
+    {
+      "profile": "phone",
+      "boundariesPerEdition": 16,
+      "changedIndex": 10,
+      "cleanCssPx": 3.0,
+      "seededCssPx": 8.0,
+      "changeCssPx": 5.0,
+      "publicEvidenceMethod": "visual-only"
+    }
+  ]
+}

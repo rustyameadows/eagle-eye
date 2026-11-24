@@ -80,3 +80,30 @@ python3 skills/eagle-eye/scripts/render-handoff.py --headlines /tmp/type-title-0
 After editing a project, inspect the same target in a fresh run and pass `--retest /path/to/retest/report.json` to include the reopened source. The handoff compares matching selectors, profiles, text, accessibility, selection and line breaks, and checks whether the candidate pixels match the final heading crop.
 
 In the static benchmark, add `--eval-report RUN/report.json` to include independently reopened source retests and clean controls. Add `--review RUN/review/score.json` after the blind findings and A/B choices have been frozen and scored. An inspector-only handoff labels temporary CSS changes as candidates. For a project refinement, retain the source retest and its evidence in the living audit.
+
+
+### Full-raster evidence for a focused headline
+
+When a reviewer asks for a pixel-level comparison, keep a common native image frame around the **entire** chosen headline across stages. Match the viewport origin, DPR, background, load state and scroll position. Capture the whole relevant line before deriving local crops. Use the reading-size proof and the indexed optical judgments alongside the pixel evidence.
+
+Pass opaque PNGs and their acquisition conditions to the local comparator:
+
+```sh
+python3 skills/eagle-eye/scripts/pixel-proof.py stages.json /tmp/headline-pixels-01
+```
+
+```json
+{
+  "title": "Headline comparison",
+  "stages": [{"id":"original","label":"Original"},{"id":"trial","label":"Browser trial"}],
+  "profiles": [{
+    "id":"desktop","label":"Desktop","scale":1,
+    "origin":{"x":24,"y":80},
+    "images":{"original":"original.png","trial":"trial.png"}
+  }]
+}
+```
+
+Use the offline viewer to inspect the signed per-pixel change, source values and the counts over the same frame. Optional regions are half-open rectangles in crop-local **raster pixels**, while `origin` is in viewport CSS pixels. Retain native evidence for both enlarged and reading-size comparisons. A tracking or pair change can move the rest of the line, so the count of changed pixels describes the extent of the render change. Judge improvement from the complete, clean line and its local context.
+
+To open a specific capture from the presentation, append `?profile=<profile-id>` to the pixel viewer link.

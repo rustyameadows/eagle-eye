@@ -3,6 +3,7 @@
   "browser": "Chromium 158.0.8127.18",
   "scope": "selector",
   "selector": "#log-title",
+  "proof": true,
   "profiles": {
     "default": {
       "width": 1040,
@@ -326,7 +327,553 @@
                 },
                 "rangeGap": 0
               }
-            ]
+            ],
+            "proof": {
+              "boundaries": [
+                {
+                  "index": 1,
+                  "left": "“",
+                  "right": "A",
+                  "start": 0,
+                  "end": 2,
+                  "kind": "punctuation",
+                  "word": "“At",
+                  "rangeGap": 0,
+                  "inkSample": null,
+                  "columnClearance": {
+                    "cssPx": 2,
+                    "x1": 45,
+                    "x2": 47
+                  },
+                  "boxes": [
+                    {
+                      "x": 36,
+                      "y": 1212.109375,
+                      "width": 13,
+                      "height": 43
+                    },
+                    {
+                      "x": 49,
+                      "y": 1212.109375,
+                      "width": 25,
+                      "height": 43
+                    }
+                  ],
+                  "method": "column-clearance",
+                  "detailFile": "default/page/heading-01-word-proof-1.png"
+                },
+                {
+                  "index": 2,
+                  "left": "A",
+                  "right": "t",
+                  "start": 1,
+                  "end": 3,
+                  "kind": "letters",
+                  "word": "“At",
+                  "rangeGap": 0,
+                  "inkSample": {
+                    "cssPx": 9,
+                    "x1": 68,
+                    "x2": 78,
+                    "y": 1234
+                  },
+                  "columnClearance": null,
+                  "boxes": [
+                    {
+                      "x": 49,
+                      "y": 1212.109375,
+                      "width": 25,
+                      "height": 43
+                    },
+                    {
+                      "x": 74,
+                      "y": 1212.109375,
+                      "width": 14,
+                      "height": 43
+                    }
+                  ],
+                  "method": "ink-sample",
+                  "detailFile": "default/page/heading-01-word-proof-1.png"
+                },
+                {
+                  "index": 3,
+                  "left": "t",
+                  "right": " ",
+                  "start": 2,
+                  "end": 4,
+                  "kind": "word-space",
+                  "word": null,
+                  "rangeGap": null,
+                  "inkSample": null,
+                  "columnClearance": null,
+                  "boxes": [
+                    {
+                      "x": 74,
+                      "y": 1212.109375,
+                      "width": 14,
+                      "height": 43
+                    },
+                    {
+                      "x": 88,
+                      "y": 1212.109375,
+                      "width": 11,
+                      "height": 43
+                    }
+                  ],
+                  "method": "word-space"
+                },
+                {
+                  "index": 4,
+                  "left": " ",
+                  "right": "s",
+                  "start": 3,
+                  "end": 5,
+                  "kind": "word-space",
+                  "word": null,
+                  "rangeGap": null,
+                  "inkSample": null,
+                  "columnClearance": null,
+                  "boxes": [
+                    {
+                      "x": 88,
+                      "y": 1212.109375,
+                      "width": 11,
+                      "height": 43
+                    },
+                    {
+                      "x": 99,
+                      "y": 1212.109375,
+                      "width": 18,
+                      "height": 43
+                    }
+                  ],
+                  "method": "word-space"
+                },
+                {
+                  "index": 5,
+                  "left": "s",
+                  "right": "l",
+                  "start": 4,
+                  "end": 6,
+                  "kind": "letters",
+                  "word": "slack",
+                  "rangeGap": 0,
+                  "inkSample": {
+                    "cssPx": 6,
+                    "x1": 114,
+                    "x2": 121,
+                    "y": 1242
+                  },
+                  "columnClearance": {
+                    "cssPx": 2,
+                    "x1": 116,
+                    "x2": 118
+                  },
+                  "boxes": [
+                    {
+                      "x": 99,
+                      "y": 1212.109375,
+                      "width": 18,
+                      "height": 43
+                    },
+                    {
+                      "x": 117,
+                      "y": 1212.109375,
+                      "width": 12,
+                      "height": 43
+                    }
+                  ],
+                  "method": "column-clearance",
+                  "detailFile": "default/page/heading-01-word-proof-2.png"
+                },
+                {
+                  "index": 6,
+                  "left": "l",
+                  "right": "a",
+                  "start": 5,
+                  "end": 7,
+                  "kind": "letters",
+                  "word": "slack",
+                  "rangeGap": 0,
+                  "inkSample": {
+                    "cssPx": 8,
+                    "x1": 123,
+                    "x2": 132,
+                    "y": 1232
+                  },
+                  "columnClearance": {
+                    "cssPx": 4,
+                    "x1": 127,
+                    "x2": 131
+                  },
+                  "boxes": [
+                    {
+                      "x": 117,
+                      "y": 1212.109375,
+                      "width": 12,
+                      "height": 43
+                    },
+                    {
+                      "x": 129,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    }
+                  ],
+                  "method": "column-clearance",
+                  "detailFile": "default/page/heading-01-word-proof-2.png"
+                },
+                {
+                  "index": 7,
+                  "left": "a",
+                  "right": "c",
+                  "start": 6,
+                  "end": 8,
+                  "kind": "letters",
+                  "word": "slack",
+                  "rangeGap": 0,
+                  "inkSample": {
+                    "cssPx": 6,
+                    "x1": 146,
+                    "x2": 153,
+                    "y": 1241
+                  },
+                  "columnClearance": {
+                    "cssPx": 3,
+                    "x1": 149,
+                    "x2": 152
+                  },
+                  "boxes": [
+                    {
+                      "x": 129,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    },
+                    {
+                      "x": 150,
+                      "y": 1212.109375,
+                      "width": 20,
+                      "height": 43
+                    }
+                  ],
+                  "method": "column-clearance",
+                  "detailFile": "default/page/heading-01-word-proof-2.png"
+                },
+                {
+                  "index": 8,
+                  "left": "c",
+                  "right": "k",
+                  "start": 7,
+                  "end": 9,
+                  "kind": "letters",
+                  "word": "slack",
+                  "rangeGap": 0,
+                  "inkSample": {
+                    "cssPx": 7,
+                    "x1": 163,
+                    "x2": 171,
+                    "y": 1245
+                  },
+                  "columnClearance": {
+                    "cssPx": 3,
+                    "x1": 168,
+                    "x2": 171
+                  },
+                  "boxes": [
+                    {
+                      "x": 150,
+                      "y": 1212.109375,
+                      "width": 20,
+                      "height": 43
+                    },
+                    {
+                      "x": 170,
+                      "y": 1212.109375,
+                      "width": 22,
+                      "height": 43
+                    }
+                  ],
+                  "method": "column-clearance",
+                  "detailFile": "default/page/heading-01-word-proof-2.png"
+                },
+                {
+                  "index": 9,
+                  "left": "k",
+                  "right": " ",
+                  "start": 8,
+                  "end": 10,
+                  "kind": "word-space",
+                  "word": null,
+                  "rangeGap": null,
+                  "inkSample": null,
+                  "columnClearance": null,
+                  "boxes": [
+                    {
+                      "x": 170,
+                      "y": 1212.109375,
+                      "width": 22,
+                      "height": 43
+                    },
+                    {
+                      "x": 192,
+                      "y": 1212.109375,
+                      "width": 11,
+                      "height": 43
+                    }
+                  ],
+                  "method": "word-space"
+                },
+                {
+                  "index": 10,
+                  "left": " ",
+                  "right": "w",
+                  "start": 9,
+                  "end": 11,
+                  "kind": "word-space",
+                  "word": null,
+                  "rangeGap": null,
+                  "inkSample": null,
+                  "columnClearance": null,
+                  "boxes": [
+                    {
+                      "x": 192,
+                      "y": 1212.109375,
+                      "width": 11,
+                      "height": 43
+                    },
+                    {
+                      "x": 203,
+                      "y": 1212.109375,
+                      "width": 31,
+                      "height": 43
+                    }
+                  ],
+                  "method": "word-space"
+                },
+                {
+                  "index": 11,
+                  "left": "w",
+                  "right": "a",
+                  "start": 10,
+                  "end": 12,
+                  "kind": "letters",
+                  "word": "water”",
+                  "rangeGap": 0,
+                  "inkSample": {
+                    "cssPx": 8,
+                    "x1": 232,
+                    "x2": 241,
+                    "y": 1227
+                  },
+                  "columnClearance": {
+                    "cssPx": 3,
+                    "x1": 233,
+                    "x2": 236
+                  },
+                  "boxes": [
+                    {
+                      "x": 203,
+                      "y": 1212.109375,
+                      "width": 31,
+                      "height": 43
+                    },
+                    {
+                      "x": 234,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    }
+                  ],
+                  "method": "column-clearance",
+                  "detailFile": "default/page/heading-01-word-proof-3.png"
+                },
+                {
+                  "index": 12,
+                  "left": "a",
+                  "right": "t",
+                  "start": 11,
+                  "end": 13,
+                  "kind": "letters",
+                  "word": "water”",
+                  "rangeGap": 0,
+                  "inkSample": {
+                    "cssPx": 7,
+                    "x1": 251,
+                    "x2": 259,
+                    "y": 1240
+                  },
+                  "columnClearance": {
+                    "cssPx": 2,
+                    "x1": 254,
+                    "x2": 256
+                  },
+                  "boxes": [
+                    {
+                      "x": 234,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    },
+                    {
+                      "x": 255,
+                      "y": 1212.109375,
+                      "width": 14,
+                      "height": 43
+                    }
+                  ],
+                  "method": "column-clearance",
+                  "detailFile": "default/page/heading-01-word-proof-3.png"
+                },
+                {
+                  "index": 13,
+                  "left": "t",
+                  "right": "e",
+                  "start": 12,
+                  "end": 14,
+                  "kind": "letters",
+                  "word": "water”",
+                  "rangeGap": 0,
+                  "inkSample": {
+                    "cssPx": 9,
+                    "x1": 261,
+                    "x2": 271,
+                    "y": 1236
+                  },
+                  "columnClearance": {
+                    "cssPx": 2,
+                    "x1": 269,
+                    "x2": 271
+                  },
+                  "boxes": [
+                    {
+                      "x": 255,
+                      "y": 1212.109375,
+                      "width": 14,
+                      "height": 43
+                    },
+                    {
+                      "x": 269,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    }
+                  ],
+                  "method": "column-clearance",
+                  "detailFile": "default/page/heading-01-word-proof-3.png"
+                },
+                {
+                  "index": 14,
+                  "left": "e",
+                  "right": "r",
+                  "start": 13,
+                  "end": 15,
+                  "kind": "letters",
+                  "word": "water”",
+                  "rangeGap": 0,
+                  "inkSample": {
+                    "cssPx": 7,
+                    "x1": 283,
+                    "x2": 291,
+                    "y": 1245
+                  },
+                  "columnClearance": {
+                    "cssPx": 2,
+                    "x1": 289,
+                    "x2": 291
+                  },
+                  "boxes": [
+                    {
+                      "x": 269,
+                      "y": 1212.109375,
+                      "width": 21,
+                      "height": 43
+                    },
+                    {
+                      "x": 290,
+                      "y": 1212.109375,
+                      "width": 17,
+                      "height": 43
+                    }
+                  ],
+                  "method": "column-clearance",
+                  "detailFile": "default/page/heading-01-word-proof-3.png"
+                },
+                {
+                  "index": 15,
+                  "left": "r",
+                  "right": "”",
+                  "start": 14,
+                  "end": 16,
+                  "kind": "punctuation",
+                  "word": "water”",
+                  "rangeGap": 0,
+                  "inkSample": null,
+                  "columnClearance": {
+                    "cssPx": 3,
+                    "x1": 307,
+                    "x2": 310
+                  },
+                  "boxes": [
+                    {
+                      "x": 290,
+                      "y": 1212.109375,
+                      "width": 17,
+                      "height": 43
+                    },
+                    {
+                      "x": 307,
+                      "y": 1212.109375,
+                      "width": 18,
+                      "height": 43
+                    }
+                  ],
+                  "method": "column-clearance",
+                  "detailFile": "default/page/heading-01-word-proof-3.png"
+                }
+              ],
+              "words": [
+                {
+                  "word": "“At",
+                  "file": "default/page/heading-01-word-proof-1.png",
+                  "start": 0,
+                  "end": 3,
+                  "boundaries": [
+                    1,
+                    2
+                  ]
+                },
+                {
+                  "word": "slack",
+                  "file": "default/page/heading-01-word-proof-2.png",
+                  "start": 4,
+                  "end": 9,
+                  "boundaries": [
+                    5,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "word": "water”",
+                  "file": "default/page/heading-01-word-proof-3.png",
+                  "start": 10,
+                  "end": 16,
+                  "boundaries": [
+                    11,
+                    12,
+                    13,
+                    14,
+                    15
+                  ]
+                }
+              ],
+              "sheets": [
+                "default/page/heading-01-proof-1.png",
+                "default/page/heading-01-proof-2.png"
+              ]
+            }
           }
         ],
         "warnings": [],

@@ -143,6 +143,16 @@ def source_comparison(item, matched, profile, before_profile, after_profile, roo
     return body
 
 
+def proof_links(item, root, output):
+    proof = item.get('proof')
+    if not proof:
+        return ''
+    sheets = [(name, 'Sheet ' + str(i)) for i, name in enumerate(proof.get('sheets', []), 1)]
+    words = [(word['file'], word['word']) for word in proof.get('words', []) if word.get('file')]
+    return (f'<p class="numbers">Full proof · {len(proof["boundaries"])} boundaries · '
+            + evidence_links(root, sheets + words, output) + '</p>')
+
+
 def headline_sections(report, source, output, eval_path=None, review_path=None, retest_path=None):
     root = source.parent
     profiles = report['profiles']
@@ -189,7 +199,7 @@ def headline_sections(report, source, output, eval_path=None, review_path=None, 
                    for vid, view in views.items() for i in view.get('headings', [])}
     candidates, other = [], []
     for (view, selector), rows in headings.items():
-        if not retest_path and not any(i.get('variants') for _, i in rows):
+        if not retest_path and not any(i.get('variants') or i.get('proof') for _, i in rows):
             for profile, item in rows:
                 guides = [(dt.get('file'), dt.get('pair') or dt.get('word') or 'Guide')
                           for dt in item.get('details', []) if dt.get('file')]
@@ -211,7 +221,8 @@ def headline_sections(report, source, output, eval_path=None, review_path=None, 
             continue
         candidates.append((view, selector, rows))
     if candidates:
-        nav.append(('headline-1', 'Reading comparisons'))
+        has_comparisons = retest_path or any(i.get('variants') for _, _, rows in candidates for _, i in rows)
+        nav.append(('headline-1', 'Reading comparisons' if has_comparisons else 'Headline proof'))
     for number, (view, selector, rows) in enumerate(candidates, 1):
         title_text = rows[0][1]['text']
         body = [f'<p class="where">{h(view)} · <code>{h(selector)}</code></p>']
@@ -222,11 +233,13 @@ def headline_sections(report, source, output, eval_path=None, review_path=None, 
             note = ' · ' + str(len(samples)) + ' candidate' if len(samples) == 1 else (' · ' + str(len(samples)) + ' candidates' if samples else '')
             group = [f'<details class="type-record"{" open" if idx == 0 else ""}><summary>'
                      f'{h(profile)} · {profiles[profile]["width"]} CSS px{h(note)}</summary><div class="type-record-body">']
+            group.append(proof_links(item, root, output))
             fonts = ', '.join(dict.fromkeys(f['familyName'] for f in item.get('fonts', []) if f.get('familyName')))
             if fonts:
                 group.append(f'<p class="where">Rendered face · {h(fonts)}</p>')
             for variant in samples:
                 case = cases.get(variant['id'], {})
+                group.append(proof_links(variant, root, output))
                 if variant.get('css'):
                     group.append(f'<details><summary>Candidate CSS</summary><pre class="type-css">{h(variant["css"])}</pre></details>')
                 if case.get('observation'):

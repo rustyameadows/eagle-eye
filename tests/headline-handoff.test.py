@@ -39,6 +39,22 @@ class HeadlineHandoffTest(unittest.TestCase):
         self.assertIn("Image unavailable", html)
         self.assertNotIn("Reopened source retest", html)
 
+    def test_focused_title_has_visible_chapter_without_variants(self):
+        for name in ('title.png', 'sheet.png', 'word.png'):
+            Image.new('RGB', (64, 32)).save(self.directory / name)
+        item = {'selector': 'h1', 'text': 'Type', 'file': 'title.png',
+                'proof': {'sheets': ['sheet.png'], 'words': [{'word': 'Type', 'file': 'word.png'}],
+                          'boundaries': [1, 2, 3]}}
+        report, output = self.directory / 'report.json', self.directory / 'show.html'
+        report.write_text(json.dumps({'profiles': {'phone': {'width': 390, 'scale': 2}},
+                                     'captures': {'phone': {'article': {'file': 'title.png', 'headings': [item]}}}}))
+        subprocess.run([sys.executable, ROOT / 'skills/eagle-eye/scripts/render-handoff.py',
+                        '--headlines', report, output], capture_output=True, check=True)
+        html = output.read_text()
+        for fragment in ('Headline proof', 'id="headline-1"', 'Full proof · 3 boundaries',
+                         'href="sheet.png"', 'href="word.png"', 'width:32px'):
+            self.assertIn(fragment, html)
+
     def test_retest_requires_same_profile_and_distinguishes_preview_from_source(self):
         file = self.directory / "heading.png"
         Image.new("RGB", (70, 30), "blue").save(file)

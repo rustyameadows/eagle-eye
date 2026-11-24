@@ -44,6 +44,8 @@ def font(size):
 def grapheme_words(heading):
     words = []
     current = []
+    vertical = heading["styles"]["writing-mode"].startswith("vertical")
+    axis, extent = ("x", "width") if vertical else ("y", "height")
     for run in heading["runs"]:
         for glyph in run["graphemes"]:
             if glyph["text"].isspace() or not glyph["box"]["width"]:
@@ -54,7 +56,7 @@ def grapheme_words(heading):
             if current:
                 last = current[-1]["box"]
                 box = glyph["box"]
-                if abs(box["y"]+box["height"]/2 - (last["y"]+last["height"]/2)) > min(box["height"], last["height"])/2:
+                if abs(box[axis] + box[extent]/2 - (last[axis] + last[extent]/2)) > min(box[extent], last[extent])/2:
                     words.append(current)
                     current = []
             current.append({**glyph, "color": run["styles"]["color"]})
@@ -67,8 +69,8 @@ def latin(text):
     return bool(text) and all("LATIN" in unicodedata.name(ch, "") or unicodedata.combining(ch) for ch in text)
 
 
-def read_ink_gap(page, left, right, scale):
-    """Find a row with painted strokes on each side of the boundary on a locally flat surface."""
+def ink_patch(page, left, right, scale):
+    """Identify a sufficiently flat two-color surface around adjacent range boxes."""
     a, b = left["box"], right["box"]
     if right["color"] != left["color"] or a["x"] >= b["x"]:
         return None
@@ -82,13 +84,21 @@ def read_ink_gap(page, left, right, scale):
     count, bg = max(histogram, key=lambda x: x[0])
     if count < patch.width*patch.height*.28 or sum((f-c)**2 for f,c in zip(fg,bg)) < 1600:
         return None
-    # Project RGB pixels onto the local text/background contrast vector. Only inspect
-    # separator rows where each glyph has a facing stroke near the center of the pair.
     vector = tuple(f-c for f,c in zip(fg,bg))
     denominator = sum(k*k for k in vector)
     values = patch.load()
     def ink(x,y):
         return sum((v-c)*k for v,c,k in zip(values[x,y],bg,vector)) >= .50*denominator
+    return patch, limits, ink
+
+
+def read_ink_gap(page, left, right, scale):
+    """Sample one representative shared-ink row. Its clearance can differ from other rows."""
+    surface = ink_patch(page, left, right, scale)
+    if not surface:
+        return None
+    patch, limits, ink = surface
+    a, b = left["box"], right["box"]
     midpoint = round(((a["x"]+a["width"]+b["x"])/2)*scale)-limits[0]
     low = max(0, math.floor((a["x"] + a["width"]*.20)*scale)-limits[0])
     high = min(patch.width-1, math.ceil((b["x"] + b["width"]*.80)*scale)-limits[0])
@@ -155,7 +165,183 @@ def requested_pair(pairs, word, pair):
     return next((p for p in pairs if (not word or word in p["word"]) and (not pair or p["pair"]==pair)),None)
 
 
-def describe(root, page, heading, scale, requests):
+def column_clearance(page, first, second, scale):
+    """Measure a single empty ink-projection interval between the two range centers."""
+    surface = ink_patch(page, first, second, scale)
+    if not surface:
+        return None
+    patch, limits, ink = surface
+    a, b = first["box"], second["box"]
+    # Require painted bounding columns on both sides. Overhangs, shared glyphs,
+    # internal discontinuities, and multiple possible gaps may defeat attribution.
+    left = max(0, math.floor((a["x"] + a["width"] * .5) * scale) - limits[0])
+    right = min(patch.width - 1, math.ceil((b["x"] + b["width"] * .5) * scale) - limits[0])
+    painted = [x for x in range(left, right + 1) if any(ink(x, y) for y in range(patch.height))]
+    gaps = [(x + 1, nx) for x, nx in zip(painted, painted[1:]) if nx > x + 1]
+    if len(gaps) != 1:
+        return None
+    start, end = gaps[0]
+    return {"cssPx": (end - start) / scale,
+            "x1": (start + limits[0]) / scale, "x2": (end + limits[0]) / scale}
+
+
+def boundary_kind(left, right):
+    if left.isspace() or right.isspace():
+        return "word-space"
+    categories = [unicodedata.category(g[0])[0] for g in (left, right)]
+    if "P" in categories:
+        return "punctuation"
+    return "letters" if categories == ["L", "L"] else "other"
+
+
+def boundary_proof(page, heading, scale, pairs):
+    glyphs = [{**g, "color": run["styles"]["color"]} for run in heading["runs"] for g in run["graphemes"]]
+    horizontal = heading["styles"]["writing-mode"] == "horizontal-tb"
+    vertical = heading["styles"]["writing-mode"].startswith("vertical")
+    inside_words = {p["letters"][0]["start"]: p for p in pairs}
+    rows = []
+    for index, (first, second) in enumerate(zip(glyphs, glyphs[1:]), 1):
+        a, b = first["box"], second["box"]
+        kind = boundary_kind(first["text"], second["text"])
+        pair = inside_words.get(first["start"])
+        if pair and pair["letters"][1]["start"] != second["start"]:
+            pair = None
+        record = {"index": index, "left": first["text"], "right": second["text"],
+                  "start": first["start"], "end": second["end"], "kind": kind,
+                  "word": pair["word"] if pair else None, "rangeGap": None, "inkSample": None,
+                  "columnClearance": None, "boxes": [a, b]}
+        axis, extent = ("x", "width") if vertical else ("y", "height")
+        separation = abs((a[axis] + a[extent] / 2) - (b[axis] + b[extent] / 2))
+        if a[extent] and b[extent] and separation > min(a[extent], b[extent]) / 2:
+            method = "line-break"
+        elif min(a["height"], a["width"], b["height"], b["width"]) <= 0:
+            method = "no-rendered-area"
+        elif kind == "word-space":
+            method = "word-space"
+        elif horizontal and a["x"] < b["x"]:
+            # A box edge is independent of glyph ink, even when the ranges coincide.
+            record["rangeGap"] = b["x"] - a["x"] - a["width"]
+            record["columnClearance"] = column_clearance(page, first, second, scale)
+            # The projection works independently of script or proposed cause.
+            # Reuse any available shared-row sample from the original analysis.
+            record["inkSample"] = pair["ink"] if pair else None
+            if record["columnClearance"]:
+                method = "column-clearance"
+            elif record["inkSample"]:
+                method = "ink-sample"
+            else:
+                method = "visual-only"
+        else:
+            method = "visual-only"
+        record["method"] = method
+        rows.append(record)
+    return rows
+
+
+def word_proofs(root, page, heading, scale, words, rows):
+    """Retain the full painted word, with guide marks placed in a separate margin."""
+    files = []
+    by_start = {row["start"]: row for row in rows}
+    for ordinal, glyphs in enumerate(words, 1):
+        boundaries = [by_start[g["start"]] for g in glyphs[:-1]]
+        if not boundaries:
+            continue
+        text = "".join(g["text"] for g in glyphs)
+        bounds = pixels(bbox([g["box"] for g in glyphs], 5), scale)
+        native = page.crop(bounds)
+        # Nominally enlarge to 3x CSS size. Fit unusually long words to one proof.
+        zoom = min(3 / scale, 1400 / native.width, 900 / native.height)
+        size = tuple(max(1, round(n * zoom)) for n in native.size)
+        enlarged = native.resize(size, Image.Resampling.NEAREST if zoom >= 1 else Image.Resampling.LANCZOS)
+        vertical = heading["styles"]["writing-mode"].startswith("vertical")
+        frame_w = max(420, enlarged.width + (80 if vertical else 24))
+        frame = Image.new("RGB", (frame_w, enlarged.height + 76), "#f6f4ee")
+        draw = ImageDraw.Draw(frame)
+        header = f'Word {ordinal} · boundaries {boundaries[0]["index"]}–{boundaries[-1]["index"]}'
+        draw.text((12, 8), header, font=font(16), fill="#263b35")
+        frame.paste(enlarged, (12, 36))
+        # Number the gaps under the photographed word (or beside vertical text).
+        # Use the DOM range centers only to locate the boundary, preserving the ink.
+        for row in boundaries:
+            a, b = row["boxes"]
+            axis, dim, origin = ("y", "height", bounds[1]) if vertical else ("x", "width", bounds[0])
+            first, second = sorted((a, b), key=lambda v: v[axis])
+            at = (first[axis] + first[dim] + second[axis]) / 2
+            coord = round((at * scale - origin) * (size[1] / native.height if vertical else size[0] / native.width))
+            if vertical:
+                pos = (12 + enlarged.width, 36 + coord)
+                draw.line((pos[0], pos[1], pos[0] + 4, pos[1]), fill="#396c65")
+                draw.text((pos[0] + 6, pos[1]), str(row["index"]), font=font(11), anchor="lm", fill="#263b35")
+            else:
+                pos = (12 + coord, 36 + enlarged.height)
+                draw.line((pos[0], pos[1], pos[0], pos[1] + 4), fill="#396c65")
+                draw.text((pos[0], pos[1] + 6), str(row["index"]), font=font(11), anchor="mt", fill="#263b35")
+        target = f'{heading["file"][:-4]}-word-proof-{ordinal}.png'
+        frame.save(root / target)
+        for row in boundaries:
+            row["detailFile"] = target
+        files.append({"word": text, "file": target, "start": glyphs[0]["start"],
+                      "end": glyphs[-1]["end"], "boundaries": [r["index"] for r in boundaries]})
+    return files
+
+
+def proof_sheets(root, page, heading, scale, rows):
+    """Index every source boundary against real, intact browser raster. Paginate long copy."""
+    names = []
+    stem = heading["file"][:-4]
+    notes = {"visual-only": "Inspect the painted shapes", "ink-sample": "Shared-row sample",
+             "word-space": "Word boundary", "line-break": "Different lines",
+             "no-rendered-area": "No separate painted range", "column-clearance": "Clear columns"}
+    tile_w, tile_h = 272, 172
+    for offset in range(0, max(1, len(rows)), 12):
+        group = rows[offset:offset + 12]
+        width = 3 * tile_w + 4 * 12
+        with Image.open(root / heading["file"]) as raw:
+            overview = raw.convert("RGB")
+        overview.thumbnail((width - 32, 142), Image.Resampling.LANCZOS)
+        header = 72 + overview.height
+        height = header + max(1, math.ceil(len(group) / 3)) * tile_h + 24
+        sheet = Image.new("RGB", (width, height), "#f6f4ee")
+        draw = ImageDraw.Draw(sheet)
+        draw.text((16, 9), "Headline proof", font=font(20), fill="#223432")
+        sheet.paste(overview, (16, 39))
+        segment = f"Boundaries {offset + 1}–{offset + len(group)} of {len(rows)}" if group else "No adjacent graphemes"
+        draw.text((16, 45 + overview.height), segment, font=font(14), fill="#405650")
+        for pos, row in enumerate(group):
+            x = 12 + (pos % 3) * (tile_w + 12)
+            y = header + (pos // 3) * tile_h
+            draw.rounded_rectangle((x, y, x+tile_w, y+tile_h-10), 6, fill="white", outline="#d0d7d0")
+            def label(text):
+                return "space" if text.isspace() else text
+            title = f'{row["index"]:02d}   {label(row["left"])}  /  {label(row["right"])}'
+            draw.text((x+9, y+6), title, font=font(17), fill="#20342f")
+            if row["method"] not in {"line-break", "no-rendered-area"}:
+                bounds = pixels(bbox(row["boxes"], 3), scale)
+                native = page.crop(bounds)
+                factor = min((tile_w - 18) / native.width, 91 / native.height, 3)
+                shape = (max(1, round(native.width * factor)), max(1, round(native.height * factor)))
+                thumb = native.resize(shape, Image.Resampling.NEAREST if factor > 1 else Image.Resampling.LANCZOS)
+                px, py = x + (tile_w - shape[0]) // 2, y + 33 + (91 - shape[1]) // 2
+                sheet.paste(thumb, (px, py))
+                gap = row["columnClearance"]
+                if gap:
+                    # Underline the verified clear strip on the margin, preserving original ink.
+                    for coord in ("x1", "x2"):
+                        gx = px + round((gap[coord] * scale - bounds[0]) * shape[0] / native.width)
+                        draw.line((gx, y+123, gx, y+128), fill="#396c65")
+            note = notes[row["method"]]
+            metric = row["columnClearance"] or row["inkSample"]
+            if metric:
+                note += f' · {metric["cssPx"]:.2f} CSS px'
+            draw.text((x+9, y+135), note, font=font(13), fill="#405650")
+        target = f"{stem}-proof-{len(names)+1}.png"
+        sheet.save(root / target)
+        names.append(target)
+    return names
+
+
+
+def describe(root, page, heading, scale, requests, proof=False):
     heading_bounds = bbox([line["box"] for line in heading["lines"]] or [heading["box"]],6)
     heading["cropBox"] = save_crop(page,heading_bounds,scale,root/heading["file"])
     words,pairs,ranked = analyze(page,heading,scale)
@@ -209,6 +395,13 @@ def describe(root, page, heading, scale, requests):
         heading["details"].append({"word":p["word"],"pair":p["pair"],"wordFile":word_file,"wordBox":word_box,
             "file":target,"box":rect(tuple(a/scale for a in bounds)), "inkSample":p["ink"],
             "rangeGap":p["advanceGap"]})
+    if proof:
+        rows = boundary_proof(page, heading, scale, pairs)
+        heading["proof"] = {
+            "boundaries": rows,
+            "words": word_proofs(root, page, heading, scale, words, rows),
+            "sheets": proof_sheets(root, page, heading, scale, rows),
+        }
     return heading_bounds
 
 
@@ -243,11 +436,11 @@ def main(report_path):
                 baseline=image.convert("RGB")
             for heading in capture["headings"]:
                 requests=[(v.get("word"),v.get("pair")) for v in heading["variants"]]
-                before=describe(root,baseline,heading,scale,requests)
+                before=describe(root,baseline,heading,scale,requests,report.get("proof", False))
                 for variant in heading["variants"]:
                     with Image.open(root/variant["pageFile"]) as image:
                         page=image.convert("RGB")
-                    after=describe(root,page,variant,scale,[(variant.get("word"),variant.get("pair"))])
+                    after=describe(root,page,variant,scale,[(variant.get("word"),variant.get("pair"))],report.get("proof", False))
                     bounds=bbox([rect(before),rect(after)])
                     stem=variant["file"][:-4]
                     original,file=stem+"-original.png",stem+"-candidate.png"

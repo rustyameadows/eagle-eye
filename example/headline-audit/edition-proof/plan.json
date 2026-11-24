@@ -1,0 +1,11 @@
+{
+  "title": "Fieldwork Editions · Travel journal",
+  "profiles": {
+    "wide": {"width": 1040, "height": 640, "scale": 1},
+    "phone": {"width": 390, "height": 720, "scale": 2}
+  },
+  "views": {
+    "north": {"url": "index.html#edition", "ready": "main h1"},
+    "south": {"url": "index.html", "ready": "main h1"}
+  }
+}

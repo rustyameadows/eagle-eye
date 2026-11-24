@@ -43,3 +43,17 @@ python3 skills/eagle-eye/scripts/render-handoff.py --headlines /tmp/fieldwork-ty
 ```
 
 The committed pilot retains its original randomized packets and private maps so its decisions can be replayed. A fresh run creates new neutral IDs and randomizes A/B order.
+
+## Focused headline companion
+
+Two editions of a static page exercise what happens when a user gives the inspector only a headline selector. Each edition is captured at 1040 px (1×) and 390 px (2×). The [capture plan](edition-proof/plan.json) supplies the pages and profiles. To generate a proof and grade it, run:
+
+```sh
+python3 example/headline-audit/edition-proof/check.py /tmp/fieldwork-editions-01
+```
+
+The run writes original page PNGs, reading-size crops, indexed sheets, enlarged word details, `report.json` and `score.json`. Its grader checks coverage in source order, selection, accessible names, wrapping and original painted ink. It locates changed spacing independently from the inspector’s clearance estimates and checks the direction and amount against the source change. The [recorded machine score](edition-proof/recorded-score.json) belongs to this companion exercise. The eight-case benchmark and its independent optical pilot have their own results above.
+
+Open the [pixel proof of the two editions](edition-proof/pixels/index.html) to compare their complete headline shapes at both widths. The companion runner takes a shared full-line rectangle from each pair of page captures and rebuilds this viewer in the run’s `pixels/` directory.
+
+For a fresh optical discovery trial, give a reviewer only one anonymous original page image per trial, displayed at its captured CSS width. Randomize the trials and ask “Evaluate the headline as you read it. Record any location you would change, the direction and your confidence. You can keep it as set.” Freeze those observations before sharing other editions, source, proof annotations or scores. Record the reviewer’s findings separately from machine scores.

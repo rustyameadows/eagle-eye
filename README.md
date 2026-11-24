@@ -24,7 +24,9 @@ Invoke it in a new chat with a target and the kind of work you want.
 
 ## Audit headline spacing
 
-General audits include the hero or dominant display heading on each scoped view. Ask `Use $eagle-eye to audit every headline across these pages` for an exhaustive pass, or `Fix the spacing around the T in this hero and show the original beside the repair` for a focused refinement. The [typography workflow](skills/eagle-eye/references/headline-typography.md) covers optical review, font diagnosis, and scoped repairs. [Open the headline audit presentation](example/headline-audit/reports/handoff.html) or [reproduce the static typography eval](example/headline-audit/README.md).
+General audits include the hero or dominant display heading on each scoped view. Ask `Use $eagle-eye to evaluate this headline` for a focused reading-size review with a numbered proof of its complete spacing. Ask `Use $eagle-eye to audit every headline across these pages` for a broader inventory. The [typography workflow](skills/eagle-eye/references/headline-typography.md) covers optical review, font diagnosis, and scoped repairs. [Open the headline audit presentation](example/headline-audit/reports/handoff.html) or [reproduce the static typography eval](example/headline-audit/README.md).
+
+For a proposed change, the [full-line pixel viewer](example/headline-audit/edition-proof/pixels/index.html) shows the reading-size renders, a signed difference map and exact source channels at each coordinate. The [pixel comparison workflow](skills/eagle-eye/references/handoff.md#full-raster-evidence-for-a-focused-headline) works with registered local PNGs.
 
 ## Audit layout shifts between views
 
