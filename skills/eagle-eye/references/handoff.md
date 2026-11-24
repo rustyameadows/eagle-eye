@@ -1,6 +1,8 @@
 # Presenting an audit
 
-Lead with the decision the work supports. A handoff should let someone answer three questions quickly: what you actually inspected, which findings matter, and what evidence changed the outcome.
+For a quick critique, reply inline with the clean capture, the finding and one supporting comparison. When someone will resume the work, link the living audit and its latest evidence. Use a presentation when a reviewer needs to compare several screens or repair cycles, or explicitly requests one.
+
+For a continuing audit or presentation, make the decision and its supporting evidence easy to find.
 
 - Name the product, user journey, revision or state, viewport profiles, and capture conditions. Count unique issues separately from repeated measurements and retests.
 - Put the most consequential finding first. Show a clean crop or aligned before/after evidence, the actual offset or observation, the intended relationship, its impact, and the verification result. A small defect often needs a magnified crop and a link back to the complete screen.
@@ -8,7 +10,7 @@ Lead with the decision the work supports. A handoff should let someone answer th
 - Make coverage and gaps visible. Use a matrix for views, states and viewport profiles. Disclose sampling, absent states and claims the medium cannot support. Where there is no ground truth, report the observed findings and open risks.
 - In an eval, separate the known defect key from discovery inputs. Score missed cases, false flags, intentional differences, and unavailable evidence. Label each result as a measurement regression or a blind review, depending on what actually ran.
 
-When handing over several screens or repair cycles, prepare the presentation view beside the audit log. Lead the handoff with a link to the rendered presentation, then link the Markdown and the detailed reports. Verify that images and evidence links open locally at both a wide and compact viewport.
+When presenting, save the view beside the audit log and lead with a link to it. Verify that images and evidence links open locally at both a wide and compact viewport.
 
 ## Render a measured handoff
 
@@ -28,7 +30,7 @@ For another audit, place a JSON brief beside the run directories. The following 
     {"id": "baseline", "label": "Baseline"},
     {"id": "retest", "label": "Retest"}
   ],
-  "scope": ["Direct entries to Inbox and Archive at the planned widths."],
+  "scope": ["Direct entries to Albums and Artists at the planned widths."],
   "limits": ["Return navigation has a separate audit."]
 }
 ```
@@ -42,26 +44,26 @@ The renderer counts individual checks from the saved reports. Missing planned co
 
 ## Render a screenshot or qualitative audit
 
-Use `"mode": "manual"` for reviews recorded in a living Markdown log. Summarize the observed result of each pass and link its original evidence. The following example references the supplied single-screen audit and uses paths relative to its `example/` directory.
+Use `"mode": "manual"` for reviews recorded in a living Markdown log. Summarize the observed result of each pass and link its original evidence. This example uses illustrative evidence paths relative to a player's audit directory.
 
 ```json
 {
   "mode": "manual",
-  "title": "File list row alignment",
-  "summary": "Compare the vertical spacing of the row dates before and after the divider change.",
+  "title": "Audio player review",
+  "summary": "Compare the speaker icon inside the volume control in both player views.",
   "findings": [{
-    "title": "Date alignment across rows",
+    "title": "Speaker icon inset",
     "status": "verified",
-    "observation": "The last date sat 1 CSS px below the 40 px row rhythm.",
-    "criterion": "Measure the three dates against the same 40 px pitch.",
+    "observation": "The icon moved farther into the control when the transcript opened.",
+    "criterion": "Compare the icon’s leading edge with the control’s leading edge in both views.",
     "evidence": [
-      {"role": "before", "label": "Before the final pass", "path": "evidence/p03-dates.png"},
-      {"role": "after", "label": "Final retest", "path": "evidence/p04-dates.png"}
+      {"role": "before", "label": "Before the repair", "path": "evidence/speaker-before.png"},
+      {"role": "after", "label": "Source retest", "path": "evidence/speaker-after.png"}
     ]
   }],
-  "passes": [{"label": "Final retest", "note": "Verified the last date moved back to its guide.", "log": "AUDIT.md"}],
-  "scope": ["The three date labels in the supplied compact file list."],
-  "limits": ["These crops cover one viewport and one set of dates."]
+  "passes": [{"label": "Source retest", "note": "The speaker inset matches in both views.", "log": "AUDIT.md"}],
+  "scope": ["Compact player with the transcript closed and open."],
+  "limits": ["The captures cover one viewport."]
 }
 ```
 

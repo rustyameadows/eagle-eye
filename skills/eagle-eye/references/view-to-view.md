@@ -15,7 +15,7 @@ List the journeys where users expect continuity. Include two siblings in the sam
 | Repeated controls, badges, icons | Center or trailing edge, then visible ink | Stable control frame and an equivalent drawn mark | Separates a changed hit area from a glyph with internal whitespace. Use the raster guide tool for the ink check. |
 | Sticky bars, dialogs, drawers | Fixed edge or gap to the anchor | Same scroll position and open state | A focus jump, scrollbar lock or shifted portal can change the origin. Test the actual interaction. |
 
-Write down the intended relationship, its basis (shared component, design token, reference, or sibling consensus), expected signed delta and tolerance. Start at zero intended delta for a genuinely shared dimension. Set tolerance in CSS pixels for this relationship. The fixture's 0.25 px tolerance targets deterministic box geometry. For a deliberate variant, name the expected exception and quantify it when evidence permits. An unknown intention remains a design question.
+Write down the intended relationship, its basis (shared component, design token, reference, or sibling consensus), expected signed delta and tolerance. Start at zero intended delta for a genuinely shared dimension. Set tolerance in CSS pixels for this relationship and its measurement precision. For a deliberate variant, name the expected exception and quantify it when evidence permits. An unknown intention remains a design question.
 
 ## 2. Register the views
 
@@ -33,9 +33,9 @@ Align the two screenshots to the same viewport origin. For a detail crop, use on
 
 ### After finding a convincing explanation
 
-Two defects can coexist in the same area. When an ancestor shifts, keep the viewport-registered pair, then measure a second pair of *local* distances: child edge minus parent edge in each view. An Archive page can gain 3 px of padding while the first row gains another 0.5 px inside its card. A fix to the page inset closes only the first finding.
+Suppose a media player's volume control shifts right. In the first view, the control begins at x = 80 and its speaker icon at x = 92. In the second, the edges are at 86 and 102. The control moved 6 CSS px. Subtracting the control edge from the icon edge in each view gives insets of 12 and 16 CSS px. Track the 4 px change inside the control separately and remeasure both relationships after a repair.
 
-When a breadcrumb or second title line justifies a vertical shift, verify the next relationship independently. Compare the space between the heading’s bottom edge and the toolbar’s top edge. An intended 32 px title movement and an unintended 2 px gap reduction can look like a single acceptable 30 px movement. Record separate outcomes for the intended change and the local gap.
+An intended movement can also hide a local change. If a player's expanded transcript moves its transport controls down, check the gap between the controls and the progress bar against the collapsed player. Record the expected group movement and the observed local gap separately.
 
 ## Local comparison runner
 
@@ -63,7 +63,7 @@ node "$SKILL/scripts/compare-views.cjs" plan.json docs/eagle-eye/view-pass-01 --
 ```
 
 - Available edges are `left`, `right`, `top`, `bottom`, `centerX`, and `centerY`. A relative measurement subtracts its second edge from its first. Both edges use the same axis. A pair can limit coverage with `"profiles": ["desktop"]`.
-- A pair can declare `"expect": {"title-top": {"delta": 32, "reason": "Detail header includes a breadcrumb"}}` for a named check. The expected magnitude is tested in its given direction.
+- A pair can declare `"expect": {"transport-top": {"delta": 48, "reason": "Expanded transcript adds a control strip"}}` when its plan defines that check and the design specifies that movement. The expected magnitude is tested in its given direction.
 - The runner uses a fresh Chromium context per profile, new pages per view, reduced motion and scroll at the viewport origin. Profiles accept `theme` as light or dark. The comparison labels direct entries and actual link arrivals. A reversed direct pair shows the sign of a geometric difference. A link-arrival capture establishes what the user sees after navigating. Use the existing capture helper's Playwright setup. The output folder must be new.
 - Open `index.html` locally for linked guides, side-by-side, opacity overlay, a common 2× detail crop, and the clean overview. Use **Next issue** to move through drift and unverified checks on the current profile. **Computed spacing changes** lists differences in the sampled padding, margins, borders, gaps and transforms of the selected anchors. Use this to guide a check of their ancestors when needed. The clean PNGs sit beside `report.json`. `AUDIT.md` updates after each capture and profile. Keep diagnosis and issue history in the parent run's living report so measurements from later passes remain comparable.
 - Missing, ambiguous, hidden, offscreen or unstable anchors, unexpected destinations and failed captures leave gaps. Visible border boxes can still be partially occluded. Inspect the screenshots for overlays, loading placeholders and incorrect state. The runner tests only declared anchors and view pairs.

@@ -1,6 +1,6 @@
 # Eagle Eye
 
-A local Codex skill for finding visual defects across a component, screen, flow, or whole site. It inventories the target, captures the rendered interface, marks up suspected defects, and carries findings through repeated critique or implementation cycles. Each project keeps a living Markdown audit with coverage, evidence, decisions and outstanding issues.
+A local Codex skill for finding visual defects in a component, screen, flow, or site. A quick critique returns a clean screenshot, a finding, and a supporting comparison inline. A selected headline gets a letter-by-letter visual proof. A whole-site refinement adds an inventory, a living audit, and verified repair cycles.
 
 ## See an evaluated audit
 
@@ -30,15 +30,15 @@ For a proposed change, the [full-line pixel viewer](example/headline-audit/editi
 
 ## Audit layout shifts between views
 
-Ask: `Use $eagle-eye to compare the shared shell, page titles, toolbar gaps and list insets across Inbox, Archive and Settings. Check direct and return navigation on desktop and mobile. Group related shifts by cause and re-run the same pairs after each fix.`
+Try `Use $eagle-eye to compare the playback controls in the album and artist views. Check direct and return navigation on desktop and mobile. Group related shifts by cause and re-run the same pairs after each fix.`
 
-For individual measurements, open the [interactive baseline](example/view-audit/reports/baseline/index.html) to inspect a 3 px archive inset with the source and destination guides. Change the viewport, pick a measurement, or blend the two captures. The [worked multi-view audit](example/view-audit/README.md) includes the outcomes across three revisions and commands for the retained browser suite. The [agent workflow](skills/eagle-eye/references/view-to-view.md) explains how to choose trustworthy anchors and compare another app.
+For individual measurements, open the [interactive baseline](example/view-audit/reports/baseline/index.html) to inspect source and destination guides. Change the viewport, pick a measurement, or blend the two captures. The [worked multi-view audit](example/view-audit/README.md) includes the outcomes across three revisions and commands for the retained browser suite. The [agent workflow](skills/eagle-eye/references/view-to-view.md) explains how to choose trustworthy anchors and compare another app.
 
 ## How the repo stays current
 
 [SKILL.md](skills/eagle-eye/SKILL.md) defines the audit. The [target catalog](skills/eagle-eye/references/audit-targets.md) lists likely defects and how to reveal them. The [evidence guide](skills/eagle-eye/references/evidence.md) covers capture, guide recipes and interpretation. [Maintainer instructions](AGENTS.md) keep these files current alongside changes to behavior.
 
-During an audit the agent updates the target repo's `docs/eagle-eye/<run>/AUDIT.md` as each screen is inspected, issue found, fix made and result verified. [The template](skills/eagle-eye/assets/AUDIT.md) is also usable by hand. The report and images are ordinary local files, available while work is in progress.
+For an audit someone will resume, the agent updates the target repo's `docs/eagle-eye/<run>/AUDIT.md` as screens are inspected and repairs verified. Use a presentation when someone needs to review several screens or repair cycles. [The template](skills/eagle-eye/assets/AUDIT.md) is also usable by hand.
 
 ## Run the single-screen example
 

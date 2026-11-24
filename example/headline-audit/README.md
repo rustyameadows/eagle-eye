@@ -21,6 +21,8 @@ The inspection covered 28 distinct heading locations on seven pages across three
 
 In one independent pilot the reviewer confidently reported five defects and localized the other three as pairs for comparison. All eight directions were correct and no clean control was flagged. In a separately randomized A/B pass, the same reviewer preferred eight of eight repairs and expressed no preference on all three identical trials. [Original findings](reports/review/discovery.md) · [Frozen choices](reports/review/preferences.json) · [Grading and decoded results](reports/review/score.json)
 
+A separate quick-review trial on three desktop screenshots tested the opening-pair recheck. Its [reviewer response and comparison examples](reports/review/opening-pair-recheck.md) are retained with the grading materials.
+
 ## Reproduce
 
 From the repo root, run against a new destination. The prerequisites are the same local Node, Playwright/Chromium, Python and Pillow setup as the [main skill](../../README.md).

@@ -33,6 +33,8 @@ Keep the same ID through verification. For each finding, record where it occurs,
 
 For a headline finding, record its exact copy and pair or affected run, direction, viewport, rendered face, suspected cause, and the reading-size comparison. Label temporary candidates and link the actual source retest when a fix is applied.
 
+At the end of a typography pass, record which opening pairs you revisited within scope, what you compared, and whether the first judgment held, changed or remains uncertain.
+
 For a focused headline proof, retain the clean title and numbered boundary sheets. Record exact occurrences instead of combining identical pairs from different words. Group adjacent retained indexes when their rationale is shared. For a requested refinement, distinguish the preview from the independently reopened source render.
 
 | Heading and viewport | Boundary index or group | Reading-size verdict and reason | Comparison, confidence and source retest |
