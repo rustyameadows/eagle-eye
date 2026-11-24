@@ -1,0 +1,14 @@
+{
+  "scale": 2,
+  "crop": [16, 84, 210, 250],
+  "guides": [
+    {"name": "Tab midpoint", "axis": "y", "at": 109},
+    {"name": "List leading edge", "axis": "x", "at": 29}
+  ],
+  "regions": [
+    {"name": "Folder", "box": [36, 98, 59, 122], "ink": "#365543", "guide": "Tab midpoint"},
+    {"name": "First marker", "box": [24, 148, 45, 167], "ink": "#617e66", "guide": "List leading edge", "anchor": "start"},
+    {"name": "Middle marker", "box": [24, 188, 45, 207], "ink": "#617e66", "guide": "List leading edge", "anchor": "start"},
+    {"name": "Last marker", "box": [24, 228, 45, 247], "ink": "#617e66", "guide": "List leading edge", "anchor": "start"}
+  ]
+}

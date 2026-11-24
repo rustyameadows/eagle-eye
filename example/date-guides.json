@@ -1,0 +1,14 @@
+{
+  "scale": 2,
+  "crop": [306, 140, 370, 252],
+  "guides": [
+    {"name": "First date center", "axis": "y", "at": 157.75},
+    {"name": "Second +40", "axis": "y", "at": 197.75},
+    {"name": "Third +80", "axis": "y", "at": 237.75}
+  ],
+  "regions": [
+    {"name": "Nov 21", "box": [310, 147, 367, 172], "ink": "#58635c", "tolerance": 18, "guide": "First date center"},
+    {"name": "Nov 20", "box": [310, 187, 367, 212], "ink": "#58635c", "tolerance": 18, "guide": "Second +40"},
+    {"name": "Nov 18", "box": [310, 227, 367, 252], "ink": "#58635c", "tolerance": 18, "guide": "Third +80"}
+  ]
+}
