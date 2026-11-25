@@ -92,7 +92,7 @@ def count_map(mask):
     return result
 
 
-def compare(a, b, regions):
+def compare(a, b, regions, palette=PALETTE):
     if a.size != b.size:
         raise ValueError('Every stage of a profile must have the same native frame dimensions.')
     mask = bytearray(a.width * a.height)
@@ -114,7 +114,7 @@ def compare(a, b, regions):
     stats = {'counts': count_map(classes), 'changedBounds': classes.getbbox(),
              'peakChannelDelta': max(i for i, n in enumerate(deltas) if n),
              'maxChannelDeltaHistogram': deltas, 'regions': summaries}
-    classes.putpalette(bytes(channel for color in PALETTE for channel in color))
+    classes.putpalette(bytes(channel for color in palette for channel in color))
     return stats, classes
 
 
@@ -128,7 +128,11 @@ def build(manifest_path, output):
         raise ValueError('Choose a new output directory to preserve the earlier evidence.')
     stages = [{k: stage[k] for k in ('id', 'label')} for stage in spec['stages']]
     ids = [stage['id'] for stage in stages]
-    result = {'title': spec['title'], 'stages': stages, 'palette': PALETTE,
+    theme = spec.get('differencePalette', 'color')
+    if theme not in ('color', 'grayscale'):
+        raise ValueError('differencePalette must be color or grayscale.')
+    palette = [(value,) * 3 for value in (245, 20, 148, 80)] if theme == 'grayscale' else PALETTE
+    result = {'title': spec['title'], 'stages': stages, 'palette': palette,
               'method': 'Exact opaque 8-bit RGB comparison, every pixel. Direction uses the sign of 2126 ΔR + 7152 ΔG + 722 ΔB on encoded channels. Bounds use exclusive right/bottom edges.',
               'profiles': []}
     pixels = {}
@@ -170,7 +174,7 @@ def build(manifest_path, output):
             p['regions'] = profile.get('regions', [])
             validate_regions(p['regions'], *size)
             for i, (left, right) in enumerate(combinations(ids, 2)):
-                stats, diff = compare(frames[left], frames[right], p['regions'])
+                stats, diff = compare(frames[left], frames[right], p['regions'], palette)
                 filename = folder / f'difference-{i+1}.png'
                 diff.save(filename)
                 p['comparisons'].append({'from': left, 'to': right,

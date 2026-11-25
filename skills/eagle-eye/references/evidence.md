@@ -50,3 +50,5 @@ If a measured box touches the region edge, inspect clipping and rerun with more 
 - For glyphs, the center of the measured ink bounds is one reproducible measurement. Optical balance also depends on the shape, typeface and neighboring elements. Check at actual size with the guides off.
 - Set acceptance from the reference, design tokens or an intentionally matched sibling. A half CSS pixel can correspond to a whole device pixel at 2×. Report that difference and its visual impact; avoid a universal zero-offset rule.
 - Preserve before and after at identical viewport, scale and state. Use overview evidence for hierarchy and detailed crops for localized findings. A marked-up crop by itself cannot establish that the rest of the screen was inspected.
+
+Set a guide’s optional `color` field to choose its line and legend color. For a monochrome pixel difference map, set `"differencePalette": "grayscale"` in the pixel-proof manifest. The source RGB values and measurement classes are preserved.

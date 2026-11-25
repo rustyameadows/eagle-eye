@@ -16,67 +16,63 @@ On your next turn, attach a screenshot or point Codex at a local page and try on
 - `Use $eagle-eye to evaluate this headline. Show the whole line and the spacing between letters.`
 - `Use $eagle-eye to compare these two views. Show me which shared elements move.`
 
-## Watch an audit
+## Audit results
 
-### Rainbow’s “Stuff I’ve Made” headline
+### Example 1
 
-At desktop size, the apostrophe and v in “I’ve” sat 16.97 px apart. Loosening the whole headline opened that gap to 20.00 px, nearly a word space. The shipped pair adjustment brought it back to 9.22 px. Watch the whole line first, then follow the two marked ink pixels in the enlargement.
-
-<picture>
-  <source media="(prefers-reduced-motion: reduce)" srcset="example/walkthroughs/rainbow-comparison.png">
-  <source media="(max-width: 600px)" srcset="example/walkthroughs/rainbow-compact.gif">
-  <img src="example/walkthroughs/rainbow-wide.gif" alt="Original, tracking-only and shipped captures of the Rainbow work headline. The enlarged word shows the apostrophe and v coming back together in the shipped version.">
-</picture>
-
-[Download the four-width Rainbow proof](https://raw.githubusercontent.com/rustyameadows/eagle-eye/main/example/walkthroughs/rainbow-proof.zip) · [See the before and after](example/walkthroughs/rainbow-comparison.png) · [Original audit plate and source PNGs](example/walkthroughs/rainbow/README.md)
-
-### Does the navigation move between pages?
-
-Follow **Library → Notes**. The heading keeps its 24 px content inset, but the same book icon shifts from x=24 to x=27. Both detail crops share one viewport origin. After the repair, the icon meets the same guide on both pages.
+**Headline spacing.** At 1440 px, the gap between the apostrophe and v in “I’ve” measured 16.97 px. Adjusting tracking across the headline opened it to 20.00 px. A local pair adjustment reduced it to 9.22 px.
 
 <picture>
-  <source media="(prefers-reduced-motion: reduce)" srcset="example/walkthroughs/navigation-comparison.png">
-  <source media="(max-width: 600px)" srcset="example/walkthroughs/navigation-compact.gif">
-  <img src="example/walkthroughs/navigation-wide.gif" alt="The Library and Notes pages alternate. A fixed vertical guide shows the shared book icon shifting 3 px to the right on Notes, then aligning after the repair.">
+  <source media="(prefers-reduced-motion: reduce)" srcset="example/walkthroughs/example-1-comparison.png">
+  <source media="(max-width: 600px)" srcset="example/walkthroughs/example-1-compact.gif">
+  <img src="example/walkthroughs/example-1-wide.gif" alt="Three captures of the same headline. Two marked ink pixels show the change in spacing between the apostrophe and v.">
 </picture>
 
-[Compare the navigation stills](example/walkthroughs/navigation-comparison.png)
+[Before and after](example/walkthroughs/example-1-comparison.png) · [Captures and measurements](example/walkthroughs/example-1/README.md) · [Download the four-width proof](https://raw.githubusercontent.com/rustyameadows/eagle-eye/main/example/walkthroughs/example-1.zip)
 
-### Does one pair break the word?
+### Example 2
 
-Read **Paper trail** at its original size, then inspect the P and a. A margin on the initial P makes the opening look split. Removing it restores native kerning and narrows the gap between the letters’ outer ink columns from 8 px to 2 px. The other pairs keep their spacing.
+**Page-to-page alignment.** The navigation icon moved 3 px to the right on the second page while the heading stayed at x = 24 px. After the inset correction, the icon starts at x = 24 px on both pages.
 
 <picture>
-  <source media="(prefers-reduced-motion: reduce)" srcset="example/walkthroughs/kerning-comparison.png">
-  <source media="(max-width: 600px)" srcset="example/walkthroughs/kerning-compact.gif">
-  <img src="example/walkthroughs/kerning-wide.gif" alt="The complete Paper trail headline appears beside a magnified P and a. Dashed guides mark the ink edges before and after restoring native pair spacing.">
+  <source media="(prefers-reduced-motion: reduce)" srcset="example/walkthroughs/example-2-comparison.png">
+  <source media="(max-width: 600px)" srcset="example/walkthroughs/example-2-compact.gif">
+  <img src="example/walkthroughs/example-2-wide.gif" alt="A fixed vertical guide shows a navigation icon moving 3 px between pages. Both captures align after the inset correction.">
 </picture>
 
-[Compare the headline stills](example/walkthroughs/kerning-comparison.png) · [Reproduce the workspace captures](example/walkthroughs/REHEARSAL.md)
+[Before and after](example/walkthroughs/example-2-comparison.png)
 
-### Two details on one screen
+### Example 3
 
-The original *Workspace files* demo follows a folder icon and a file list through two repairs. Each retest uses the same guide as the original capture.
-
-**Is the folder centered in its tab?** The top and bottom edges of the 28 px tab define its midpoint. The folder sits 3 px low. After the repair, its center lands on the guide.
+**Opening pair.** The gap between the ink columns of P and a in “Paper trail” measured 8 px. Removing a margin on the P restored native kerning and reduced the gap to 2 px. The remaining pairs kept their spacing.
 
 <picture>
-  <source media="(prefers-reduced-motion: reduce)" srcset="example/walkthroughs/folder-comparison.png">
-  <source media="(max-width: 600px)" srcset="example/walkthroughs/folder-compact.gif">
-  <img src="example/walkthroughs/folder-wide.gif" alt="The tab midpoint guide shows the folder center 3 px below it. The repaired folder sits on the same guide at 0 px.">
+  <source media="(prefers-reduced-motion: reduce)" srcset="example/walkthroughs/example-3-comparison.png">
+  <source media="(max-width: 600px)" srcset="example/walkthroughs/example-3-compact.gif">
+  <img src="example/walkthroughs/example-3-wide.gif" alt="The full headline and an enlarged P and a show the original 8 px gap and the 2 px retest.">
 </picture>
 
-[Compare the two folder captures side by side](example/walkthroughs/folder-comparison.png)
+[Before and after](example/walkthroughs/example-3-comparison.png)
 
-**Do the files look like peers?** The first and last markers establish a shared left edge. The middle file starts 6 px farther right, making it look nested. The retest shows all three markers on the same line.
+### Example 4
+
+**Tab alignment.** The folder icon sat 3 px below the midpoint of a 28 px tab. The retest measures 0 px against the same guide.
 
 <picture>
-  <source media="(prefers-reduced-motion: reduce)" srcset="example/walkthroughs/rows-comparison.png">
-  <source media="(max-width: 600px)" srcset="example/walkthroughs/rows-compact.gif">
-  <img src="example/walkthroughs/rows-wide.gif" alt="A vertical guide joins the first and last file markers. The middle marker moves from 6 px to the right of the guide to 0 px.">
+  <source media="(prefers-reduced-motion: reduce)" srcset="example/walkthroughs/example-4-tab-comparison.png">
+  <source media="(max-width: 600px)" srcset="example/walkthroughs/example-4-tab-compact.gif">
+  <img src="example/walkthroughs/example-4-tab-wide.gif" alt="A horizontal midpoint guide shows the folder icon 3 px low before the repair and centered after it.">
 </picture>
 
-[Compare the list captures side by side](example/walkthroughs/rows-comparison.png) · [Read the audit and inspect the original screenshots](example/AUDIT.md)
+**List alignment.** The middle row started 6 px farther right than its siblings. The retest places all three markers on the same vertical guide.
+
+<picture>
+  <source media="(prefers-reduced-motion: reduce)" srcset="example/walkthroughs/example-4-list-comparison.png">
+  <source media="(max-width: 600px)" srcset="example/walkthroughs/example-4-list-compact.gif">
+  <img src="example/walkthroughs/example-4-list-wide.gif" alt="A vertical guide shows the middle marker indented by 6 px, then aligned with the markers above and below it.">
+</picture>
+
+[Tab comparison](example/walkthroughs/example-4-tab-comparison.png) · [List comparison](example/walkthroughs/example-4-list-comparison.png) · [Audit record](example/AUDIT.md)
 
 ## Local capture tools
 
@@ -92,6 +88,6 @@ python3 -m pip install Pillow
 
 Run the capture tools from that checkout with the Python environment active.
 
-## Examples
+## Evaluation fixtures
 
 See a [single-screen audit with before-and-after images](example/AUDIT.md), the [24-screen layout benchmark](example/view-audit/README.md), or the [headline typography benchmark](example/headline-audit/README.md). To explore the interactive HTML reports, open them locally from a clone of the repository.

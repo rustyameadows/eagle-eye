@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Eagle Eye Annotations";
+  src: local("Helvetica"), local("Helvetica Regular"), local("NimbusSans-Regular");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Eagle Eye Annotations";
+  src: local("Helvetica-Bold"), local("Helvetica Bold"), local("NimbusSans-Bold");
+  font-weight: 700;
+}

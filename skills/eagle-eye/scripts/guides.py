@@ -60,7 +60,7 @@ def annotate(source, recipe):
         name, axis, at = guide["name"], guide["axis"], number(guide["at"])
         if name in guides or axis not in ("x", "y"):
             raise ValueError(f"Guide needs a unique name and x/y axis: {name}")
-        color = PALETTE[i % len(PALETTE)]
+        color = guide.get("color", PALETTE[i % len(PALETTE)])
         index = 0 if axis == "x" else 1
         pos = round(at * scale) - crop[index]
         if not 0 <= pos < detail.size[index]:
@@ -90,7 +90,14 @@ def annotate(source, recipe):
             "ink_bounds_px": bounds, f"position_{unit_key}": value, f"offset_{unit_key}": delta,
             "touches_roi_edge": touches,
         })
-    font = ImageFont.load_default()
+    for face in ("Helvetica.ttc", "Helvetica.ttf", "NimbusSans-Regular.otf", "Arial.ttf"):
+        try:
+            font = ImageFont.truetype(face, 13)
+            break
+        except OSError:
+            continue
+    else:
+        font = ImageFont.load_default()
     row_height = 20
     width = max(detail.width, max(math.ceil(draw.textlength(text, font=font)) for _, text in legend) + 28)
     canvas = Image.new("RGB", (width, detail.height + 12 + row_height * len(legend)), "#ffffff")
@@ -99,7 +106,7 @@ def annotate(source, recipe):
     for i, (color, label) in enumerate(legend):
         y = detail.height + 6 + i * row_height
         draw.rectangle((6, y+4, 14, y+7), fill=color)
-        draw.text((20, y), label, fill="#162126", font=font)
+        draw.text((20, y), label, fill="#222222", font=font)
     return canvas, dict(scale=scale, units=units, source_size_px=image.size, crop_px=crop, measurements=results)
 
 

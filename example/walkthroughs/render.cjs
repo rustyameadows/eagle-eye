@@ -6,7 +6,7 @@ const path = require('node:path');
 const { launchChromium } = require('../../skills/eagle-eye/scripts/browser.cjs');
 
 // Sample movement at 10 fps. The encoder holds each still until the next beat.
-const walkthroughs = ['folder', 'rows', 'navigation', 'kerning', 'rainbow'];
+const walkthroughs = ['example-4-tab', 'example-4-list', 'example-2', 'example-3', 'example-1'];
 const times = Array.from({ length: 102 }, (_, index) => index * 100).filter(time =>
   time === 0 || time === 3200 || time === 7200 ||
   (time >= 700 && time <= 2600) || (time >= 4600 && time <= 5800) || time >= 9100
@@ -38,6 +38,15 @@ async function render() {
             return img.decode();
           }));
         });
+        const colorRegions = await stage.evaluate(el => {
+          const origin = el.getBoundingClientRect();
+          return Array.from(el.querySelectorAll('[data-source-color]'), node => {
+            const r = node.getBoundingClientRect();
+            return [Math.floor(r.left - origin.left), Math.floor(r.top - origin.top),
+              Math.ceil(r.right - origin.left), Math.ceil(r.bottom - origin.top)];
+          });
+        });
+        await fs.writeFile(path.join(directory, 'color-regions.json'), JSON.stringify(colorRegions));
         for (const time of times) {
           await page.evaluate(async t => {
             window.dispatchEvent(new CustomEvent('eagle-seek', { detail: t }));

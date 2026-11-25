@@ -1,19 +1,19 @@
 import { useEffect, useId, useState } from 'react'
 import { Stage, type Act } from '../../kit'
-import { ProofScene } from './proofs'
+import { ProofScene, annotationFont } from './proofs'
 
 // Stageshow authoring scene. The images are the compact 390 CSS px captures
 // at 2× density. All source windows and guide positions below use native pixels.
-type Subject = 'folder' | 'rows'
+type Subject = 'example-4-tab' | 'example-4-list'
 type State = { time: number }
 const period = 10800
 const initial = { time: 0 }
 const poster = { time: 7900 }
-const cream = '#f2f3ec'
-const pine = '#193d32'
-const mint = '#9ee7bb'
-const guide = '#087456'
-const error = '#a0391c'
+const canvas = '#f2f2f2'
+const surface = '#ffffff'
+const ink = '#171717'
+const guide = '#383838'
+const measuredInk = '#555555'
 const files = ['p01-compact.png', 'p02-compact.png', 'p03-compact.png']
 
 function ramp(t: number, a: number, b: number) {
@@ -40,7 +40,7 @@ function Shot({ file, x, y, w, h, sx, sy, zoom = 1 }: {
 
 function Scene({ subject, compact, time }: { subject: Subject; compact: boolean; time: number }) {
   const key = useId().replace(/:/g, '')
-  const folder = subject === 'folder'
+  const folder = subject === 'example-4-tab'
   const before = files[folder ? 0 : 1], after = files[folder ? 1 : 2]
   const width = compact ? 358 : 744, height = compact ? 416 : 302
   const panelX = compact ? 0 : 348, panelY = compact ? 156 : 0
@@ -85,29 +85,29 @@ function Scene({ subject, compact, time }: { subject: Subject; compact: boolean;
   const rowCenter = dy+(396-278)*rowScale
   const gap = 12*rowScale
   const barY = compact ? panelY+222 : 269
-  return <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} style={{display:'block', fontFamily:'Lato, Arial, sans-serif'}}
+  return <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} style={{display:'block', fontFamily:annotationFont}}
       role="img" aria-label={folder ? 'Checking the folder against the midpoint of its tab' : 'Checking the inset of the middle file against its siblings'}>
     <defs>
       <clipPath id={contextClip}><rect x={dimX} y={dimY} width={contextWidth*imageReveal} height={screenHeight}/></clipPath>
-      <clipPath id={panelClip}><rect x={dx} y={dy} width={dw} height={dh} rx="5"/></clipPath>
+      <clipPath id={panelClip}><rect x={dx} y={dy} width={dw} height={dh} rx="0"/></clipPath>
       <clipPath id={detailClip}><rect x={dx} y={dy} width={dw*imageReveal} height={dh}/></clipPath>
     </defs>
-    <rect width={width} height={height} fill={cream}/>
-    <text x={compact?13:18} y={compact?23:29} fontSize="13" fontWeight="700" fill="#405d50">{compact?'Workspace files':'Compact capture'}</text>
-    <text x={compact?344:329} y={compact?23:29} textAnchor="end" fontSize="12.5" fill="#516258">390 CSS px · 2×</text>
+    <rect width={width} height={height} fill={canvas}/>
+    <text x={compact?13:18} y={compact?23:29} fontSize="13" fontWeight="700" fill="#202020">Example 4</text>
+    <text x={compact?344:329} y={compact?23:29} textAnchor="end" fontSize="12.5" fill="#525252">390 CSS px · 2×</text>
     {context(before)}
     <g clipPath={`url(#${contextClip})`}>{context(after)}</g>
     <g opacity={guideAmount} fill="none" stroke={guide} strokeWidth="1.4">
       <rect x={bracketX} y={bracketY} width={bracketW} height={bracketH} rx="3"/>
     </g>
-    <rect x={panelX} y={panelY} width={panelW} height={panelH} fill={pine}/>
-    <text x={dx} y={panelY+(compact?32:40)} fontSize={compact?22:26} fill="#f5f5e9" fontFamily="Georgia, serif">{folder?'Tab midpoint':'List leading edge'}</text>
-    <g textAnchor="end" fontSize="14" fill={mint}>
+    <rect x={panelX} y={panelY} width={panelW} height={panelH} fill={surface}/>
+    <text x={dx} y={panelY+(compact?32:40)} fontSize={compact?22:26} fill="#171717">{folder?'Tab midpoint':'List leading edge'}</text>
+    <g textAnchor="end" fontSize="14" fill={ink}>
       <text x={dx+dw} y={panelY+(compact?30:37)} opacity={originalPhase}>Original</text>
       <text x={dx+dw} y={panelY+(compact?30:37)} opacity={retest}>Retest</text>
     </g>
     <g clipPath={`url(#${panelClip})`}>
-      <rect x={dx} y={dy} width={dw} height={dh} fill={folder?'#fafbf7':'#ffffff'}/>
+      <rect x={dx} y={dy} width={dw} height={dh} fill={folder?'#fbfbfb':'#ffffff'}/>
       {details(before)}
       <g clipPath={`url(#${detailClip})`}>{details(after)}</g>
       {folder && <g opacity={guideAmount}>
@@ -118,30 +118,30 @@ function Scene({ subject, compact, time }: { subject: Subject; compact: boolean;
         <text x={tabLeft-13} y={midY-tabHalf-7} fontSize="13" fill={guide}>28 px tab</text>
         <g opacity={1-repaired}>
           <path d={`M ${iconCenter} ${inkY} h 21 l 16 ${tabHalf-4} h 13`} fill="none"
-            stroke={error} strokeDasharray="3 2" strokeWidth="1.4"/>
-          <circle cx={iconCenter} cy={inkY} r="3.2" fill={error} stroke="white"/>
-          <text x={iconCenter+56} y={inkY+tabHalf} fontSize="13" fill={error}>Ink center</text>
+            stroke={measuredInk} strokeDasharray="3 2" strokeWidth="1.4"/>
+          <circle cx={iconCenter} cy={inkY} r="3.2" fill={measuredInk} stroke="white"/>
+          <text x={iconCenter+56} y={inkY+tabHalf} fontSize="13" fill={measuredInk}>Ink center</text>
         </g>
         <circle cx={iconCenter} cy={midY} r="3.2" fill={guide} stroke="white" opacity={repaired}/>
       </g>}
       {!folder && <g opacity={guideAmount}>
         <path d={`M ${railX} ${dy+6} v ${(dh-12)*guideAmount}`} stroke={guide} strokeWidth="1.5"/>
-        <g opacity={1-repaired} stroke={error} fill="none" strokeWidth="1.5">
+        <g opacity={1-repaired} stroke={measuredInk} fill="none" strokeWidth="1.5">
           <path d={`M ${railX} ${rowCenter+12} h ${gap} m 0 3 v -14`}/>
-          <circle cx={railX+gap} cy={rowCenter-1} r="3" stroke="white" fill={error}/>
+          <circle cx={railX+gap} cy={rowCenter-1} r="3" stroke="white" fill={measuredInk}/>
         </g>
       </g>}
-      {folder && changing && <path d={`M ${dx+dw*imageReveal} ${dy} v ${dh}`} stroke="#557669" strokeWidth="1.4"/>}
+      {folder && changing && <path d={`M ${dx+dw*imageReveal} ${dy} v ${dh}`} stroke="#666666" strokeWidth="1.4"/>}
     </g>
-    <g fill="#f4f4e9" fontSize={compact?15:17}>
+    <g fill="#202020" fontSize={compact?15:17}>
       <text x={dx} y={barY-4} opacity={opening}>{folder?'Find the center of the 28 px tab':'Use the outer two markers as the guide'}</text>
       <text x={dx} y={barY-4} opacity={comparing}>Comparing the same crop</text>
       <g opacity={measured}>
-        <text x={dx} y={barY} fontSize={compact?32:37} fontWeight="700" fill="#ffcb94">{folder?'+3 px':'+6 px'}</text>
+        <text x={dx} y={barY} fontSize={compact?32:37} fontWeight="700" fill="#171717">{folder?'+3 px':'+6 px'}</text>
         <text x={dx+(compact?105:119)} y={barY-2}>{folder?'Below the tab midpoint':'Indented past its siblings'}</text>
       </g>
       <g opacity={retest}>
-        <text x={dx} y={barY} fontSize={compact?32:37} fontWeight="700" fill={mint}>0 px</text>
+        <text x={dx} y={barY} fontSize={compact?32:37} fontWeight="700" fill={ink}>0 px</text>
         <text x={dx+(compact?105:119)} y={barY-2}>{folder?'Centered in the tab':'Three markers aligned'}</text>
       </g>
     </g>
@@ -151,7 +151,7 @@ function Scene({ subject, compact, time }: { subject: Subject; compact: boolean;
 export default function Walkthrough() {
   const query = new URLSearchParams(location.search)
   const subject = query.get('subject')
-  const proof = subject === 'navigation' || subject === 'kerning' || subject === 'rainbow' ? subject : null
+  const proof = subject === 'example-2' || subject === 'example-3' || subject === 'example-1' ? subject : null
   const exporting = query.has('frames')
   const [frame, setFrame] = useState(0)
   useEffect(() => {
@@ -164,7 +164,7 @@ export default function Walkthrough() {
       script={exporting?undefined:play} play="loop">
     {(s, _rect, layout) => {
       const props = { compact: layout === 'compact', time: exporting ? frame : s.time }
-      return proof ? <ProofScene {...props} subject={proof}/> : <Scene {...props} subject={subject === 'rows' ? 'rows' : 'folder'}/>
+      return proof ? <ProofScene {...props} subject={proof}/> : <Scene {...props} subject={subject === 'example-4-list' ? 'example-4-list' : 'example-4-tab'}/>
     }}
   </Stage>
 }

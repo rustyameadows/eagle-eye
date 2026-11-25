@@ -1,4 +1,4 @@
-# Workspace files · example audit
+# Example 4
 
 This local fixture preserves four revisions of a small file list. The baseline, tab correction, row inset correction and final correction are selected with the `pass` URL parameter. The purpose of the fixture is to make the audit reproducible.
 

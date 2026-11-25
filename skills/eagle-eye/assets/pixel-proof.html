@@ -4,57 +4,69 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Headline pixel proof</title>
 <style>
-:root{font-family:Inter,system-ui,sans-serif;color:#182923;background:#f6f5ef;color-scheme:light}
+@font-face {
+  font-family: "Eagle Eye Annotations";
+  src: local("Helvetica"), local("Helvetica Regular"), local("NimbusSans-Regular");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Eagle Eye Annotations";
+  src: local("Helvetica-Bold"), local("Helvetica Bold"), local("NimbusSans-Bold");
+  font-weight: 700;
+}
+
+:root{font-family:"Eagle Eye Annotations",Helvetica,"Nimbus Sans",Arial,sans-serif;color:#252525;background:#ffffff;color-scheme:light}
 *{box-sizing:border-box}
 body{margin:0}
 main{max-width:1560px;margin:auto;padding:42px clamp(16px,3.8vw,60px) 60px}
 h1,h2,p,figure{margin:0}
-h1,h2{font-family:Georgia,serif;font-weight:400;line-height:1.12;text-wrap:balance}
+h1,h2{font-weight:400;line-height:1.12;text-wrap:balance}
 h1{font-size:clamp(36px,5vw,70px);margin:12px 0 14px}
 h2{font-size:clamp(24px,3vw,40px);margin:4px 0 12px}
 p{max-width:84ch;line-height:1.5}
-a{color:#14584c;text-underline-offset:.16em}
+a{color:#494949;text-underline-offset:.16em}
 nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
 nav strong{font-size:14px}
 .controls,.legend,.coordinate,.exports,.stage-list{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 label,legend,figcaption,.legend span,.exports{font-size:14px}
 label{display:grid;gap:5px;font-weight:600}
-button,select,input{font:inherit;color:inherit;background:#fff;border:1px solid #a8b5a9;border-radius:5px;padding:7px 9px}
+button,select,input{font:inherit;color:inherit;background:#fff;border:1px solid #b1b1b1;border-radius:5px;padding:7px 9px}
 button{cursor:pointer}
 select{max-width:100%}
 small{font-size:13px}
 section{margin-top:34px}
-.controls{padding:15px 0;border-block:1px solid #c6cec1;margin-top:22px}
+.controls{padding:15px 0;border-block:1px solid #cbcbcb;margin-top:22px}
 .controls label{max-width:100%}
 .readings{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--frameWidth)),1fr));gap:16px}
 figure{min-width:0}
 figcaption{font-weight:600;margin-bottom:7px}
-.frame{width:max-content;max-width:100%;overflow:auto;border:1px solid #b9c3b7;background:#fff}
+.frame{width:max-content;max-width:100%;overflow:auto;border:1px solid #c0c0c0;background:#fff}
 .readings canvas{display:block;height:auto;max-width:none}
 .stats{display:flex;gap:16px 30px;flex-wrap:wrap;padding:12px 0}
-.stats div{display:flex;flex-direction:column;gap:3px}.stats b{font-family:Georgia,serif;font-size:25px;font-weight:400}.stats span{font-size:13px}
+.stats div{display:flex;flex-direction:column;gap:3px}.stats b{font-size:25px;font-weight:400}.stats span{font-size:13px}
 .legend{margin-bottom:12px}
 .legend span{display:inline-flex;align-items:center;gap:7px}
-.legend i{display:inline-block;width:16px;height:14px;border:1px solid #273f303d}
+.legend i{display:inline-block;width:16px;height:14px;border:1px solid #3939393d}
 .map{display:block;height:auto;max-width:100%}
-#viewport{max-height:63vh;max-width:100%;overflow:auto;position:relative;background:#fff;border:1px solid #9fae9f}
+#viewport{max-height:63vh;max-width:100%;overflow:auto;position:relative;background:#fff;border:1px solid #aaaaaa}
 #surface{position:relative;line-height:0;width:max-content}
 #surface canvas{display:block;image-rendering:pixelated}
 #grid,#marker{position:absolute;pointer-events:none}
-#grid{inset:0;background-image:linear-gradient(to right,#24382d45 1px,transparent 1px),linear-gradient(to bottom,#24382d45 1px,transparent 1px)}
-#marker{left:0;top:0;outline:2px solid #fff;box-shadow:0 0 0 4px #101b16}
-#viewport:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ad4d20;outline-offset:2px}
+#grid{inset:0;background-image:linear-gradient(to right,#33333345 1px,transparent 1px),linear-gradient(to bottom,#33333345 1px,transparent 1px)}
+#marker{left:0;top:0;outline:2px solid #fff;box-shadow:0 0 0 4px #181818}
+#viewport:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #5e5e5e;outline-offset:2px}
 #viewport:focus-visible{outline-offset:-3px}
 .coordinate{margin:12px 0}
 .coordinate input{width:7em}
 .stage-list{list-style:none;padding:0;margin:10px 0}
 .stage-list li{display:flex;align-items:center;gap:6px;font-size:14px}
 .swatch{width:16px;height:16px;display:inline-block;border:1px solid #4446}
-code{font-family:ui-monospace,monospace}
+code{font-family:inherit}
 #selection{font-size:15px;min-height:1.5em}
-.explanation{margin:9px 0;color:#3f5047;font-size:14px}
+.explanation{margin:9px 0;color:#4c4c4c;font-size:14px}
 .exports{margin-top:12px}
-details{margin-top:20px;border-top:1px solid #c6cec1;padding:12px 0}
+details{margin-top:20px;border-top:1px solid #cbcbcb;padding:12px 0}
 summary{font-weight:600;cursor:pointer}
 details p{margin:.6em 0}
 @media (max-width:620px){main{padding-top:20px}.controls{gap:10px}.coordinate{gap:8px}.stats{gap:10px 18px}}
