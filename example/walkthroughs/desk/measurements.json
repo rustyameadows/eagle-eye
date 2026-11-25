@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "library": 24,
+    "notes": 27,
+    "fixed-notes": 24
+  },
+  "pair": {
+    "fixed-notes": {
+      "left": 52.0,
+      "right": 60.0,
+      "gap": 8.0,
+      "pairEnd": 84
+    },
+    "type-retest": {
+      "left": 52.0,
+      "right": 54.0,
+      "gap": 2.0,
+      "pairEnd": 78
+    }
+  }
+}

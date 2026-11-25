@@ -1,0 +1,124 @@
+{
+  "title": "Workspace files \u00b7 Library and Notes",
+  "profiles": {
+    "phone": {
+      "width": 390,
+      "height": 360,
+      "scale": 2
+    }
+  },
+  "views": {
+    "library": {
+      "url": "index.html",
+      "ready": "body.index h1"
+    },
+    "notes": {
+      "url": "notes.html",
+      "ready": "body.notes h1",
+      "arriveVia": {
+        "url": "index.html",
+        "link": "nav a[href*=\"notes.html\"]",
+        "ready": "body.index h1"
+      }
+    },
+    "returned": {
+      "url": "index.html",
+      "ready": "body.index h1",
+      "arriveVia": {
+        "url": "notes.html",
+        "link": "nav a[href*=\"index.html\"]",
+        "ready": "body.notes h1"
+      }
+    },
+    "fixed-library": {
+      "url": "index.html?pass=nav",
+      "ready": "body.index h1"
+    },
+    "fixed-notes": {
+      "url": "notes.html?pass=nav",
+      "ready": "body.notes h1",
+      "arriveVia": {
+        "url": "index.html?pass=nav",
+        "link": "nav a[href*=\"notes.html\"]",
+        "ready": "body.index h1"
+      }
+    },
+    "fixed-returned": {
+      "url": "index.html?pass=nav",
+      "ready": "body.index h1",
+      "arriveVia": {
+        "url": "notes.html?pass=nav",
+        "link": "nav a[href*=\"index.html\"]",
+        "ready": "body.notes h1"
+      }
+    },
+    "type-retest": {
+      "url": "notes.html?pass=type",
+      "ready": "body.notes h1"
+    }
+  },
+  "anchors": {
+    "nav-icon": "nav svg",
+    "title": "h1"
+  },
+  "checks": {
+    "nav-edge": {
+      "label": "Library icon left edge",
+      "point": [
+        "nav-icon",
+        "left"
+      ],
+      "tolerance": 0.25
+    },
+    "title-box": {
+      "label": "Content inset",
+      "point": [
+        "title",
+        "left"
+      ],
+      "tolerance": 0.25
+    }
+  },
+  "pairs": [
+    {
+      "from": "library",
+      "to": "notes",
+      "checks": [
+        "nav-edge",
+        "title-box"
+      ]
+    },
+    {
+      "from": "notes",
+      "to": "returned",
+      "checks": [
+        "nav-edge",
+        "title-box"
+      ]
+    },
+    {
+      "from": "fixed-library",
+      "to": "fixed-notes",
+      "checks": [
+        "nav-edge",
+        "title-box"
+      ]
+    },
+    {
+      "from": "fixed-notes",
+      "to": "fixed-returned",
+      "checks": [
+        "nav-edge",
+        "title-box"
+      ]
+    },
+    {
+      "from": "fixed-notes",
+      "to": "type-retest",
+      "checks": [
+        "nav-edge",
+        "title-box"
+      ]
+    }
+  ]
+}

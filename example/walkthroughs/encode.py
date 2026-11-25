@@ -25,6 +25,14 @@ def encode(directory):
                     duration=durations, loop=0, optimize=True, disposal=1)
     if directory.name.endswith("-wide"):
         # Both panels in a single still show the decision without playback.
+        subject = directory.name.removesuffix("-wide")
+        if subject in ("navigation", "kerning", "rainbow"):
+            beats = (1400, 7200) if subject == "rainbow" else (3200, 7200)
+            still = Image.new("RGB", (744, 606), "#e5e8df")
+            for y, beat in zip((0, 304), beats):
+                still.paste(frames[times.index(beat)], (0, y))
+            still.save(OUT / (subject + "-comparison.png"), optimize=True)
+            return
         panels = [frames[times.index(time)].crop((348, 0, 744, 302)) for time in (3200, 7200)]
         still = Image.new("RGB", (794, 302), "#e5e8df")
         still.paste(panels[0], (0, 0))
@@ -33,5 +41,6 @@ def encode(directory):
 
 
 if __name__ == "__main__":
-    for name in ("folder-wide", "folder-compact", "rows-wide", "rows-compact"):
-        encode(Path(sys.argv[1]) / name)
+    for subject in sys.argv[2:]:
+        for size in ("wide", "compact"):
+            encode(Path(sys.argv[1]) / f"{subject}-{size}")

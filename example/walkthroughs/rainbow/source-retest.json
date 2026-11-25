@@ -1,0 +1,86 @@
+{
+  "siteCommit": "f1c07dccf575cb2f3ce57bca30b4c0ce708a3cb0",
+  "reference": "Approved pair proposal from the preceding audit",
+  "profiles": {
+    "desktop": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "density": 1,
+      "rasterSize": [
+        720,
+        97
+      ],
+      "frameInViewportPixels": [
+        76,
+        145,
+        796,
+        242
+      ],
+      "pixelsCompared": 69840,
+      "pixelsDifferent": 0,
+      "matchingRasterRGBSHA256": "9f95fc0b5bc83434976732b03babbdb491aee62426cef15454f9fc1217e8bb89"
+    },
+    "tablet": {
+      "viewport": [
+        820,
+        1000
+      ],
+      "density": 1,
+      "rasterSize": [
+        416,
+        61
+      ],
+      "frameInViewportPixels": [
+        20,
+        138,
+        436,
+        199
+      ],
+      "pixelsCompared": 25376,
+      "pixelsDifferent": 0,
+      "matchingRasterRGBSHA256": "0eca999235094220dbb2882212220257bec4a07d120ba3f476ea10829cf8e812"
+    },
+    "phone": {
+      "viewport": [
+        390,
+        844
+      ],
+      "density": 2,
+      "rasterSize": [
+        583,
+        91
+      ],
+      "frameInViewportPixels": [
+        100,
+        276,
+        683,
+        367
+      ],
+      "pixelsCompared": 53053,
+      "pixelsDifferent": 0,
+      "matchingRasterRGBSHA256": "736d660ee7fa277fadf2fbd003247a923b42424aa0789349d961aa43062d6173"
+    },
+    "narrow": {
+      "viewport": [
+        320,
+        800
+      ],
+      "density": 2,
+      "rasterSize": [
+        484,
+        79
+      ],
+      "frameInViewportPixels": [
+        79,
+        274,
+        563,
+        353
+      ],
+      "pixelsCompared": 38236,
+      "pixelsDifferent": 0,
+      "matchingRasterRGBSHA256": "6d5eb251e7d84968c25e2ccb97b348ca96f83957af83322defb1c1b05630c184"
+    }
+  }
+}

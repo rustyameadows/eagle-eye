@@ -6,19 +6,22 @@ const path = require('node:path');
 const { launchChromium } = require('../../skills/eagle-eye/scripts/browser.cjs');
 
 // Sample movement at 10 fps. The encoder holds each still until the next beat.
+const walkthroughs = ['folder', 'rows', 'navigation', 'kerning', 'rainbow'];
 const times = Array.from({ length: 102 }, (_, index) => index * 100).filter(time =>
   time === 0 || time === 3200 || time === 7200 ||
-  (time >= 1100 && time <= 2300) || (time >= 4600 && time <= 5800) || time >= 9100
+  (time >= 700 && time <= 2600) || (time >= 4600 && time <= 5800) || time >= 9100
 );
 
 async function render() {
   const preview = new URL(process.argv[2]);
+  const subjects = process.argv.length > 3 ? process.argv.slice(3) : walkthroughs;
+  if (subjects.some(subject => !walkthroughs.includes(subject))) throw Error('Unknown walkthrough');
   const frames = await fs.mkdtemp(path.join(os.tmpdir(), 'eagle-eye-walkthrough-'));
   const browser = await launchChromium();
   try {
     for (const [format, width] of [['wide', 850], ['compact', 390]]) {
       const page = await browser.newPage({ viewport: { width, height: 640 }, deviceScaleFactor: 1 });
-      for (const subject of ['folder', 'rows']) {
+      for (const subject of subjects) {
         const directory = path.join(frames, subject + '-' + format);
         await fs.mkdir(directory);
         preview.searchParams.set('frames', '1');
@@ -48,7 +51,7 @@ async function render() {
       }
       await page.close();
     }
-    execFileSync('python3', [path.join(__dirname, 'encode.py'), frames], { stdio: 'inherit' });
+    execFileSync('python3', [path.join(__dirname, 'encode.py'), frames, ...subjects], { stdio: 'inherit' });
   } finally {
     await browser.close();
     await fs.rm(frames, { recursive: true, force: true });

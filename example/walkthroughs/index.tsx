@@ -1,5 +1,6 @@
 import { useEffect, useId, useState } from 'react'
 import { Stage, type Act } from '../../kit'
+import { ProofScene } from './proofs'
 
 // Stageshow authoring scene. The images are the compact 390 CSS px captures
 // at 2× density. All source windows and guide positions below use native pixels.
@@ -149,7 +150,8 @@ function Scene({ subject, compact, time }: { subject: Subject; compact: boolean;
 
 export default function Walkthrough() {
   const query = new URLSearchParams(location.search)
-  const subject = query.get('subject') === 'rows' ? 'rows' : 'folder'
+  const subject = query.get('subject')
+  const proof = subject === 'navigation' || subject === 'kerning' || subject === 'rainbow' ? subject : null
   const exporting = query.has('frames')
   const [frame, setFrame] = useState(0)
   useEffect(() => {
@@ -160,6 +162,9 @@ export default function Walkthrough() {
   }, [exporting])
   return <Stage width={744} height={302} compact={{below:590,width:358,height:416}} initial={initial} poster={poster}
       script={exporting?undefined:play} play="loop">
-    {(s, _rect, layout) => <Scene subject={subject} compact={layout==='compact'} time={exporting ? frame : s.time}/>}
+    {(s, _rect, layout) => {
+      const props = { compact: layout === 'compact', time: exporting ? frame : s.time }
+      return proof ? <ProofScene {...props} subject={proof}/> : <Scene {...props} subject={subject === 'rows' ? 'rows' : 'folder'}/>
+    }}
   </Stage>
 }
