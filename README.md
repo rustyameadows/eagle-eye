@@ -28,7 +28,7 @@ On your next turn, attach a screenshot or point Codex at a local page and try on
   <img src="example/walkthroughs/example-1-wide.gif" alt="Three captures of the same headline. Two marked ink pixels show the change in spacing between the apostrophe and v.">
 </picture>
 
-[Before and after](example/walkthroughs/example-1-comparison.png) · [Captures and measurements](example/walkthroughs/example-1/README.md) · [Download the four-width proof](https://raw.githubusercontent.com/rustyameadows/eagle-eye/main/example/walkthroughs/example-1.zip)
+[Before and after](example/walkthroughs/example-1-comparison.png) · [Square GIF](example/walkthroughs/example-1-square.gif) · [Captures and measurements](example/walkthroughs/example-1/README.md) · [Download the four-width proof](https://raw.githubusercontent.com/rustyameadows/eagle-eye/main/example/walkthroughs/example-1.zip)
 
 ### Example 2
 
@@ -40,7 +40,7 @@ On your next turn, attach a screenshot or point Codex at a local page and try on
   <img src="example/walkthroughs/example-2-wide.gif" alt="A fixed vertical guide shows a navigation icon moving 3 px between pages. Both captures align after the inset correction.">
 </picture>
 
-[Before and after](example/walkthroughs/example-2-comparison.png)
+[Before and after](example/walkthroughs/example-2-comparison.png) · [Square GIF](example/walkthroughs/example-2-square.gif)
 
 ### Example 3
 
@@ -52,7 +52,7 @@ On your next turn, attach a screenshot or point Codex at a local page and try on
   <img src="example/walkthroughs/example-3-wide.gif" alt="The full headline and an enlarged P and a show the original 8 px gap and the 2 px retest.">
 </picture>
 
-[Before and after](example/walkthroughs/example-3-comparison.png)
+[Before and after](example/walkthroughs/example-3-comparison.png) · [Square GIF](example/walkthroughs/example-3-square.gif)
 
 ### Example 4
 
@@ -72,7 +72,7 @@ On your next turn, attach a screenshot or point Codex at a local page and try on
   <img src="example/walkthroughs/example-4-list-wide.gif" alt="A vertical guide shows the middle marker indented by 6 px, then aligned with the markers above and below it.">
 </picture>
 
-[Tab comparison](example/walkthroughs/example-4-tab-comparison.png) · [List comparison](example/walkthroughs/example-4-list-comparison.png) · [Audit record](example/AUDIT.md)
+[Tab comparison](example/walkthroughs/example-4-tab-comparison.png) · [List comparison](example/walkthroughs/example-4-list-comparison.png) · [Square tab GIF](example/walkthroughs/example-4-tab-square.gif) · [Square list GIF](example/walkthroughs/example-4-list-square.gif) · [Audit record](example/AUDIT.md)
 
 ## Local capture tools
 

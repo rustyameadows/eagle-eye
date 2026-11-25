@@ -1,7 +1,7 @@
 """Encode deterministic Stageshow frames with one palette for the whole loop."""
 from pathlib import Path
 import json
-import sys
+import argparse
 
 from PIL import Image
 
@@ -55,6 +55,12 @@ def encode(directory):
 
 
 if __name__ == "__main__":
-    for subject in sys.argv[2:]:
-        for size in ("wide", "compact"):
-            encode(Path(sys.argv[1]) / f"{subject}-{size}")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("frames", type=Path)
+    parser.add_argument("subjects", nargs="+")
+    parser.add_argument("--formats", nargs="+", choices=("wide", "compact", "square"),
+                        default=("wide", "compact"))
+    args = parser.parse_args()
+    for subject in args.subjects:
+        for size in args.formats:
+            encode(args.frames / f"{subject}-{size}")

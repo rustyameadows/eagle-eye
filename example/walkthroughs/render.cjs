@@ -1,5 +1,6 @@
 // Run against the Stageshow authoring preview. The generated images work offline.
 const { execFileSync } = require('node:child_process');
+const { parseArgs } = require('node:util');
 const fs = require('node:fs/promises');
 const os = require('node:os');
 const path = require('node:path');
@@ -13,14 +14,25 @@ const times = Array.from({ length: 102 }, (_, index) => index * 100).filter(time
 );
 
 async function render() {
-  const preview = new URL(process.argv[2]);
-  const subjects = process.argv.length > 3 ? process.argv.slice(3) : walkthroughs;
+  const { values, positionals } = parseArgs({
+    allowPositionals: true, options: { format: { type: 'string' } }
+  });
+  const [url, ...selection] = positionals;
+  const preview = new URL(url);
+  const subjects = selection.length ? selection : walkthroughs;
+  const formats = {
+    wide: { width: 850, scale: 1 }, compact: { width: 390, scale: 1 }, square: { width: 432, scale: 2.5 }
+  };
+  if (values.format && !Object.hasOwn(formats, values.format)) throw Error('Unknown export format');
+  const selectedFormats = values.format ? [values.format] : Object.keys(formats);
   if (subjects.some(subject => !walkthroughs.includes(subject))) throw Error('Unknown walkthrough');
   const frames = await fs.mkdtemp(path.join(os.tmpdir(), 'eagle-eye-walkthrough-'));
   const browser = await launchChromium();
   try {
-    for (const [format, width] of [['wide', 850], ['compact', 390]]) {
-      const page = await browser.newPage({ viewport: { width, height: 640 }, deviceScaleFactor: 1 });
+    for (const format of selectedFormats) {
+      const { width, scale } = formats[format];
+      const page = await browser.newPage({ viewport: { width, height: 640 }, deviceScaleFactor: scale });
+      preview.searchParams.set('format', format);
       for (const subject of subjects) {
         const directory = path.join(frames, subject + '-' + format);
         await fs.mkdir(directory);
@@ -42,8 +54,9 @@ async function render() {
           const origin = el.getBoundingClientRect();
           return Array.from(el.querySelectorAll('[data-source-color]'), node => {
             const r = node.getBoundingClientRect();
-            return [Math.floor(r.left - origin.left), Math.floor(r.top - origin.top),
-              Math.ceil(r.right - origin.left), Math.ceil(r.bottom - origin.top)];
+            const scale = window.devicePixelRatio;
+            return [Math.floor((r.left - origin.left) * scale), Math.floor((r.top - origin.top) * scale),
+              Math.ceil((r.right - origin.left) * scale), Math.ceil((r.bottom - origin.top) * scale)];
           });
         });
         await fs.writeFile(path.join(directory, 'color-regions.json'), JSON.stringify(colorRegions));
@@ -60,7 +73,7 @@ async function render() {
       }
       await page.close();
     }
-    execFileSync('python3', [path.join(__dirname, 'encode.py'), frames, ...subjects], { stdio: 'inherit' });
+    execFileSync('python3', [path.join(__dirname, 'encode.py'), frames, ...subjects, '--formats', ...selectedFormats], { stdio: 'inherit' });
   } finally {
     await browser.close();
     await fs.rm(frames, { recursive: true, force: true });

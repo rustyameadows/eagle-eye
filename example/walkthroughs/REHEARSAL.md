@@ -46,13 +46,19 @@ cp -R example/walkthroughs/example-1/pixels/rasters/desktop example/walkthroughs
 (cd "$STAGESHOW_DIR" && ./node_modules/.bin/vite playground --config playground/vite.config.ts --host 127.0.0.1 --port 4350 --strictPort)
 ```
 
-In a second terminal, run the exporter from the Eagle Eye repo root with the Python environment active. It captures the wide and compact scenes in Chromium and replaces the GIFs and comparison PNGs in this folder.
+In a second terminal, run the exporter from the Eagle Eye repo root with the Python environment active. It exports the wide, compact and square GIFs and the comparison PNGs in this folder.
 
 ```sh
 node example/walkthroughs/render.cjs 'http://127.0.0.1:4350/?capture=eagle-eye'
 ```
 
-To export a selection, append the subject names to the render command. To rehearse an edited scene, use the Stageshow film tool once for each subject (`example-1`, `example-2`, `example-3`, `example-4-tab` and `example-4-list`) at each width (`744` and `390`). For example, this checks the compact folder loop.
+The square GIFs are 1080 × 1080 pixels. Each stacks the capture above the measurement and uses the same 10.8-second timeline. Example 1 uses the desktop headline. To regenerate only the square GIFs, run the following command.
+
+```sh
+node example/walkthroughs/render.cjs 'http://127.0.0.1:4350/?capture=eagle-eye' --format square
+```
+
+To preview a square scene, append `&format=square` to its capture URL. To export a selection, append the subject names to the render command. To rehearse an edited scene, use the Stageshow film tool once for each subject (`example-1`, `example-2`, `example-3`, `example-4-tab` and `example-4-list`) at each width (`744` and `390`). For example, this checks the compact folder loop.
 
 ```sh
 node "$STAGESHOW_DIR/scripts/film.mjs" 'http://127.0.0.1:4350/?capture=eagle-eye&subject=example-4-tab' --select .ss-stage --width 390 --count 9 --every 1500 --out /tmp/eagle-folder-sheet.png --gate

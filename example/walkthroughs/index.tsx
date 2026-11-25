@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react'
 import { Stage, type Act } from '../../kit'
-import { ProofScene, annotationFont } from './proofs'
+import { ProofScene, annotationFont, sceneSize, squareSize, type SceneLayout } from './proofs'
 
 // Stageshow authoring scene. The images are the compact 390 CSS px captures
 // at 2× density. All source windows and guide positions below use native pixels.
@@ -38,12 +38,14 @@ function Shot({ file, x, y, w, h, sx, sy, zoom = 1 }: {
   </svg>
 }
 
-function Scene({ subject, compact, time }: { subject: Subject; compact: boolean; time: number }) {
+function Scene({ subject, layout, time }: { subject: Subject; layout: SceneLayout; time: number }) {
+  const compact = layout !== 'wide'
+  const square = layout === 'square'
   const key = useId().replace(/:/g, '')
   const folder = subject === 'example-4-tab'
   const before = files[folder ? 0 : 1], after = files[folder ? 1 : 2]
-  const width = compact ? 358 : 744, height = compact ? 416 : 302
-  const panelX = compact ? 0 : 348, panelY = compact ? 156 : 0
+  const {width, height} = sceneSize(layout)
+  const panelX = compact ? 0 : 348, panelY = square ? 172 : (compact ? 156 : 0)
   const panelW = width - panelX, panelH = height - panelY
   const pad = compact ? 15 : 19
   const dx = panelX + pad, dy = panelY + (compact ? 48 : 61)
@@ -59,8 +61,8 @@ function Scene({ subject, compact, time }: { subject: Subject; compact: boolean;
   const measured = ramp(time, 2000, 2250) * (1 - ramp(time, 4600, 4800))
   const imageReveal = folder ? repaired : Number(repaired >= 0.5)
   const changing = repaired > 0 && repaired < 1
-  const dimX = compact ? 5 : 8, dimY = compact ? 39 : 43
-  const screenScale = compact ? .446 : .426
+  const dimX = square ? (width-390)/2 : (compact ? 5 : 8), dimY = compact ? 39 : 43
+  const screenScale = square ? .5 : (compact ? .446 : .426)
   const screenTop = compact ? (folder ? 124 : 275) : 0
   const screenHeight = compact ? ((folder ? 355 : 521) - screenTop) * screenScale : 234
   const panelClip = 'panel-' + key, detailClip = 'detail-' + key, contextClip = 'context-' + key
@@ -75,13 +77,17 @@ function Scene({ subject, compact, time }: { subject: Subject; compact: boolean;
   const iconCenter = tabLeft + (94 - 58) * tabZoom
   const tabHalf = 28 * tabZoom
   const inkY = midY + 6 * tabZoom
+  const rowScale = dh / 236
+  // The square detail has room for the full row, including its trailing date.
+  const rowWidth = square ? 720 * rowScale : dw - 60
+  const rowX = dx + (dw - rowWidth) / 2
   const details = (file: string) => folder
     ? <Shot file={file} x={tabLeft-5} y={midY-tabHalf-4} w={232*tabZoom+10} h={2*tabHalf+8}
         sx={58-5/tabZoom} sy={190-4/tabZoom} zoom={tabZoom}/>
-    : <Shot file={file} x={dx+30} y={dy} w={dw-60} h={dh} sx={30} sy={278} zoom={dh/236}/>
+    : <Shot file={file} x={rowX} y={dy} w={rowWidth} h={dh} sx={30} sy={278} zoom={rowScale}/>
   const context = (file: string) =>
     <Shot file={file} x={dimX} y={dimY} w={contextWidth} h={screenHeight} sx={0} sy={screenTop} zoom={screenScale}/>
-  const rowScale = dh / 236, railX = dx+30+(58-30)*rowScale
+  const railX = rowX + (58-30)*rowScale
   const rowCenter = dy+(396-278)*rowScale
   const gap = 12*rowScale
   const barY = compact ? panelY+222 : 269
@@ -94,7 +100,7 @@ function Scene({ subject, compact, time }: { subject: Subject; compact: boolean;
     </defs>
     <rect width={width} height={height} fill={canvas}/>
     <text x={compact?13:18} y={compact?23:29} fontSize="13" fontWeight="700" fill="#202020">Example 4</text>
-    <text x={compact?344:329} y={compact?23:29} textAnchor="end" fontSize="12.5" fill="#525252">390 CSS px · 2×</text>
+    <text x={compact?width-14:329} y={compact?23:29} textAnchor="end" fontSize="12.5" fill="#525252">390 CSS px · 2×</text>
     {context(before)}
     <g clipPath={`url(#${contextClip})`}>{context(after)}</g>
     <g opacity={guideAmount} fill="none" stroke={guide} strokeWidth="1.4">
@@ -152,6 +158,7 @@ export default function Walkthrough() {
   const query = new URLSearchParams(location.search)
   const subject = query.get('subject')
   const proof = subject === 'example-2' || subject === 'example-3' || subject === 'example-1' ? subject : null
+  const square = query.get('format') === 'square'
   const exporting = query.has('frames')
   const [frame, setFrame] = useState(0)
   useEffect(() => {
@@ -160,10 +167,11 @@ export default function Walkthrough() {
     window.addEventListener('eagle-seek', seek)
     return () => window.removeEventListener('eagle-seek', seek)
   }, [exporting])
-  return <Stage width={744} height={302} compact={{below:590,width:358,height:416}} initial={initial} poster={poster}
+  return <Stage width={square ? squareSize : 744} height={square ? squareSize : 302} compact={square ? undefined : {below:590,width:358,height:416}} initial={initial} poster={poster}
       script={exporting?undefined:play} play="loop">
     {(s, _rect, layout) => {
-      const props = { compact: layout === 'compact', time: exporting ? frame : s.time }
+      const sceneLayout: SceneLayout = square ? 'square' : layout
+      const props = { layout: sceneLayout, time: exporting ? frame : s.time }
       return proof ? <ProofScene {...props} subject={proof}/> : <Scene {...props} subject={subject === 'example-4-list' ? 'example-4-list' : 'example-4-tab'}/>
     }}
   </Stage>

@@ -3,6 +3,12 @@ import desk from './desk/measurements.json'
 import headline from './example-1/pair.json'
 
 export type Proof = 'example-2' | 'example-3' | 'example-1'
+export const squareSize = 432
+export type SceneLayout = 'wide' | 'compact' | 'square'
+export function sceneSize(layout: SceneLayout) {
+  if (layout === 'square') return { width: squareSize, height: squareSize }
+  return layout === 'compact' ? { width: 358, height: 416 } : { width: 744, height: 302 }
+}
 export const annotationFont = '"Eagle Eye Annotations", Helvetica, "Nimbus Sans", Arial, sans-serif'
 const surface = '#ffffff'
 const paper = '#f5f5f5'
@@ -28,7 +34,9 @@ function Raster({ path, size = [780, 720], x, y, sx, sy, width, height, zoom }: 
   </svg>
 }
 
-function DeskProof({ subject, compact, time }: {subject: 'example-2' | 'example-3'; compact: boolean; time: number}) {
+function DeskProof({ subject, layout, time }: {subject: 'example-2' | 'example-3'; layout: SceneLayout; time: number}) {
+  const compact = layout !== 'wide'
+  const square = layout === 'square'
   const nav = subject === 'example-2'
   const arrived = time >= 2100 && time < 10000
   const repaired = time >= 5300 && time < 10000
@@ -36,11 +44,12 @@ function DeskProof({ subject, compact, time }: {subject: 'example-2' | 'example-
   const route = nav ? (repaired ? 'fixed-notes' : arrived ? 'notes' : 'library')
     : (repaired ? 'type-retest' : 'fixed-notes')
   const file = 'desk/' + route + '.png'
-  const w = compact ? 358 : 744, h = compact ? 416 : 302
-  const panel = compact ? 0 : 348, top = compact ? 156 : 0
+  const {width: w, height: h} = sceneSize(layout)
+  const panel = compact ? 0 : 348, top = square ? 168 : (compact ? 156 : 0)
   const x = panel + 16, boxY = top + (compact ? 47 : 56)
   const boxW = w - x - 16, boxH = compact ? 133 : 154
-  const contextY = 36, sourceY = compact ? (nav ? 100 : 192) : 0
+  const contextX = square ? (w - 390) / 2 : 0
+  const contextY = square ? 42 : 36, sourceY = compact ? (nav ? 100 : 192) : 0
   const title = nav ? 'Navigation inset' : 'Opening pair'
   const phase = repaired ? 'Retest' : nav && !arrived ? 'Reference' : 'Original'
   const sample = desk.pair[repaired ? 'type-retest' : 'fixed-notes']
@@ -62,9 +71,9 @@ function DeskProof({ subject, compact, time }: {subject: 'example-2' | 'example-
   return <svg viewBox={`0 0 ${w} ${h}`} width={w} height={h} role="img" aria-label={title} style={{display:'block',fontFamily:annotationFont}}>
     <rect width={w} height={h} fill={paper}/>
     <text x="15" y="24" fontSize="13" fontWeight="700" fill="#303030">{nav ? 'Example 2' : 'Example 3'}</text>
-    <text x={compact?343:333} y="24" textAnchor="end" fontSize="13" fill="#303030">390 CSS px · 2×</text>
-    <Raster path={file} x={0} y={contextY} sx={0} sy={sourceY} width={compact?w:panel} height={compact?120:h-contextY} zoom={0.5}/>
-    {nav && <path d={`M 24 ${contextY + 52 - sourceY/2} v 43`} stroke={guide} strokeWidth="1.1" opacity={guides}/>}
+    <text x={compact?w-15:333} y="24" textAnchor="end" fontSize="13" fill="#303030">390 CSS px · 2×</text>
+    <Raster path={file} x={contextX} y={contextY} sx={0} sy={sourceY} width={square ? 390 : (compact?w:panel)} height={compact?120:h-contextY} zoom={0.5}/>
+    {nav && <path d={`M ${contextX+24} ${contextY + 52 - sourceY/2} v 43`} stroke={guide} strokeWidth="1.1" opacity={guides}/>}
     <rect x={panel} y={top} width={w-panel} height={h-top} fill={surface}/>
     <text x={x} y={top+(compact?31:37)} fontSize={compact?22:26} fill={ink}>{title}</text>
     {['Reference','Original','Retest'].map(label=><text key={label} x={w-17} y={top+(compact?29:35)} fill="#555555" fontSize="14"
@@ -103,16 +112,18 @@ function DeskProof({ subject, compact, time }: {subject: 'example-2' | 'example-
   </svg>
 }
 
-function HeadlineProof({ compact, time }: {compact: boolean; time: number}) {
-  const profile = compact ? 'phone' : 'desktop'
+function HeadlineProof({ layout, time }: {layout: SceneLayout; time: number}) {
+  const compact = layout !== 'wide'
+  const square = layout === 'square'
+  const profile = layout === 'compact' ? 'phone' : 'desktop'
   const proof = headline[profile]
   const stage = time >= 5300 && time < 10000 ? 'shipped' : time >= 2300 && time < 10000 ? 'tracking' : 'original'
   const number = {original:1,tracking:2,shipped:3}[stage]
   const path = `example-1/${profile}/stage-${number}.png`
   const phases = {original:'Original',tracking:'Tracking only',shipped:'Shipped'}
-  const w = compact ? 358 : 744, h = compact ? 416 : 302
+  const {width: w, height: h} = sceneSize(layout)
   const bg='#f36450', panelTop=compact?115:136
-  const fullZoom=1/proof.dpr, fullW=proof.size[0]*fullZoom
+  const fullZoom=square ? (w-32)/proof.size[0] : 1/proof.dpr, fullW=proof.size[0]*fullZoom
   const zoom=compact?1.48:1.62, crop=proof.word
   const cropLeft = crop.x - 6, detailW=(crop.width+12)*zoom, detailH=crop.height*zoom
   const detailX=compact?(w-detailW)/2:24, detailY=panelTop+(compact?44:11)
@@ -120,7 +131,7 @@ function HeadlineProof({ compact, time }: {compact: boolean; time: number}) {
   const betweenCaptures = (1-reveal(time,2100,2290)+reveal(time,2310,2540))
     * (1-reveal(time,5050,5290)+reveal(time,5310,5570))
   const point = (v:number,origin:number,offset:number) => offset+(v+0.5-origin)*zoom
-  const statX=compact?18:369, statY=compact?344:247
+  const statX=compact?18:369, statY=square?367:(compact?344:247)
   return <svg viewBox={`0 0 ${w} ${h}`} width={w} height={h} role="img" aria-label="Headline with measured apostrophe–v ink distance"
     style={{display:'block',fontFamily:annotationFont}}>
     <rect width={w} height={h} fill={surface}/>
@@ -156,6 +167,6 @@ function HeadlineProof({ compact, time }: {compact: boolean; time: number}) {
   </svg>
 }
 
-export function ProofScene(props: {subject: Proof; compact: boolean; time: number}) {
+export function ProofScene(props: {subject: Proof; layout: SceneLayout; time: number}) {
   return props.subject === 'example-1' ? <HeadlineProof {...props}/> : <DeskProof {...props} subject={props.subject}/>
 }
