@@ -1,64 +1,35 @@
 # Eagle Eye
 
-A local Codex skill for finding visual defects in a component, screen, flow, or site. A quick critique returns a clean screenshot, a finding, and a supporting comparison inline. A selected headline gets a letter-by-letter visual proof. A whole-site refinement adds an inventory, a living audit, and verified repair cycles.
+Eagle Eye is a Codex skill for spotting design details that feel off. It uses screenshots and visual guides to check alignment, spacing, layout shifts between views, and headline kerning.
 
-## See an evaluated audit
+## Install in Codex
 
-[Open the Fieldwork handoff](example/view-audit/handoff.html) for an evidence-backed walkthrough of the audit, repairs and coverage. Choose **Present** to step through it. The [eval corpus and runner](example/view-audit/README.md) cover 24 static HTML screens, from a single icon and a text field to sticky grids, bilingual text, validation, split panes and overlays. [Open the static subject](example/view-audit/index.html).
+Paste this prompt into Codex on each computer where you want to use Eagle Eye.
 
-## Use it
-
-From the root of this checkout, link the skill into your local Codex skills directory once. The link keeps the installed skill and the working tree in sync as you edit. The destination should be unused.
-
-```sh
-skill_home="${CODEX_HOME:-$HOME/.codex}/skills"
-mkdir -p "$skill_home"
-ln -s "$PWD/skills/eagle-eye" "$skill_home/eagle-eye"
+```text
+Use $skill-installer to install https://github.com/rustyameadows/eagle-eye/tree/main/skills/eagle-eye
 ```
 
-Invoke it in a new chat with a target and the kind of work you want.
+On your next turn, attach a screenshot or point Codex at a local page and try one of these prompts.
 
-- `Use $eagle-eye to audit our settings area on desktop and mobile. Report findings with screenshots and a coverage table.`
-- `Use $eagle-eye to refine this tab bar. Check the visible icon and text at 1× and 2×, fix the causes, and capture each verification pass.`
-- `Use $eagle-eye for a whole-site critique. Inventory routes and shared layouts, walk the primary flows, and document sampled or blocked states.`
+- `Use $eagle-eye on this screenshot. What looks off? Show me the strongest finding.`
+- `Use $eagle-eye to evaluate this headline. Show the whole line and the spacing between letters.`
+- `Use $eagle-eye to compare these two views. Show me which shared elements move.`
 
-## Audit headline spacing
+## Local capture tools
 
-General audits include the hero or dominant display heading on each scoped view. Ask `Use $eagle-eye to evaluate this headline` for a focused reading-size review with a numbered proof of its complete spacing. Ask `Use $eagle-eye to audit every headline across these pages` for a broader inventory. The [typography workflow](skills/eagle-eye/references/headline-typography.md) covers optical review, font diagnosis, and scoped repairs. [Open the headline audit presentation](example/headline-audit/reports/handoff.html) or [reproduce the static typography eval](example/headline-audit/README.md).
-
-For a proposed change, the [full-line pixel viewer](example/headline-audit/edition-proof/pixels/index.html) shows the reading-size renders, a signed difference map and exact source channels at each coordinate. The [pixel comparison workflow](skills/eagle-eye/references/handoff.md#full-raster-evidence-for-a-focused-headline) works with registered local PNGs.
-
-## Audit layout shifts between views
-
-Try `Use $eagle-eye to compare the playback controls in the album and artist views. Check direct and return navigation on desktop and mobile. Group related shifts by cause and re-run the same pairs after each fix.`
-
-For individual measurements, open the [interactive baseline](example/view-audit/reports/baseline/index.html) to inspect source and destination guides. Change the viewport, pick a measurement, or blend the two captures. The [worked multi-view audit](example/view-audit/README.md) includes the outcomes across three revisions and commands for the retained browser suite. The [agent workflow](skills/eagle-eye/references/view-to-view.md) explains how to choose trustworthy anchors and compare another app.
-
-## How the repo stays current
-
-[SKILL.md](skills/eagle-eye/SKILL.md) defines the audit. The [target catalog](skills/eagle-eye/references/audit-targets.md) lists likely defects and how to reveal them. The [evidence guide](skills/eagle-eye/references/evidence.md) covers capture, guide recipes and interpretation. [Maintainer instructions](AGENTS.md) keep these files current alongside changes to behavior.
-
-For an audit someone will resume, the agent updates the target repo's `docs/eagle-eye/<run>/AUDIT.md` as screens are inspected and repairs verified. Use a presentation when someone needs to review several screens or repair cycles. [The template](skills/eagle-eye/assets/AUDIT.md) is also usable by hand.
-
-## Run the single-screen example
-
-Read the [worked audit](example/AUDIT.md) or reproduce its screenshots with the commands below. The example page uses local HTML and CSS. Install Python 3 and Pillow for overlays. For the optional capture helper, use Node 18.3+ and a local Playwright install with its matching Chromium browser. From a checkout without those packages, `npm install --no-save --package-lock=false playwright` and `npx playwright install chromium` supply the browser tool; install Pillow in your Python environment with `python -m pip install Pillow`. An existing Playwright module can be selected with the absolute path in `EAGLE_EYE_PLAYWRIGHT`. An agent with a browser tool can supply its own clean PNGs.
-
-From the repo root in a POSIX shell, use a fresh output directory for each run:
+You can start with a screenshot. To have Eagle Eye take its own browser captures and generate pixel proofs, it uses Node.js with Playwright and Chromium, plus Python 3 with Pillow. Ask Codex to set up those tools on the new machine. For manual setup on macOS or Linux, clone this repo and run these commands from its root with Node.js, npm and Python 3 installed.
 
 ```sh
-run_dir=$(mktemp -d)
-skill_dir="$PWD/skills/eagle-eye"
-fixture=$(python3 -c 'from pathlib import Path; print(Path("example/screen.html").resolve().as_uri())')
-(
-set -e
-for pass in baseline tab row final; do
-  node "$skill_dir/scripts/capture.cjs" "$fixture?pass=$pass" "$run_dir/$pass.png" --width 390 --height 360 --scale 2
-  python3 "$skill_dir/scripts/guides.py" "$run_dir/$pass.png" example/compact-guides.json "$run_dir/$pass-guided.png"
-done
-python3 "$skill_dir/scripts/guides.py" "$run_dir/row.png" example/date-guides.json "$run_dir/dates-before.png"
-python3 "$skill_dir/scripts/guides.py" "$run_dir/final.png" example/date-guides.json "$run_dir/dates-after.png"
-)
+npm install --no-save --package-lock=false playwright
+npx playwright install chromium
+python3 -m venv .venv
+. .venv/bin/activate
+python3 -m pip install Pillow
 ```
 
-The example report includes expected offsets and links to the clean and annotated captures. Compare the measurements across the four passes.
+Run the capture tools from that checkout with the Python environment active.
+
+## Examples
+
+See a [single-screen audit with before-and-after images](example/AUDIT.md), the [24-screen layout benchmark](example/view-audit/README.md), or the [headline typography benchmark](example/headline-audit/README.md). To explore the interactive HTML reports, open them locally from a clone of the repository.

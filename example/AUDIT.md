@@ -38,3 +38,22 @@ This local fixture preserves four revisions of a small file list. The baseline, 
 | Last date relative to row rhythm | +1 CSS px | Unmeasured | +1 CSS px | 0 |
 
 Three corrections verified in their affected states. One optical difference accepted. Positive values mean down for the folder and right for the marker. The example covers a static file list at two viewport widths. Interaction flows and live application data are outside this fixture.
+
+## Reproduce the screenshots
+
+From the repo root, set up the [local capture tools](../README.md#local-capture-tools), then run this in a POSIX shell. The screenshots and guides are saved in a fresh temporary directory.
+
+```sh
+run_dir=$(mktemp -d)
+skill_dir="$PWD/skills/eagle-eye"
+fixture=$(python3 -c 'from pathlib import Path; print(Path("example/screen.html").resolve().as_uri())')
+(
+set -e
+for pass in baseline tab row final; do
+  node "$skill_dir/scripts/capture.cjs" "$fixture?pass=$pass" "$run_dir/$pass.png" --width 390 --height 360 --scale 2
+  python3 "$skill_dir/scripts/guides.py" "$run_dir/$pass.png" example/compact-guides.json "$run_dir/$pass-guided.png"
+done
+python3 "$skill_dir/scripts/guides.py" "$run_dir/row.png" example/date-guides.json "$run_dir/dates-before.png"
+python3 "$skill_dir/scripts/guides.py" "$run_dir/final.png" example/date-guides.json "$run_dir/dates-after.png"
+)
+```
