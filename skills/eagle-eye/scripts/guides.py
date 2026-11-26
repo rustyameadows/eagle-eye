@@ -3,10 +3,9 @@ import argparse
 import json
 import math
 from pathlib import Path
-from PIL import Image, ImageChops, ImageColor, ImageDraw, ImageFont
+from PIL import Image, ImageChops, ImageColor, ImageDraw, ImageFilter
 
-
-PALETTE = ["#08754c", "#a1376d", "#2d61b1", "#925116"]
+from proof_style import COLORS, PATTERNS, font, rail
 
 
 def number(value):
@@ -52,27 +51,33 @@ def annotate(source, recipe):
     with Image.open(source) as original:
         image = original.convert("RGB")
     crop = rect(recipe["crop"], scale, image.size) if "crop" in recipe else (0, 0, *image.size)
-    detail = image.crop(crop)
+    clean = image.crop(crop)
+    detail = clean.copy()
+    # A white casing against a dark surface keeps the rail visible. On light
+    # paper a bare stroke preserves more of the small glyphs underneath it.
+    backdrop = clean.convert("L").filter(ImageFilter.BoxBlur(max(1, round(3 * scale))))
     draw = ImageDraw.Draw(detail)
-    guides, legend, results = {}, [], []
+    guides, groups, results = {}, {}, []
     stroke = max(1, round(scale))
-    for i, guide in enumerate(recipe["guides"]):
+    for guide in recipe["guides"]:
         name, axis, at = guide["name"], guide["axis"], number(guide["at"])
         if name in guides or axis not in ("x", "y"):
             raise ValueError(f"Guide needs a unique name and x/y axis: {name}")
-        color = guide.get("color", PALETTE[i % len(PALETTE)])
+        role = guide.get("role", "reference")
+        if role not in PATTERNS:
+            raise ValueError(f"Unknown guide role: {role}")
+        color = guide.get("color", COLORS[role])
         index = 0 if axis == "x" else 1
         pos = round(at * scale) - crop[index]
         if not 0 <= pos < detail.size[index]:
             raise ValueError(f"Guide {name} is outside the displayed crop")
-        line = (pos, 0, pos, detail.height - 1) if axis == "x" else (0, pos, detail.width - 1, pos)
-        draw.line(line, fill=color, width=stroke)
-        guides[name] = (axis, at, color)
-        legend.append((color, f"{name}   |   {axis} = {at:g} {unit_label}"))
+        rail(draw, axis, pos, 0, detail.size[1-index] - 1, role, scale, color, backdrop=backdrop)
+        guides[name] = (axis, at)
+        groups[name] = [(role, color, name, f"{axis} = {at:g} {unit_label}")]
     if not guides:
         raise ValueError("Specify at least one guide")
     for region in recipe.get("regions", []):
-        axis, at, color = guides[region["guide"]]
+        axis, at = guides[region["guide"]]
         box = rect(region["box"], scale, image.size)
         if box[0] < crop[0] or box[1] < crop[1] or box[2] > crop[2] or box[3] > crop[3]:
             raise ValueError(f"Region outside displayed crop: {region['name']}")
@@ -82,32 +87,49 @@ def annotate(source, recipe):
         anchor = region.get("anchor", "center")
         value = {"start": lo, "center": (lo + hi) / 2, "end": hi}[anchor]
         delta = value - at
-        draw.rectangle((bounds[0]-crop[0], bounds[1]-crop[1], bounds[2]-crop[0]-1, bounds[3]-crop[1]-1),
-                       outline=color, width=stroke)
-        legend.append((color, f"{region['name']}   |   {anchor} {delta:+g} {unit_label}" + ("   [check crop edge]" if touches else "")))
+        x1, y1, x2, y2 = bounds[0]-crop[0], bounds[1]-crop[1], bounds[2]-crop[0]-1, bounds[3]-crop[1]-1
+        for axis_id, pos, start, end in (("x", x1, y1, y2), ("x", x2, y1, y2),
+                                          ("y", y1, x1, x2), ("y", y2, x1, x2)):
+            rail(draw, axis_id, pos, start, end, "observed", scale, backdrop=backdrop)
+        offset = f"{delta:+g}" if delta else "0"
+        groups[region["guide"]].append(("observed", COLORS["observed"], region["name"],
+                       f"{anchor} {offset} {unit_label}" + ("  [check crop edge]" if touches else "")))
         results.append({
             "name": region["name"], "guide": region["guide"], "anchor": anchor,
             "ink_bounds_px": bounds, f"position_{unit_key}": value, f"offset_{unit_key}": delta,
             "touches_roi_edge": touches,
         })
-    for face in ("Helvetica.ttc", "Helvetica.ttf", "NimbusSans-Regular.otf", "Arial.ttf"):
-        try:
-            font = ImageFont.truetype(face, 13)
-            break
-        except OSError:
-            continue
-    else:
-        font = ImageFont.load_default()
-    row_height = 20
-    width = max(detail.width, max(math.ceil(draw.textlength(text, font=font)) for _, text in legend) + 28)
-    canvas = Image.new("RGB", (width, detail.height + 12 + row_height * len(legend)), "#ffffff")
-    canvas.paste(detail)
+    legend = [item for group in groups.values() for item in group]
+    face = font(max(1, round(14 * scale)))
+    pad, sample, gap, row = [max(1, round(n * scale)) for n in (12, 22, 8, 26)]
+    names = max(math.ceil(draw.textlength(name, font=face)) for _, _, name, _ in legend)
+    values = max(math.ceil(draw.textlength(value, font=face)) for _, _, _, value in legend)
+    label_x = pad + sample + gap
+    width = max(detail.width, label_x + names + 2 * pad + values)
+    # A small crop can be narrower than its key. Use that room to show the
+    # same pixels unmarked, so a rail crossing a small glyph can be checked.
+    paired = width > detail.width
+    zoom = max(1, min(3, (width-pad) // (2*detail.width))) if paired else 1
+    panel_size = (detail.width * zoom, detail.height * zoom)
+    if paired:
+        width = max(width, 2 * panel_size[0] + pad)
+    legend_top = panel_size[1] + (row if paired else 0)
+    canvas = Image.new("RGB", (width, legend_top + 2 * pad + row * len(legend)), COLORS["paper"])
+    canvas.paste(detail.resize(panel_size, Image.Resampling.NEAREST), (0, 0))
     draw = ImageDraw.Draw(canvas)
-    for i, (color, label) in enumerate(legend):
-        y = detail.height + 6 + i * row_height
-        draw.rectangle((6, y+4, 14, y+7), fill=color)
-        draw.text((20, y), label, fill="#222222", font=font)
-    return canvas, dict(scale=scale, units=units, source_size_px=image.size, crop_px=crop, measurements=results)
+    if paired:
+        right = width - panel_size[0]
+        canvas.paste(clean.resize(panel_size, Image.Resampling.NEAREST), (right, 0))
+        suffix = f" · {zoom}×" if zoom > 1 else ""
+        draw.text((0, panel_size[1] + row // 2), "Guides" + suffix, font=face, fill=COLORS["ink"], anchor="lm")
+        draw.text((right, panel_size[1] + row // 2), "Original" + suffix, font=face, fill=COLORS["ink"], anchor="lm")
+    draw.line((0, legend_top, width-1, legend_top), fill=COLORS["rule"], width=stroke)
+    for i, (role, color, name, value) in enumerate(legend):
+        y = legend_top + pad + i * row + row // 2
+        rail(draw, "y", y, pad, pad+sample-1, role, scale, color, keyline=False)
+        draw.text((label_x, y), name, fill=COLORS["ink"], font=face, anchor="lm")
+        draw.text((width-pad, y), value, fill=COLORS["ink"], font=face, anchor="rm")
+    return canvas, dict(scale=scale, units=units, source_size_px=image.size, crop_px=crop, detail_zoom=zoom, measurements=results)
 
 
 def main():

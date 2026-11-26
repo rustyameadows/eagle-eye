@@ -50,16 +50,6 @@ async function render() {
             return img.decode();
           }));
         });
-        const colorRegions = await stage.evaluate(el => {
-          const origin = el.getBoundingClientRect();
-          return Array.from(el.querySelectorAll('[data-source-color]'), node => {
-            const r = node.getBoundingClientRect();
-            const scale = window.devicePixelRatio;
-            return [Math.floor((r.left - origin.left) * scale), Math.floor((r.top - origin.top) * scale),
-              Math.ceil((r.right - origin.left) * scale), Math.ceil((r.bottom - origin.top) * scale)];
-          });
-        });
-        await fs.writeFile(path.join(directory, 'color-regions.json'), JSON.stringify(colorRegions));
         for (const time of times) {
           await page.evaluate(async t => {
             window.dispatchEvent(new CustomEvent('eagle-seek', { detail: t }));

@@ -12,24 +12,24 @@
   ],
   "palette": [
     [
-      235,
-      237,
-      232
+      245,
+      245,
+      245
     ],
     [
-      35,
+      88,
+      101,
+      169
+    ],
+    [
+      162,
       91,
-      161
+      24
     ],
     [
-      219,
-      123,
-      48
-    ],
-    [
-      147,
-      65,
-      135
+      132,
+      84,
+      158
     ]
   ],
   "method": "Exact opaque 8-bit RGB comparison, every pixel. Direction uses the sign of 2126 ΔR + 7152 ΔG + 722 ΔB on encoded channels. Bounds use exclusive right/bottom edges.",

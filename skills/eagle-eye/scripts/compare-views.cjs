@@ -189,7 +189,9 @@ async function main() {
   const [planPath, out] = positionals;
   const plan = JSON.parse(await fs.readFile(planPath, 'utf8'));
   validate(plan);
-  const template = await fs.readFile(path.join(__dirname, '../assets/view-report.html'), 'utf8');
+  const assets = path.join(__dirname, '../assets');
+  const style = await fs.readFile(path.join(assets, 'proof-style.css'), 'utf8');
+  const template = (await fs.readFile(path.join(assets, 'view-report.html'), 'utf8')).replace('/*PROOF_STYLE*/', style);
   await fs.mkdir(path.dirname(path.resolve(out)), { recursive: true });
   await fs.mkdir(out); // Refuse an existing run, including concurrent writers.
   const browser = await launchChromium();

@@ -11,17 +11,14 @@ import shutil
 import struct
 import tempfile
 
-from PIL import Image
+from PIL import Image, ImageColor
+
+from proof_style import COLORS, CSS
 
 
 ASSETS = Path(__file__).resolve().parents[1] / 'assets'
 CLASSES = ('unchanged', 'darker', 'lighter', 'equalBrightness')
-PALETTE = [
-    (235, 237, 232),  # unchanged
-    (35, 91, 161),   # darker in the second capture
-    (219, 123, 48),  # lighter in the second capture
-    (147, 65, 135),  # changed RGB at equal weighted brightness
-]
+PALETTE = [ImageColor.getrgb(COLORS[key]) for key in ("mat", "reference", "distance", "index")]
 
 
 def named_records(records, minimum, description):
@@ -183,6 +180,7 @@ def build(manifest_path, output):
         (dest / 'measurements.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         page = (ASSETS / 'pixel-proof.html').read_text(encoding='utf-8')
         data = json.dumps({'report': result, 'pixels': pixels}, ensure_ascii=True, separators=(',', ':')).replace('<', '\\u003c')
+        page = page.replace('/*PROOF_STYLE*/', CSS)
         page = page.replace('/*PIXEL_PROOF_JS*/', (ASSETS / 'pixel-proof.js').read_text(encoding='utf-8')).replace('/*PIXEL_PROOF_DATA*/', data)
         (dest / 'index.html').write_text(page, encoding='utf-8')
         dest.rename(output)

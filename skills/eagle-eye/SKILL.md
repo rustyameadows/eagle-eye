@@ -15,6 +15,8 @@ description: Audit a rendered screen, component, user flow, or site for visual i
 
 Find small, consequential defects by looking at an interface at three scales. At screen scale, ask where the eye lands and whether the next action reads clearly. At component scale, compare like elements across the product. At pixel scale, identify the exact edge, baseline, or ink shape that explains a perceived mismatch.
 
+Use the [proof style guide](references/proof-style.md) whenever you draw or export evidence. Apply its stroke roles, black-and-white Helvetica labels and final-size legibility check to custom figures as well as the bundled tools.
+
 ## Establish the audit
 
 - Respect the requested scope. For an audit or critique, collect findings and proposed fixes. When the user asks for refinement or implementation, edit the design and run verification cycles. If the target is a supplied image, work on a copy, mark the visible regions and identify which states and scales the image supports.

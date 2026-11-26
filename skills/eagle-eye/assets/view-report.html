@@ -4,15 +4,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Eagle Eye · View comparison</title>
   <style>
+    /*PROOF_STYLE*/
     :root {
       color-scheme: light;
-      --ink: #18291f;
-      --quiet: #4c5c52;
-      --line: #cbd4ca;
-      --paper: #f5f6f1;
-      --green: #066843;
-      --red: #a4313e;
-      font-family: Inter, system-ui, sans-serif;
+      --ink: var(--ee-ink);
+      --quiet: #424242;
+      --line: var(--ee-rule);
+      --paper: var(--ee-paper);
+      font-family: var(--ee-font);
       color: var(--ink);
       background: var(--paper);
     }
@@ -32,13 +31,12 @@
       padding-bottom: 18px;
     }
     header small {
-      color: var(--green);
+      color: var(--ink);
       font-weight: 700;
     }
     h1 {
       font:
-        500 clamp(28px, 4vw, 46px)/1.15 Georgia,
-        serif;
+        500 clamp(28px, 4vw, 46px)/1.15 var(--ee-font);
       margin: 10px 0;
     }
     p {
@@ -74,7 +72,7 @@
     select,
     button {
       padding: 7px 10px;
-      border: 1px solid #adb8ae;
+      border: 1px solid #adadad;
       background: white;
       color: var(--ink);
       border-radius: 5px;
@@ -89,7 +87,7 @@
     button:focus-visible,
     select:focus-visible,
     input:focus-visible {
-      outline: 3px solid #bd8112;
+      outline: 3px solid var(--ink);
       outline-offset: 2px;
     }
     .tools {
@@ -126,7 +124,7 @@
       height: clamp(180px, 31vw, 336px);
       overflow: hidden;
       position: relative;
-      background: #ebece5;
+      background: var(--ee-mat);
       border: 1px solid var(--line);
       border-radius: 6px;
     }
@@ -144,19 +142,20 @@
     .guide {
       position: absolute;
       pointer-events: none;
+      filter: drop-shadow(1px 0 white) drop-shadow(0 1px white);
     }
     .guide.x {
       height: 100%;
       top: 0;
-      border-left: 1px dashed var(--green);
+      border-left: 1px dashed var(--ee-reference);
     }
     .guide.y {
       width: 100%;
       left: 0;
-      border-top: 1px dashed var(--green);
+      border-top: 1px dashed var(--ee-reference);
     }
     .guide.to {
-      border-color: var(--red);
+      border-color: var(--ee-observed);
       border-style: solid;
       border-width: 0;
     }
@@ -197,16 +196,15 @@
       font-size: 12px;
       color: var(--quiet);
     }
-    .legend b {
-      color: var(--green);
+    .legend b::before, .legend strong::before {
+      content: ""; display: inline-block; width: 22px; margin: 0 5px 3px 0; border-top: 2px dashed var(--ee-reference);
     }
-    .legend strong {
-      color: var(--red);
+    .legend strong::before {
+      border-top: 2px solid var(--ee-observed);
     }
     h2 {
       font:
-        500 22px/1.3 Georgia,
-        serif;
+        500 22px/1.3 var(--ee-font);
       margin: 20px 0 4px;
     }
     .table-scroll {
@@ -239,21 +237,21 @@
       text-underline-offset: 3px;
     }
     tr.selected {
-      background: #e7ede4;
+      background: var(--ee-mat);
     }
     .drift {
-      color: var(--red);
+      color: var(--ink);
       font-weight: 650;
     }
     .expected,
     .aligned {
-      color: var(--green);
+      color: var(--ink);
     }
     .unverified {
-      color: #814c0c;
+      color: var(--ink);
     }
     a {
-      color: var(--green);
+      color: var(--ink);
     }
     [hidden] {
       display: none !important;
@@ -275,7 +273,7 @@
   </style>
   <main>
     <header>
-      <small>Eagle Eye / View comparison</small>
+      <small>View comparison</small>
       <h1 id="title"></h1>
       <p id="summary" class="muted"></p>
     </header>
@@ -294,7 +292,7 @@
     </div>
     <div id="panels" class="panels"></div>
     <p class="legend">
-      <b>Dashed green</b> marks the source view. <strong>Solid red</strong> marks the destination. Short
+      <b>Dashed</b> marks the source view. <strong>Solid</strong> marks the destination. Short
       guides mark the relative anchor.
     </p>
     <div class="readout"><strong id="selectedLabel"></strong><span id="numbers"></span></div>
@@ -492,6 +490,11 @@
             for (const [k, v] of (side.positions || []).entries()) {
               const line = add(layer, 'div');
               line.className = 'guide ' + axis + (j ? ' to' : '') + (k ? ' relative' : '');
+              if (j && row.a.positions?.[k] === v) {
+                // The rear dashed rail must stay visible when both measured edges agree.
+                line.style[axis === 'x' ? 'height' : 'width'] = k ? '27%' : '60%';
+                line.style[axis === 'x' ? 'top' : 'left'] = k ? '18%' : '40%';
+              }
               line.style[axis === 'x' ? 'left' : 'top'] = v + 'px';
             }
         }

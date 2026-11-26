@@ -16,6 +16,14 @@ On your next turn, attach a screenshot or point Codex at a local page and try on
 - `Use $eagle-eye to evaluate this headline. Show the whole line and the spacing between letters.`
 - `Use $eagle-eye to compare these two views. Show me which shared elements move.`
 
+## Proof style
+
+A dashed indigo line marks the intended edge. A solid coral line marks the observed edge. A capped ochre bracket measures the distance. Helvetica labels stay black or white so the color belongs to the measurement.
+
+![Blind audit of a list. A clean screenshot sits beside a magnified crop showing the middle icon seven CSS pixels to the right of its siblings.](example/proof-style/figure.png)
+
+A blind reviewer produced this figure from one screenshot and the installed skill. [Style guide and palette](skills/eagle-eye/references/proof-style.md) · [Original screenshot and trial record](example/proof-style/TRIAL.md)
+
 ## Audit results
 
 ### Example 1

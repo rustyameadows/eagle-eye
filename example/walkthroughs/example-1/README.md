@@ -19,7 +19,7 @@ Open `pixels/index.html` locally. Choose a viewport, compare the three full line
 | 390 px · 2× | [7.43 px](pixels/rasters/phone/stage-1.png) | [8.14 px](pixels/rasters/phone/stage-2.png) | [3.91 px](pixels/rasters/phone/stage-3.png) |
 | 320 px · 2× | [6.02 px](pixels/rasters/narrow/stage-1.png) | [6.73 px](pixels/rasters/narrow/stage-2.png) | [3.20 px](pixels/rasters/narrow/stage-3.png) |
 
-The values are the shortest distances in CSS pixels between painted pixel centers of ’ and v at 50% ink coverage. The white segment in the animation connects those two recorded points. The tracking-only desktop gap of 20.00 px was almost as wide as the 20.10 px first word space. The local −0.125em adjustment kept “I’ve” together at reading size. The four source retests matched the accepted pair trial in all 186,505 pixels of the headline crops. The copy, accessible name and single-line wrapping held at all four widths. [Pair coordinates](pair.json) · [Source retest hashes](source-retest.json)
+The values are the shortest distances in CSS pixels between painted pixel centers of ’ and v at 50% ink coverage. The white-backed ochre segment in the animation connects those two recorded points. The tracking-only desktop gap of 20.00 px was almost as wide as the 20.10 px first word space. The local −0.125em adjustment kept “I’ve” together at reading size. The four source retests matched the accepted pair trial in all 186,505 pixels of the headline crops. The copy, accessible name and single-line wrapping held at all four widths. [Pair coordinates](pair.json) · [Source retest hashes](source-retest.json)
 
 From an Eagle Eye checkout, rebuild the offline viewer and difference maps in a fresh directory with the original PNGs in this folder.
 

@@ -12,6 +12,8 @@ from urllib.parse import quote
 
 from PIL import Image, ImageDraw
 
+from proof_style import CSS, rail
+
 ASSETS = Path(__file__).resolve().parent.parent / "assets"
 KEY = ("profile", "from", "to", "check")
 STATUSES = {"aligned", "expected", "drift", "unverified"}
@@ -186,13 +188,12 @@ def annotated_crops(stages, key):
         draw = ImageDraw.Draw(crop)
         length = new_h if horizontal else new_w
 
-        def line(position, start, end, color):
+        def line(position, start, end, role):
             pos = round((position * scale - rect[0 if horizontal else 1]) *
                         (new_w / (rect[2] - rect[0]) if horizontal else new_h / (rect[3] - rect[1])))
-            draw.line((pos, start, pos, end) if horizontal else (start, pos, end, pos), fill=color, width=2)
-        for n in range(0, length, 12):
-            line(intended, n, min(length - 1, n + 6), "#9f4806")
-        line(actual, round(length * .4), length - 1, "#006c68")
+            rail(draw, "x" if horizontal else "y", pos, start, end, role, scale=2)
+        line(intended, 0, length - 1, "reference")
+        line(actual, round(length * .4), length - 1, "observed")
         buf = io.BytesIO()
         crop.save(buf, "PNG")
         result.append("data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii"))
@@ -540,7 +541,7 @@ def render(config, root, output):
 def document(title, nav, sections):
     template = (ASSETS / "handoff.html").read_text(encoding="utf-8")
     nav_html = "".join(f'<a href="#{id_}">{text}</a>' for id_, text in nav)
-    return (template.replace("<!--STYLE-->", (ASSETS / "handoff.css").read_text(encoding="utf-8"))
+    return (template.replace("<!--STYLE-->", CSS + "\n" + (ASSETS / "handoff.css").read_text(encoding="utf-8"))
             .replace("<!--SCRIPT-->", (ASSETS / "handoff.js").read_text(encoding="utf-8"))
             .replace("<!--TITLE-->", h(title)).replace("<!--NAV-->", nav_html)
             .replace("<!--SECTIONS-->", "\n".join(sections)))

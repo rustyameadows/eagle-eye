@@ -1,12 +1,14 @@
 """Offline regressions for audit evidence, profile-limited scope, and manual reviews."""
 import importlib.util
 import json
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "skills/eagle-eye/scripts"))
 spec = importlib.util.spec_from_file_location("handoff", ROOT / "skills/eagle-eye/scripts/render-handoff.py")
 handoff = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(handoff)

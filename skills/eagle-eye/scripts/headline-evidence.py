@@ -7,7 +7,9 @@ from statistics import median
 import sys
 import unicodedata
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
+
+from proof_style import COLORS, font
 
 
 def bbox(boxes, padding=0):
@@ -32,13 +34,6 @@ def save_crop(page, box, scale, dest):
     bounds = pixels(box, scale)
     page.crop(bounds).save(dest)
     return rect(tuple(n/scale for n in bounds))
-
-
-def font(size):
-    try:
-        return ImageFont.truetype("DejaVuSans.ttf", size=size)
-    except OSError:
-        return ImageFont.load_default()
 
 
 def grapheme_words(heading):
@@ -255,10 +250,10 @@ def word_proofs(root, page, heading, scale, words, rows):
         enlarged = native.resize(size, Image.Resampling.NEAREST if zoom >= 1 else Image.Resampling.LANCZOS)
         vertical = heading["styles"]["writing-mode"].startswith("vertical")
         frame_w = max(420, enlarged.width + (80 if vertical else 24))
-        frame = Image.new("RGB", (frame_w, enlarged.height + 76), "#f6f4ee")
+        frame = Image.new("RGB", (frame_w, enlarged.height + 76), COLORS["mat"])
         draw = ImageDraw.Draw(frame)
         header = f'Word {ordinal} · boundaries {boundaries[0]["index"]}–{boundaries[-1]["index"]}'
-        draw.text((12, 8), header, font=font(16), fill="#263b35")
+        draw.text((12, 8), header, font=font(16), fill=COLORS["ink"])
         frame.paste(enlarged, (12, 36))
         # Number the gaps under the photographed word (or beside vertical text).
         # Use the DOM range centers only to locate the boundary, preserving the ink.
@@ -270,12 +265,12 @@ def word_proofs(root, page, heading, scale, words, rows):
             coord = round((at * scale - origin) * (size[1] / native.height if vertical else size[0] / native.width))
             if vertical:
                 pos = (12 + enlarged.width, 36 + coord)
-                draw.line((pos[0], pos[1], pos[0] + 4, pos[1]), fill="#396c65")
-                draw.text((pos[0] + 6, pos[1]), str(row["index"]), font=font(11), anchor="lm", fill="#263b35")
+                draw.line((pos[0], pos[1], pos[0] + 4, pos[1]), fill=COLORS["index"])
+                draw.text((pos[0] + 6, pos[1]), str(row["index"]), font=font(11), anchor="lm", fill=COLORS["ink"])
             else:
                 pos = (12 + coord, 36 + enlarged.height)
-                draw.line((pos[0], pos[1], pos[0], pos[1] + 4), fill="#396c65")
-                draw.text((pos[0], pos[1] + 6), str(row["index"]), font=font(11), anchor="mt", fill="#263b35")
+                draw.line((pos[0], pos[1], pos[0], pos[1] + 4), fill=COLORS["index"])
+                draw.text((pos[0], pos[1] + 6), str(row["index"]), font=font(11), anchor="mt", fill=COLORS["ink"])
         target = f'{heading["file"][:-4]}-word-proof-{ordinal}.png'
         frame.save(root / target)
         for row in boundaries:
@@ -301,20 +296,20 @@ def proof_sheets(root, page, heading, scale, rows):
         overview.thumbnail((width - 32, 142), Image.Resampling.LANCZOS)
         header = 72 + overview.height
         height = header + max(1, math.ceil(len(group) / 3)) * tile_h + 24
-        sheet = Image.new("RGB", (width, height), "#f6f4ee")
+        sheet = Image.new("RGB", (width, height), COLORS["mat"])
         draw = ImageDraw.Draw(sheet)
-        draw.text((16, 9), "Headline proof", font=font(20), fill="#223432")
+        draw.text((16, 9), "Headline proof", font=font(20), fill=COLORS["ink"])
         sheet.paste(overview, (16, 39))
         segment = f"Boundaries {offset + 1}–{offset + len(group)} of {len(rows)}" if group else "No adjacent graphemes"
-        draw.text((16, 45 + overview.height), segment, font=font(14), fill="#405650")
+        draw.text((16, 45 + overview.height), segment, font=font(14), fill=COLORS["ink"])
         for pos, row in enumerate(group):
             x = 12 + (pos % 3) * (tile_w + 12)
             y = header + (pos // 3) * tile_h
-            draw.rounded_rectangle((x, y, x+tile_w, y+tile_h-10), 6, fill="white", outline="#d0d7d0")
+            draw.rounded_rectangle((x, y, x+tile_w, y+tile_h-10), 6, fill="white", outline=COLORS["rule"])
             def label(text):
                 return "space" if text.isspace() else text
             title = f'{row["index"]:02d}   {label(row["left"])}  /  {label(row["right"])}'
-            draw.text((x+9, y+6), title, font=font(17), fill="#20342f")
+            draw.text((x+9, y+6), title, font=font(17), fill=COLORS["ink"])
             if row["method"] not in {"line-break", "no-rendered-area"}:
                 bounds = pixels(bbox(row["boxes"], 3), scale)
                 native = page.crop(bounds)
@@ -328,12 +323,12 @@ def proof_sheets(root, page, heading, scale, rows):
                     # Underline the verified clear strip on the margin, preserving original ink.
                     for coord in ("x1", "x2"):
                         gx = px + round((gap[coord] * scale - bounds[0]) * shape[0] / native.width)
-                        draw.line((gx, y+123, gx, y+128), fill="#396c65")
+                        draw.line((gx, y+123, gx, y+128), fill=COLORS["index"])
             note = notes[row["method"]]
             metric = row["columnClearance"] or row["inkSample"]
             if metric:
                 note += f' · {metric["cssPx"]:.2f} CSS px'
-            draw.text((x+9, y+135), note, font=font(13), fill="#405650")
+            draw.text((x+9, y+135), note, font=font(13), fill=COLORS["ink"])
         target = f"{stem}-proof-{len(names)+1}.png"
         sheet.save(root / target)
         names.append(target)
@@ -375,7 +370,7 @@ def describe(root, page, heading, scale, requests, proof=False):
         image.paste(native,(0,0))
         draw=ImageDraw.Draw(image)
         for idx,b in enumerate(boxes):
-            color=("#276e75","#8a4f61")[idx]
+            color=COLORS["index"]
             x1=(b["x"]*scale-bounds[0])*zoom
             x2=((b["x"]+b["width"])*scale-bounds[0])*zoom
             y=native.height-5-idx*4
@@ -387,9 +382,12 @@ def describe(root, page, heading, scale, requests, proof=False):
             x1=(a["x1"]*scale-bounds[0])*zoom
             x2=(a["x2"]*scale-bounds[0])*zoom
             y=(a["y"]*scale-bounds[1])*zoom
-            draw.line((x1,y,x2,y),fill="#da5725",width=2)
+            draw.line((x1,y,x2,y),fill=COLORS["paper"],width=4)
+            draw.line((x1,y,x2,y),fill=COLORS["distance"],width=2)
+            for x in (x1, x2):
+                draw.line((x,y-3,x,y+3),fill=COLORS["distance"],width=1)
         caption="Range ticks" + ("  /  Ink sample " + str(p["ink"]["cssPx"]) + " CSS px" if p["ink"] else "")
-        draw.text((6,native.height+7),caption,font=font(12),fill="#263d42")
+        draw.text((6,native.height+7),caption,font=font(12),fill=COLORS["ink"])
         target=stem+".png"
         image.save(root/target)
         heading["details"].append({"word":p["word"],"pair":p["pair"],"wordFile":word_file,"wordBox":word_box,
@@ -410,12 +408,12 @@ def contact_sheets(root, report, profile):
     files=[]
     for start in range(0,len(items),12):
         group=items[start:start+12]
-        sheet=Image.new("RGB",(1000, 45+math.ceil(len(group)/2)*145),"#f7f6f1")
+        sheet=Image.new("RGB",(1000, 45+math.ceil(len(group)/2)*145),COLORS["mat"])
         draw=ImageDraw.Draw(sheet)
-        draw.text((16,12),profile+"   /   Headline inventory",font=font(17),fill="#243331")
+        draw.text((16,12),profile+"   /   Headline inventory",font=font(17),fill=COLORS["ink"])
         for i,(view,h) in enumerate(group):
             x=16+(i%2)*495; y=49+(i//2)*145
-            draw.text((x,y),view,font=font(12),fill="#566c68")
+            draw.text((x,y),view,font=font(12),fill=COLORS["ink"])
             with Image.open(root/h["file"]) as im:
                 im.thumbnail((467,109))
                 sheet.paste(im,(x,y+20))

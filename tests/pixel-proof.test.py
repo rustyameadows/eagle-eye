@@ -5,12 +5,14 @@ import json
 from pathlib import Path
 import re
 import struct
+import sys
 import tempfile
 import unittest
 
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "skills/eagle-eye/scripts"))
 spec = importlib.util.spec_from_file_location('pixelproof', ROOT / 'skills/eagle-eye/scripts/pixel-proof.py')
 proof = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(proof)

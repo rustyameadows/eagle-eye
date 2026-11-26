@@ -184,7 +184,7 @@ def headline_sections(report, source, output, eval_path=None, review_path=None, 
                (sum(len(i.get('variants', [])) for rows in headings.values() for _, i in rows), 'Candidate renders')]
     cards = ''.join(f'<div><dt>{h(label)}</dt><dd>{n}</dd></div>' for n, label in metrics)
     overview = (f'<section class="overview" id="overview" data-slide aria-labelledby="report-title">'
-                f'<div class="hero"><div><p class="eyebrow">Eagle Eye · Typography</p>'
+                f'<div class="hero"><div><p class="eyebrow">Typography</p>'
                 f'<h1 id="report-title" tabindex="-1">{title}</h1><p class="abstract">{summary}</p></div>{cover}'
                 f'</div><dl class="metrics">{cards}</dl></section>')
     sections, nav = [overview], [('overview', 'Overview')]

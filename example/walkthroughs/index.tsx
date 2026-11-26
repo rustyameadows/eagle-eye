@@ -12,8 +12,8 @@ const poster = { time: 7900 }
 const canvas = '#f2f2f2'
 const surface = '#ffffff'
 const ink = '#171717'
-const guide = '#383838'
-const measuredInk = '#555555'
+const guide = 'var(--ee-reference)'
+const measuredInk = 'var(--ee-observed)'
 const files = ['p01-compact.png', 'p02-compact.png', 'p03-compact.png']
 
 function ramp(t: number, a: number, b: number) {
@@ -103,7 +103,7 @@ function Scene({ subject, layout, time }: { subject: Subject; layout: SceneLayou
     <text x={compact?width-14:329} y={compact?23:29} textAnchor="end" fontSize="12.5" fill="#525252">390 CSS px · 2×</text>
     {context(before)}
     <g clipPath={`url(#${contextClip})`}>{context(after)}</g>
-    <g opacity={guideAmount} fill="none" stroke={guide} strokeWidth="1.4">
+    <g opacity={guideAmount} fill="none" stroke={guide} strokeDasharray="6 4" strokeWidth="1.4">
       <rect x={bracketX} y={bracketY} width={bracketW} height={bracketH} rx="3"/>
     </g>
     <rect x={panelX} y={panelY} width={panelW} height={panelH} fill={surface}/>
@@ -118,22 +118,22 @@ function Scene({ subject, layout, time }: { subject: Subject; layout: SceneLayou
       <g clipPath={`url(#${detailClip})`}>{details(after)}</g>
       {folder && <g opacity={guideAmount}>
         <path d={`M ${tabLeft-5} ${midY-tabHalf} h -7 v ${tabHalf*2} h 7`}
-          fill="none" stroke={guide} strokeWidth="1.25"/>
+          fill="none" stroke="var(--ee-distance)" strokeWidth="1.25"/>
         <path d={`M ${tabLeft-12} ${midY} h ${(iconCenter-tabLeft+38)*guideAmount}`}
-          stroke={guide} strokeWidth="1.5"/>
-        <text x={tabLeft-13} y={midY-tabHalf-7} fontSize="13" fill={guide}>28 px tab</text>
+          stroke={guide} strokeDasharray="6 4" strokeWidth="1.5"/>
+        <text x={tabLeft-13} y={midY-tabHalf-7} fontSize="13" fill={ink}>28 CSS px tab</text>
         <g opacity={1-repaired}>
           <path d={`M ${iconCenter} ${inkY} h 21 l 16 ${tabHalf-4} h 13`} fill="none"
-            stroke={measuredInk} strokeDasharray="3 2" strokeWidth="1.4"/>
+            stroke={measuredInk} strokeWidth="1.4"/>
           <circle cx={iconCenter} cy={inkY} r="3.2" fill={measuredInk} stroke="white"/>
-          <text x={iconCenter+56} y={inkY+tabHalf} fontSize="13" fill={measuredInk}>Ink center</text>
+          <text x={iconCenter+56} y={inkY+tabHalf} fontSize="13" fill={ink}>Ink center</text>
         </g>
-        <circle cx={iconCenter} cy={midY} r="3.2" fill={guide} stroke="white" opacity={repaired}/>
+        <circle cx={iconCenter} cy={midY} r="3.2" fill={measuredInk} stroke="white" opacity={repaired}/>
       </g>}
       {!folder && <g opacity={guideAmount}>
-        <path d={`M ${railX} ${dy+6} v ${(dh-12)*guideAmount}`} stroke={guide} strokeWidth="1.5"/>
+        <path d={`M ${railX} ${dy+6} v ${(dh-12)*guideAmount}`} stroke={guide} strokeDasharray="6 4" strokeWidth="1.5"/>
         <g opacity={1-repaired} stroke={measuredInk} fill="none" strokeWidth="1.5">
-          <path d={`M ${railX} ${rowCenter+12} h ${gap} m 0 3 v -14`}/>
+          <path d={`M ${railX} ${rowCenter+12} h ${gap} m 0 3 v -14`} stroke="var(--ee-distance)"/>
           <circle cx={railX+gap} cy={rowCenter-1} r="3" stroke="white" fill={measuredInk}/>
         </g>
       </g>}
@@ -143,11 +143,11 @@ function Scene({ subject, layout, time }: { subject: Subject; layout: SceneLayou
       <text x={dx} y={barY-4} opacity={opening}>{folder?'Find the center of the 28 px tab':'Use the outer two markers as the guide'}</text>
       <text x={dx} y={barY-4} opacity={comparing}>Comparing the same crop</text>
       <g opacity={measured}>
-        <text x={dx} y={barY} fontSize={compact?32:37} fontWeight="700" fill="#171717">{folder?'+3 px':'+6 px'}</text>
+        <text x={dx} y={barY} fontSize={compact?32:37} fontWeight="700" fill="#171717">{folder?'+3':'+6'}<tspan dx="4" fontSize="15">CSS px</tspan></text>
         <text x={dx+(compact?105:119)} y={barY-2}>{folder?'Below the tab midpoint':'Indented past its siblings'}</text>
       </g>
       <g opacity={retest}>
-        <text x={dx} y={barY} fontSize={compact?32:37} fontWeight="700" fill={ink}>0 px</text>
+        <text x={dx} y={barY} fontSize={compact?32:37} fontWeight="700" fill={ink}>0<tspan dx="4" fontSize="15">CSS px</tspan></text>
         <text x={dx+(compact?105:119)} y={barY-2}>{folder?'Centered in the tab':'Three markers aligned'}</text>
       </g>
     </g>

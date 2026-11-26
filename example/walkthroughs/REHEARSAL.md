@@ -31,13 +31,15 @@ The folder and list walkthroughs use two repairs from the [single-screen audit](
 
 ## Regenerate the README media
 
-The figures use neutral guides and Helvetica for annotations. The Linux renderer resolves Helvetica to Nimbus Sans. The original red headline retains its captured colors. To change them, use a working copy of Stageshow with its dependencies installed, plus the [local capture tools](../../README.md#local-capture-tools). Set `STAGESHOW_DIR` to the absolute path of that working copy. From the Eagle Eye repo root, copy the scene sources, recorded measurements and original captures, then start the Stageshow preview.
+The figures use the shared [proof strokes and Helvetica annotations](../../skills/eagle-eye/references/proof-style.md). The Linux renderer resolves Helvetica to Nimbus Sans. The original red headline retains its captured colors. To change them, use a working copy of Stageshow with its dependencies installed, plus the [local capture tools](../../README.md#local-capture-tools). Set `STAGESHOW_DIR` to the absolute path of that working copy. From the Eagle Eye repo root, copy the scene sources, recorded measurements and original captures, then start the Stageshow preview.
 
 ```sh
 scene="$STAGESHOW_DIR/examples/eagle-eye"
 assets="$STAGESHOW_DIR/playground/public/eagle-evidence"
 mkdir -p "$scene/desk" "$scene/example-1" "$assets/desk" "$assets/example-1"
-cp example/walkthroughs/index.tsx example/walkthroughs/proofs.tsx example/walkthroughs/annotations.css "$scene/"
+cp example/walkthroughs/index.tsx example/walkthroughs/proofs.tsx "$scene/"
+mkdir -p "$STAGESHOW_DIR/skills/eagle-eye/assets"
+cp skills/eagle-eye/assets/proof-style.css "$STAGESHOW_DIR/skills/eagle-eye/assets/"
 cp example/walkthroughs/desk/measurements.json "$scene/desk/"
 cp example/walkthroughs/example-1/pair.json "$scene/example-1/"
 cp example/evidence/p01-compact.png example/evidence/p02-compact.png example/evidence/p03-compact.png "$assets/"

@@ -1,6 +1,7 @@
 // Build a visual index from evidence captured during the eval.
 const fs = require('node:fs/promises');
 const path = require('node:path');
+const proofStyle = require('node:fs').readFileSync(path.join(__dirname, '../../skills/eagle-eye/assets/proof-style.css'), 'utf8');
 const groups = {
   'Journal and navigation': ['inbox', 'archive', 'record', 'settings'],
   'Collections and search': ['collections', 'collection-detail', 'search', 'search-empty'],
@@ -57,9 +58,9 @@ async function main() {
     )
     .join('');
   const document =
-    '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fieldwork screen atlas</title><style>' +
-    ':root{font:15px system-ui,sans-serif;color:#223831;background:#f7f7f1}body{max-width:1220px;margin:auto;padding:clamp(14px,4vw,48px)}h1,h2{font-family:Georgia,serif;font-weight:500}h1{font-size:clamp(32px,5vw,58px);margin:8px 0}h2{font-size:25px;border-bottom:1px solid #bfcbc2;padding:10px 0}p{line-height:1.5}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}figure{margin:0;min-width:0}figure img{width:100%;display:block;border:1px solid #c7d0c6;box-sizing:border-box}a{color:#205641}figcaption{padding:6px 0;text-transform:capitalize}select{font:inherit;padding:6px}header{margin-bottom:26px}@media(max-width:820px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:420px){.grid{grid-template-columns:1fr}}</style>' +
-    '<header><p>Eagle Eye / Fieldwork eval</p><h1>Captured screens</h1><p>' +
+    '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fieldwork screen atlas</title><style>' + proofStyle +
+    ':root{font:15px var(--ee-font);color:var(--ee-ink);background:var(--ee-mat)}body{max-width:1220px;margin:auto;padding:clamp(14px,4vw,48px)}h1,h2{font-family:var(--ee-font);font-weight:500}h1{font-size:clamp(32px,5vw,58px);margin:8px 0}h2{font-size:25px;border-bottom:1px solid var(--ee-rule);padding:10px 0}p{line-height:1.5}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}figure{margin:0;min-width:0}figure img{width:100%;display:block;border:1px solid var(--ee-rule);box-sizing:border-box}a{color:var(--ee-ink)}figcaption{padding:6px 0;text-transform:capitalize}select{font:inherit;padding:6px}header{margin-bottom:26px}@media(max-width:820px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:420px){.grid{grid-template-columns:1fr}}</style>' +
+    '<header><h1>Captured screens</h1><p>' +
     subject.length +
     ' static screens from the baseline run. Choose a viewport and open any capture at its original resolution.</p><label>Viewport <select id="profile">' +
     profiles

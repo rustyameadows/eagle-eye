@@ -1,6 +1,7 @@
 // Render the non-geometric controls against the same static pages used in the view matrix.
 const fs = require('node:fs/promises');
 const path = require('node:path');
+const proofStyle = require('node:fs').readFileSync(path.join(__dirname, '../../skills/eagle-eye/assets/proof-style.css'), 'utf8');
 const { pathToFileURL } = require('node:url');
 const { launchChromium } = require('../../skills/eagle-eye/scripts/browser.cjs');
 
@@ -208,7 +209,7 @@ async function probe(browser, plan, planFile, spec, stage, output) {
     }
     // Pixel bounds and evidence crops come from original browser PNGs. The target page is never annotated.
     const evidence = await page.evaluate(
-      async ({ now, initial, rect, kind, scale }) => {
+      async ({ now, initial, rect, kind, scale, guideColor }) => {
         async function decode(data) {
           const img = new Image();
           img.src = 'data:image/png;base64,' + data;
@@ -248,9 +249,9 @@ async function probe(browser, plan, planFile, spec, stage, output) {
             }
           if (last < first) throw new Error('Target ink is absent in captured frame');
           offset = ((last + 1 + first) / 2 - (frame.top + frame.bottom) / 2) / scale;
-          ctx.strokeStyle = '#a3314c';
-          ctx.lineWidth = 1;
-          ctx.setLineDash([3 * scale, 2 * scale]);
+          ctx.strokeStyle = guideColor;
+          ctx.lineWidth = scale;
+          ctx.setLineDash([6 * scale, 4 * scale]);
           ctx.beginPath();
           const y = (frame.top + frame.bottom) / 2 - top;
           ctx.moveTo(0, y);
@@ -284,6 +285,7 @@ async function probe(browser, plan, planFile, spec, stage, output) {
         initial: spec.id === 'focus' ? before.toString('base64') : null,
         rect: g,
         kind: spec.id,
+        guideColor: /--ee-reference: (#[0-9a-f]+)/.exec(proofStyle)[1],
         scale: profile.scale
       }
     );
@@ -374,9 +376,9 @@ function render(result) {
     })
     .join('');
   return (
-    '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Paint, content and focus checks</title><style>' +
-    ':root{font-family:system-ui,sans-serif;color:#243729;background:#f5f5ee}body{max-width:1050px;margin:auto;padding:clamp(15px,4vw,50px)}header,section{padding:20px 0;border-bottom:1px solid #cbd4c8}h1,h2{font-family:Georgia,serif;font-weight:500}h1{font-size:clamp(30px,5vw,55px);margin:10px 0}p{line-height:1.5}.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}figure{margin:0;padding:12px;background:white;overflow-wrap:anywhere}figure img{max-width:100%;max-height:130px;object-fit:contain;display:block;margin:12px 0}figcaption{font-weight:650}a{color:#1a573a}@media(max-width:650px){.strip{grid-template-columns:1fr}}@media print{section{break-inside:avoid}}</style>' +
-    '<header><p>Eagle Eye / Fieldwork eval</p><h1>Paint, content and focus</h1><p>' +
+    '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Paint, content and focus checks</title><style>' + proofStyle +
+    ':root{font-family:var(--ee-font);color:var(--ee-ink);background:var(--ee-mat)}body{max-width:1050px;margin:auto;padding:clamp(15px,4vw,50px)}header,section{padding:20px 0;border-bottom:1px solid var(--ee-rule)}h1,h2{font-family:var(--ee-font);font-weight:500}h1{font-size:clamp(30px,5vw,55px);margin:10px 0}p{line-height:1.5}.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}figure{margin:0;padding:12px;background:white;overflow-wrap:anywhere}figure img{max-width:100%;max-height:130px;object-fit:contain;display:block;margin:12px 0}figcaption{font-weight:650}a{color:var(--ee-ink)}@media(max-width:650px){.strip{grid-template-columns:1fr}}@media print{section{break-inside:avoid}}</style>' +
+    '<header><h1>Paint, content and focus</h1><p>' +
     result.rows.filter((r) => !r.error && r.issue === r.expected).length +
     ' of ' +
     result.rows.length +
